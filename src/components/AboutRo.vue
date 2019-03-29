@@ -63,7 +63,7 @@
         .container
           .row.flex-md-row-reverse
             .col-md-6
-              img(src="@/assets/img/about/eLfCllc.jpg").img-fluid.about-img
+              img(src="@/assets/img/about/00008355.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .about-content
                 .title.text-ro-dark.h4.text-center.font-weight-bold 山中之城『斐揚』
