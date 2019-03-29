@@ -35,7 +35,6 @@ library.add(fab, far, fas);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueTypedJs);
-
 Vue.use(VueAxios, axios);
 
 Validator.localize('zh_TW', zhTWValidate);

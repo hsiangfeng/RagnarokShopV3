@@ -74,6 +74,7 @@
             textarea.form-control(name='', id='', cols='30', rows='10', v-model='form.message')
           .text-right
             button.btn.btn-danger 送出訂單
+    PageMap
     ScrollTopComponent
 </template>
 
@@ -96,6 +97,7 @@
 
 <script>
 /* global $ */
+import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import { mapActions, mapGetters } from 'vuex';
 
@@ -152,6 +154,7 @@ export default {
     ...mapGetters(['isLoading', 'loadingID', 'cart'])
   },
   components: {
+    PageMap,
     ScrollTopComponent,
   },
   created() {

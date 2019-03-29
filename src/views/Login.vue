@@ -10,6 +10,7 @@
       form(@submit.prevent='signin')
         input#email(type='email', required='', autofocus='', v-model='user.username')
         input#password(type='password', required='', v-model='user.password')
+        input#saved(type='checkbox' v-model="saved")
         button#musicPlay.btn-play(type='button', @click='musicStatus()')
           | stop
         button.btn-login(type='submit')
@@ -22,40 +23,6 @@
 </template>
 
 <style lang="scss" scoped>
-html,
-body {
-  height: 100%;
-}
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
 .login-section {
   height: 100vh;
   background-image: url(../assets/img/RTC_1920_1080.jpg);
@@ -107,6 +74,11 @@ body {
     border: 0px;
     border: 1px solid #b9b8b8;
     font-size: 12px;
+  }
+  #saved{
+    position: absolute;
+    right: 13%;
+    top: 27%;
   }
   .btn-login{
     position: absolute;
@@ -162,11 +134,16 @@ export default {
         username: '',
         password: '',
       },
+      saved: true,
     };
   },
   methods: {
     signin() {
-      this.$store.dispatch('signin', this.user);
+      const vm = this;
+      if(vm.saved){
+        localStorage.setItem('saveAccount', JSON.stringify(vm.user.username));
+      }
+      vm.$store.dispatch('signin', vm.user);
     },
     dragWindow() {
       const loginLogoId = document.getElementById('login-logo');
@@ -216,8 +193,10 @@ export default {
     ...mapGetters(['isLoading']),
   },
   mounted() {
-    this.dragWindow();
-    this.autoPlayMusic();
+    const vm = this;
+    vm.dragWindow();
+    vm.autoPlayMusic();
+    vm.user.username = JSON.parse(localStorage.getItem('saveAccount')) || '';
   },
 };
 </script>

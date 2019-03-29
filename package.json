@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
+    "pagemap": "^0.5.0",
     "popper.js": "^1.14.7",
     "vue": "^2.6.6",
     "vue-axios": "^2.1.4",

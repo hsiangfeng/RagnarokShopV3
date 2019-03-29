@@ -72,6 +72,7 @@
                 .products-btn-disabled(v-else)
                   a.btn.btn-outline-danger.btn-block.disabled(href='#')
                     | 下次請早
+    PageMap
     ScrollTopComponent
     BgMusicComponent(:nowIndex='"products"')
 </template>
@@ -242,6 +243,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Breadcrumb from './Breadcrumb.vue';
+import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import BgMusicComponent from './shared/BgMusic.vue';
 
@@ -274,6 +276,7 @@ export default {
   },
   components: {
     Breadcrumb,
+    PageMap,
     ScrollTopComponent,
     BgMusicComponent,
   },

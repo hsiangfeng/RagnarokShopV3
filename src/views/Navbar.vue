@@ -42,8 +42,8 @@
     nav.bg-ro-window.d-lg-block.d-none.fixed-top.img-fluid#bg-ro-window
       router-link(:to="{name: 'Index'}" title="Alt+A，返回首頁").button-ro.button-index.btn-window
         | 首頁
-      router-link(:to="{name: 'Products', params:{data: '全部商品'}}" title="Alt+W，產品列表").button-ro.button-products.btn-window
-        | 產品
+      router-link(:to="{name: 'Products', params:{data: '全部商品'}}" title="Alt+W，商品列表").button-ro.button-products.btn-window
+        | 商城
       router-link(:to="{name: 'Customer'}" title="Alt+A，購物車列表").button-ro.button-cart.btn-window
         | 訂單
       router-link(:to="{name: 'AboutRo'}" title="Alt+S，關於仙境傳說").button-ro.button-aboutro.btn-window
@@ -57,6 +57,24 @@
       a(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-window
         | 購物車
       a(href="#" @click.prevent='switchWindow()' title="Alt+V，縮小視窗").button-switch#btn-switch
+    .bg-ro-hotkey#bg-ro-window-hotkey
+      router-link(:to="{name: 'Index'}" title="Alt+A，返回首頁").button-ro.button-index.btn-hotkey
+        | 首頁
+      router-link(:to="{name: 'Products', params:{data: '全部商品'}}" title="Alt+W，商品列表").button-ro.button-products.btn-hotkey
+        | 商城
+      router-link(:to="{name: 'Customer'}" title="Alt+A，購物車列表").button-ro.button-cart.btn-hotkey
+        | 訂單
+      router-link(:to="{name: 'AboutRo'}" title="Alt+S，關於仙境傳說").button-ro.button-aboutro.btn-hotkey
+        | 關於
+      router-link(to='/login' title="Alt+Z，登入後台").button-ro.button-login.btn-hotkey
+        | 登入
+      a(href='https://github.com/hsiangfeng/RagnarokShopV3' target='_blank' title="Alt+G，GitHub Repo").button-ro.button-github.btn-hotkey
+        font-awesome-icon(:icon="['fab','github']" size="1x")
+      a(href='https://hsiangfeng.github.io/SPA-Resume/' title="Alt+U，作者資料").button-ro.button-author.btn-hotkey
+        | 作者
+      a(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-hotkey
+        | Cart
+      a(href="#" @click.prevent='closeHotKey()' title="關閉視窗").btn-hot-key#btn-hot-key
 </template>
 
 <style lang="scss">
@@ -66,6 +84,7 @@
   .bg-ro-window{
     background-image: url(../assets/img/guide_ui01.gif);
     background-size: cover;
+    background-repeat: no-repeat;
     width: 327px;
     height: 140px;
     top: 2%;
@@ -129,6 +148,74 @@
     top: 0px;
     right: 0px;
   }
+  .bg-ro-hotkey{
+    background-image: url(../assets/img/se.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 288px;
+    height: 32px;
+    position: fixed;
+    top: 2%;
+    left: 39.5%;
+    z-index: 2;
+    .button-ro{
+      position: absolute;
+      width: 26px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      font-size: 10px;
+      box-shadow: 0 0 1px #000;
+      color: #000;
+      font-weight: 700;
+      background-color: #ffffff;
+      &:hover{
+        text-decoration: none;
+        background-color: #f0eeee;
+        color: #000;
+        box-shadow: 0 0 2px #000;
+      }
+    }
+    .button-index{
+      left: 16px;
+      top: 4px;
+    }
+    .button-cart{
+      left: 103px;
+      top: 4px;
+    }
+    .button-author{
+      left: 218px;
+      top: 4px;
+    }
+    .button-login{
+      left: 132px;
+      top: 4px;
+    }
+    .button-products{
+      left: 46px;
+      top: 4px;
+    }
+    .button-aboutro{
+      left: 74px;
+      top: 4px;
+    }
+    .button-github{
+      left: 190px;
+      top: 4px;
+    }
+    .button-none{
+      left: 161px;
+      top: 4px;
+    }
+    .btn-hot-key{
+      position: absolute;
+      width: 11px;
+      height: 10px;
+      right: 0;
+      top: 0;
+    }
+  }
 </style>
 
 <script>
@@ -161,31 +248,41 @@ export default {
       // index ALT+Q
       if(e.altKey && e.keyCode === 81){
         this.$router.push('/');
+      // 鍵盤1
+      } else if(e.keyCode === 49) {
+        this.$router.push('/');
       }
       // products ALT+W
       if(e.altKey && e.keyCode === 87){
         this.$router.push('/products');
-      }
-      // cart ALT+A
-      if(e.altKey && e.keyCode === 65){
-        this.$router.push('/customer');
+      // 鍵盤2
+      } else if(e.keyCode === 50) {
+        this.$router.push('/products');
       }
       // aboutro ALT+S
       if(e.altKey && e.keyCode === 83){
         this.$router.push('/aboutro');
+      // 鍵盤3
+      } else if(e.keyCode === 51) {
+        this.$router.push('/aboutro');
       }
+
+      // cart ALT+A
+      if(e.altKey && e.keyCode === 65){
+        this.$router.push('/customer');
+      // 鍵盤4
+      } else if(e.keyCode === 52) {
+        this.$router.push('/customer');
+      }
+      
       // login ALT+Z
       if(e.altKey && e.keyCode === 90){
         this.$router.push('/login');
+      // 鍵盤5
+      } else if(e.keyCode === 53) {
+        this.$router.push('/login');
       }
-      // ALT+G
-      if(e.altKey && e.keyCode === 71){
-        window.open('https://github.com/hsiangfeng/RagnarokShopV3');
-      }
-      // ALT+U Resume
-      if(e.altKey && e.keyCode === 85){
-        window.open('https://hsiangfeng.github.io/SPA-Resume/');
-      }
+
       // ALT+C 購物車
       if(e.altKey && e.keyCode === 67){
         if ($('#cartsModal').modal('show')[0].hidden) {
@@ -193,11 +290,34 @@ export default {
         } else {
           $('#cartsModal').modal('hide');
         }
-        
+      // 鍵盤6
+      } else if(e.keyCode === 54) {
+        if ($('#cartsModal').modal('show')[0].hidden) {
+          $('#cartsModal').modal('show');
+        } else {
+          $('#cartsModal').modal('hide');
+        }
       }
+
+      // ALT+G
+      if(e.altKey && e.keyCode === 71){
+        window.open('https://github.com/hsiangfeng/RagnarokShopV3');
+      // 鍵盤7
+      } else if(e.keyCode === 55) {
+        window.open('https://github.com/hsiangfeng/RagnarokShopV3');
+      }
+
+      // ALT+U Resume
+      if(e.altKey && e.keyCode === 85){
+        window.open('https://hsiangfeng.github.io/SPA-Resume/');
+      // 鍵盤8
+      } else if(e.keyCode === 56) {
+        window.open('https://hsiangfeng.github.io/SPA-Resume/');
+      }
+
       // ALT+V 介面視窗
       if(e.altKey && e.keyCode === 86){
-        const bgRoWindow = document.getElementById('bg-ro-window'); 
+        const bgRoWindow = document.getElementById('bg-ro-window');
         const btnWindow = document.querySelectorAll('.btn-window');
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height= '140px';
@@ -210,6 +330,38 @@ export default {
             item.style.display = 'none';
           });
         }
+      }
+
+      // 鍵盤0
+      if(e.keyCode === 48){
+        const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
+        const btnHotKey = document.querySelectorAll('.btn-hotkey');
+        if (bgRoWindowHotKey.style.display === 'none') {
+            bgRoWindowHotKey.style.display = 'block';
+            btnHotKey.forEach(item => {
+              item.style.display = 'block';
+            });
+        } else {
+          bgRoWindowHotKey.style.display = 'none';
+          btnHotKey.forEach(item => {
+            item.style.display = 'none';
+          });
+        }
+      }
+    },
+    closeHotKey() {
+      const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
+      const btnHotKey = document.querySelectorAll('.btn-hotkey');
+      if (bgRoWindowHotKey.style.display === 'none') {
+          bgRoWindowHotKey.style.display = 'block';
+          btnHotKey.forEach(item => {
+            item.style.display = 'block';
+          });
+      } else {
+        bgRoWindowHotKey.style.display = 'none';
+        btnHotKey.forEach(item => {
+          item.style.display = 'none';
+        });
       }
     },
     openModelWindow(){

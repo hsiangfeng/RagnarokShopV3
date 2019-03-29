@@ -6,6 +6,7 @@
     Other
     Shop
     Partner
+    PageMap
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3', type='audio/mpeg')
     .play-bgm
@@ -32,6 +33,7 @@ import Esay from '@/components/Esay.vue';
 import Other from '@/components/Other.vue';
 import Shop from '@/components/Shop.vue';
 import Partner from '@/components/Partner.vue';
+import PageMap from './shared/PageMap.vue';
 import BgMusicComponent from './shared/BgMusic.vue';
 
 export default {
@@ -73,6 +75,7 @@ export default {
     Other,
     Shop,
     Partner,
+    PageMap,
     BgMusicComponent,
   },
   mounted() {
