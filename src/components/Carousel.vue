@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.css';
+import 'swiper/dist/css/swiper.min.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 export default {

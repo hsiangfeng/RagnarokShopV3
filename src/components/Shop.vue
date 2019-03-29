@@ -144,7 +144,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['isLoading','loadingID', 'products', 'shopOff', 'shopItem', 'localFilter']),
+    ...mapGetters(['isLoading', 'loadingID', 'products', 'shopOff', 'shopItem', 'localFilter']),
   },
   components: {
     swiper,
