@@ -6,6 +6,9 @@
 新版首頁(V3版)
 ![](https://i.imgur.com/NM43z24.png)
 ## Demo
+RagnarokShop (舊版V2)
+[https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")
+RagnarokShopV3(新版V3)
 [https://hsiangfeng.github.io/RagnarokShopV3/](https://hsiangfeng.github.io/RagnarokShopV3/ "https://hsiangfeng.github.io/RagnarokShopV3/")
 ## 簡介
 此作品為Vuejs前端練習，其主要功能有以下:
@@ -30,6 +33,7 @@
 - API
 - RWD
 - Bootstrap4
+- jQuery
 - JavaScript(ES6、LocalStorage等)
 - PUG
 - SCSS
@@ -108,6 +112,4 @@
 本作品內圖片、內容等，純粹為個人練習前端使用，不做任何商業用途。
 
 ## 作者小言
-還是有很多細節沒有處理得很好(甚至還有一些莫名其妙的BUG!!!!)  
-目前規劃前台若處理完畢將會往後台去做版面的調整讓UX體驗更好一點...  
-說真的沒想到一個電商網站要顧慮的細節如此之多，但是做起來還滿快樂的呢
+沒想到一個電商的開發如此複雜，盡可能忠於仙境傳說介面，小地方可能還有一些bug(舉凡切換畫面過快背景音樂會重疊的問題。)
