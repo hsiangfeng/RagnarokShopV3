@@ -49,6 +49,7 @@
 
 <script>
 import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
+
 export default {
   data() {
     return {

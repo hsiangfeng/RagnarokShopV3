@@ -139,7 +139,7 @@
 <script>
 /* global $ */
 import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
-import PaginationComponents from './Pagination';
+import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
   data() {

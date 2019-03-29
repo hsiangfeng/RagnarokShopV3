@@ -132,7 +132,7 @@
 /* global $ */
 import { mapGetters } from 'vuex';
 import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
-import PaginationComponents from './Pagination.vue';
+import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
   data() {
