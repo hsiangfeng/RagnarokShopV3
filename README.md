@@ -6,9 +6,9 @@
 新版首頁(V3版)
 ![](https://i.imgur.com/NM43z24.png)
 ## Demo
-RagnarokShop (舊版V2)
-[https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")
-RagnarokShopV3 (新版V3)
+RagnarokShop (舊版V2)  
+[https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")  
+RagnarokShopV3 (新版V3)  
 [https://hsiangfeng.github.io/RagnarokShopV3/](https://hsiangfeng.github.io/RagnarokShopV3/ "https://hsiangfeng.github.io/RagnarokShopV3/")
 ## 簡介
 此作品為Vuejs前端練習，其主要功能有以下:
