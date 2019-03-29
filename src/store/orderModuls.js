@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import router from '../router';
-import VeeValidate from 'vee-validate';
 
 export default {
   strict: true,
@@ -9,9 +8,11 @@ export default {
     url: {
       cart(name, id) {
         switch (name) {
+          case 'post':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart`;
           case 'get':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart`;
-          case 'remove':
+          case 'delete':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart/${id}`;
           case 'coupon':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/coupon`;
@@ -21,9 +22,9 @@ export default {
       },
       order(name, id) {
         switch (name) {
-          case 'new':
+          case 'post':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/order`;
-          case 'order':
+          case 'get':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/order/${id}`;
           case 'pay':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/pay/${id}`;
@@ -49,6 +50,31 @@ export default {
     },
   },
   actions: {
+    addCart(context, { id, qty }) {
+      const url = context.state.url.cart('post');
+      const cartContent = {
+        product_id: id,
+        qty,
+      };
+      context.commit('LOADINGID', id);
+      Axios.post(url, { data: cartContent }).then((response) => {
+        if (response.data.message === '已加入購物車') {
+          context.dispatch('updateMessage', { message: '產品加入購物車成功(*ゝ∀･)v', status: 'success' });
+          context.dispatch('getCarts');
+        } else if (response.data.message === '加入購物車有誤') {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'danger',
+          });
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'danger',
+          });
+        }
+        context.commit('LOADINGID', '');
+      });
+    },
     getCarts(context) {
       const url = context.state.url.cart('get');
       context.commit('LOADING', true);
@@ -90,13 +116,14 @@ export default {
       });
     },
     createOrder(context, form) {
-      const url = context.state.url.order('new');
+      const url = context.state.url.order('post');
       Axios.post(url, { data: form }).then((response) => {
         if (response.data.message === '已建立訂單') {
           context.dispatch('updateMessage', {
             message: '產品已成功建立訂單啦(*ゝ∀･)v',
             status: 'success',
           });
+          context.dispatch('getCarts');
           router.push(`/check_order/${response.data.orderId}`);
         } else if (response.data.message === '說明欄位為必填') {
           context.dispatch('updateMessage', {
@@ -126,7 +153,7 @@ export default {
       });
     },
     removeCart(context, id) {
-      const url = context.state.url.cart('remove', id);
+      const url = context.state.url.cart('delete', id);
       context.commit('LOADINGID', id);
       Axios.delete(url).then((response) => {
         if (response.data.success) {
@@ -146,7 +173,7 @@ export default {
       });
     },
     getOrder(context, id) {
-      const url = context.state.url.order('order', id);
+      const url = context.state.url.order('get', id);
       context.commit('LOADING', true);
       Axios.get(url).then((response) => {
         if (response.data.success) {

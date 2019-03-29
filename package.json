@@ -61,7 +61,13 @@
           "ignorePropertyModificationsFor": [
             "state",
             "acc",
-            "e"
+            "e",
+            "ctx",
+            "req",
+            "request",
+            "res",
+            "response",
+            "$scope"
           ]
         }
       ]

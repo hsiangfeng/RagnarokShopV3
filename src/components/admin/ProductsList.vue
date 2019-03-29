@@ -67,7 +67,12 @@
                     font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='fileUploading')
                     img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='fileUploading', width='25px')
                   input#customFile.form-control(type='file', ref='files', @change='updataProductsImg()')
-                img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='productsImageUrl')
+                div(v-if="productsImageUrl")
+                  .h5 準備上傳的圖片
+                  img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='productsImageUrl')
+                div(v-if="tempProducts.imageUrl")
+                  .h5 目前商品圖片
+                  img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='tempProducts.imageUrl')
               .col-sm-8
                 .form-group
                   label(for='title') 標題
@@ -142,7 +147,6 @@ import PaginationComponents from '@/components/shared/Pagination.vue';
 export default {
   data() {
     return {
-      openStatus: '',
       modelStatus: '',
       modelTitle: '',
       tempProducts: {},
@@ -153,15 +157,11 @@ export default {
       this.$store.dispatch('getAdminProducts', page);
     },
     updataProducts() {
-      const tempProducts = [...this.tempProducts];
-      const productsImageUrl = [...this.productsImageUrl];
-      const productsStatus = this.modelStatus;
-      this.$store.dispatch('updataCacheProducts', { tempProducts, productsImageUrl });
-      if (productsStatus === 'post') {
-        this.$store.dispatch('updataProducts', { productsStatus });
-      } else if (productsStatus === 'put') {
-        const productsID = this.tempProducts.id;
-        this.$store.dispatch('updataProducts', { productsStatus, productsID });
+      this.$store.dispatch('updataCacheProducts', { tempProducts: this.tempProducts, productsImageUrl: this.productsImageUrl });
+      if (this.modelStatus === 'post') {
+        this.$store.dispatch('updataProducts', { productsStatus: this.modelStatus });
+      } else if (this.modelStatus === 'put') {
+        this.$store.dispatch('updataProducts', { productsStatus: this.modelStatus, productsID: this.tempProducts.id });
       }
     },
     updataProductsImg() {
@@ -174,6 +174,7 @@ export default {
     tempRemove() {
       $('#productsModal').on('hidden.bs.modal', () => {
         this.tempProducts = {};
+        this.$store.commit('CLEARIMGURL');
       });
       $('#deleteProductsModal').on('hidden.bs.modal', () => {
         this.tempProducts = {};

@@ -110,16 +110,16 @@
                 .form-row
                   .form-group.col-md-4
                     label(for='category') 購買人
-                    input#total.form-control(type='text', placeholder='請輸入姓名', v-model='tempOrders.user.name')
+                    input#total.form-control(type='text', placeholder='請輸入姓名', v-model='tempOrders.user.name' readonly)
                   .form-group.col-md-4
                     label(for='total') 連絡電話
-                    input#total.form-control(type='number', placeholder='請輸入號碼', v-model='tempOrders.user.tel')
+                    input#total.form-control(type='number', placeholder='請輸入號碼', v-model='tempOrders.user.tel' readonly)
                   .form-group.col-md-4
                     label(for='total') Email
-                    input#total.form-control(type='email', placeholder='請輸入Email', v-model='tempOrders.user.email')
+                    input#total.form-control(type='email', placeholder='請輸入Email', v-model='tempOrders.user.email' readonly)
                 .form-group
                   label(for='description') 訂單訊息
-                  textarea#description.form-control(type='text', v-model='tempOrders.message')
+                  textarea#description.form-control(type='text', v-model='tempOrders.message' readonly)
             .form-group
               .form-check
                 input#is_paid.form-check-input(type='checkbox', v-model='tempOrders.is_paid', :true-value='true', :false-value='false')
@@ -191,9 +191,7 @@ export default {
       this.$store.dispatch('getAdminOrders', page);
     },
     updataOrders() {
-      const tempOrders = [...this.tempOrders];
-      const id = [...this.tempOrders.id];
-      this.$store.dispatch('updataOrders', { tempOrders, id });
+      this.$store.dispatch('updataOrders', { tempOrders: this.tempOrders, id: this.tempOrders.id });
     },
     openModel(status, item) {
       const vm = this;

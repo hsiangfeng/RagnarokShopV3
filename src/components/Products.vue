@@ -282,5 +282,11 @@ export default {
   created() {
     this.getProducts();
   },
+  mounted() {
+    setTimeout(() => {
+      const confound = document.querySelector('.confound');
+      confound.style.opacity = 1;
+    }, 2000);
+  },
 };
 </script>

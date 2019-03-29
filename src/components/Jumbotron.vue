@@ -9,6 +9,7 @@
           br
           span.typing
       .banner
+        img.img-fluid.logo-smile(src='@/assets/img/AW2775921_10.gif', width='100px')
         img.img-fluid.logo-sweat(src='@/assets/img/AW2775921_01.gif', width='50px')
         img.img-fluid.logo-poring(src='@/assets/img/poring.gif', width='50px')
         img.img-fluid(src='@/assets/img/1181362684.png', width='500px')
@@ -40,6 +41,12 @@
     position: absolute;
     bottom: 30%;
     right: 16%;
+    z-index: 1;
+  }
+  .logo-smile{
+    position: absolute;
+    top: 10%;
+    left: 0%;
     z-index: 1;
   }
   .header{

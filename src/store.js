@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import productsModel from './store/products';
-import cartModel from './store/cart';
-import order from './store/order';
-import admin from './store/admin';
-import alertMessagesModel from './store/alertMessages';
+import productsModuls from './store/productsModuls'; // eslint-disable-next-line
+import orderModuls from './store/orderModuls'; // eslint-disable-next-line
+import adminModuls from './store/adminModuls'; // eslint-disable-next-line
+import alertModuls from './store/alertModuls'; // eslint-disable-next-line
 
 Vue.use(Vuex);
 
@@ -36,10 +35,9 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    productsModel,
-    cartModel,
-    order,
-    admin,
-    alertMessagesModel,
+    productsModuls,
+    orderModuls,
+    adminModuls,
+    alertModuls,
   },
 });

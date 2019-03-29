@@ -110,6 +110,9 @@ export default {
     PUSHCHAR(state, payload) {
       state.chartData.rows = payload;
     },
+    CLEARIMGURL(state) {
+      state.productsImageUrl = '';
+    },
   },
   actions: {
     signin(context, user) {
@@ -198,7 +201,7 @@ export default {
               });
               break;
           }
-          context.commit('LOADING', false);
+          // context.commit('LOADING', false);
           context.dispatch('getAdminProducts');
         } else {
           context.dispatch('updateMessage', {
@@ -206,7 +209,7 @@ export default {
             status: 'success',
           });
         }
-        context.commit('LOADING', false);
+        // context.commit('LOADING', false);
       });
     },
     updataProductsImg(context, uploadefFile) {
@@ -214,6 +217,7 @@ export default {
       formData.append('file-to-upload', uploadefFile);
       const url = context.state.url.products('img');
       context.commit('FILEUPLOADSTATE', true);
+      context.commit('LOADING', true);
       Axios.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -228,10 +232,11 @@ export default {
         } else {
           context.dispatch('updateMessage', {
             message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
-            status: 'success',
+            status: 'danger',
           });
         }
         context.commit('FILEUPLOADSTATE', false);
+        context.commit('LOADING', false);
       });
     },
     deleProducts(context, id) {

@@ -68,7 +68,7 @@
                   | 啟用
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') 取消
-            button.btn.btn-primary(type='button', @click='updataCoupons')
+            button.btn.btn-primary(type='button', @click='updataCoupons()')
               | 確認
     #deleteCouponsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog(role='document')
@@ -108,14 +108,11 @@ export default {
       this.$store.dispatch('getAdminCoupons', page);
     },
     updataCoupons() {
-      const couponsStatus = this.modelStatus;
-      const cacheCoupons = [...this.cacheCoupons];
-      this.$store.dispatch('updataCacheCoupons', cacheCoupons);
-      if (couponsStatus === 'post') {
-        this.$store.dispatch('updataCoupons', { couponsStatus });
-      } else if (couponsStatus === 'put') {
-        const cacheCouponsID = this.cacheCoupons.id;
-        this.$store.dispatch('updataCoupons', { couponsStatus, cacheCouponsID });
+      this.$store.dispatch('updataCacheCoupons', this.cacheCoupons);
+      if (this.modelStatus === 'post') {
+        this.$store.dispatch('updataCoupons', { couponsStatus: this.modelStatus });
+      } else if (this.modelStatus === 'put') {
+        this.$store.dispatch('updataCoupons', { couponsStatus: this.modelStatus, cacheCouponsID: this.cacheCoupons.id });
       }
     },
     deleteCoupons() {

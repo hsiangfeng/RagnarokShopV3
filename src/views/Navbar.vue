@@ -301,7 +301,7 @@ export default {
         }
       }
 
-      // ALT+G
+      // ALT+G Github
       if (e.altKey && e.keyCode === 71) {
         window.open('https://github.com/hsiangfeng/RagnarokShopV3');
       // 鍵盤7
