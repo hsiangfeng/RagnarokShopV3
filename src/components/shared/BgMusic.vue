@@ -21,16 +21,16 @@ export default {
       const roBGM = document.getElementById('roBGM');
       switch (this.nowIndex) {
         case 'index':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/08.mp3';
           break;
         case 'products':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/login%402.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/login%402.mp3';
           break;
         case 'aboutRo':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/12.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/12.mp3';
           break;
         case 'login':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/01.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/01.mp3';
           break;
         default:
           this.audioSrc = '';

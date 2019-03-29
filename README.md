@@ -1,12 +1,12 @@
 # RagnarokShopV3 (仙境傳說RO電商)
 > 歡迎來到仙境傳說，這是一份Vuejs電商前端練習。
 ## 新舊頁面差異
-###舊版首頁(V2版)
+舊版首頁(V2版)
 ![](https://i.imgur.com/oVJr0Vf.png)
-###新版首頁(V3版)
+新版首頁(V3版)
 ![](https://i.imgur.com/NM43z24.png)
 ## Demo
-[https://hsiangfeng.github.io/RagnarokShop](https://hsiangfeng.github.io/RagnarokShop "https://hsiangfeng.github.io/RagnarokShop")
+[https://hsiangfeng.github.io/RagnarokShopV3/](https://hsiangfeng.github.io/RagnarokShopV3/ "https://hsiangfeng.github.io/RagnarokShopV3/")
 ## 簡介
 此作品為Vuejs前端練習，其主要功能有以下:
 
@@ -96,7 +96,7 @@
 
 其餘更多細節部分，歡迎至Demo網站觀看。  
 
-[https://hsiangfeng.github.io/RagnarokShop](https://hsiangfeng.github.io/RagnarokShop "https://hsiangfeng.github.io/RagnarokShop")
+[https://hsiangfeng.github.io/RagnarokShopV3/](https://hsiangfeng.github.io/RagnarokShopV3/ "https://hsiangfeng.github.io/RagnarokShopV3/")
 ## 內容來源&圖片來源
 [Google](https://www.google.com/)  
 [仙境傳說官方網站](https://ro.gnjoy.com.tw/)   
