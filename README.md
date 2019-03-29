@@ -84,6 +84,7 @@
 - RO登入音樂  
 - 其他RO音樂  
 - 登入視窗可拖曳  
+<img src="https://i.imgur.com/61vZI8U.gif" width="200">
 
 表情符號  
 <img src="https://i.imgur.com/nuXdSNM.gif" width="200">
