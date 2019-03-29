@@ -5,11 +5,11 @@
       vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
         small.font-weight-normal.typing
     .text-right.my-2
-      button.btn.btn-ro.text-white(type='button', @click="openModel('new')")
+      button.btn.btn-ro.text-white(type='button', @click="openModel('post')")
         font-awesome-icon(:icon="['fas', 'plus']")
         | 新增產品
     .card-columns
-      .card(v-for='item in products', :key='item.id')
+      .card(v-for='item in adminProducts', :key='item.id')
         .text-center
           a(:href='item.imageUrl', target='_black')
             img(:src='item.imageUrl', v-if='item.imageUrl')
@@ -31,40 +31,39 @@
             li.list-group-item.text-right
               | 單位：{{item.unit}}
               span.text-secondary.small (1組/個)
-            li.list-group-item.text-center.text-white(:class="{'bg-success': item.is_enabled,\
-            'bg-danger': !item.is_enabled }")
+            li.list-group-item.text-center.text-white(:class="{'bg-success': item.is_enabled,'bg-danger': !item.is_enabled }")
               | 產品狀態：
               span(v-if='item.is_enabled') 已開啟
               span(v-else='') 未啟用
             li.list-group-item
-              button.btn.btn-outline-ro.btn-block(@click="openModel('edit', item)")
+              button.btn.btn-outline-ro.btn-block(@click="openModel('put', item)")
                 font-awesome-icon(:icon="['fas', 'edit']")
                 | 編輯
               button.btn.btn-outline-danger.btn-block(@click="openModel('delete', item)")
                 font-awesome-icon(:icon="['fas', 'trash-alt']")
                 | 刪除
-    PaginationComponents(:paginationService='pagination', v-on:pageService='getProducts')
+    PaginationComponents(:paginationService='pagination', v-on:pageService='getAdminProducts')
     #productsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog.modal-lg(role='document')
         .modal-content.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelStatus}}
+              span {{modelTitle}}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
             .row
               .col-sm-4
                 .form-group
-                  label(for='image') 輸入圖片網址
-                  input#image.form-control(type='text', placeholder='請輸入圖片連結', v-model='tempProducts.imageUrl')
+                  label(for='image') 圖片網址
+                  input#image.form-control(type='text', placeholder='請上傳圖片', v-model='productsImageUrl' disabled)
                 .form-group
                   label(for='customFile')
-                    | 或 上傳圖片
-                    font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.fileUploading')
-                    img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='status.fileUploading', width='25px')
+                    | 上傳圖片
+                    font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='fileUploading')
+                    img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='fileUploading', width='25px')
                   input#customFile.form-control(type='file', ref='files', @change='updataProductsImg()')
-                img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='tempProducts.imageUrl')
+                img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='productsImageUrl')
               .col-sm-8
                 .form-group
                   label(for='title') 標題
@@ -109,7 +108,6 @@
           .modal-footer
             button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
             button.btn.btn-primary(type='button', @click='updataProducts()')
-              font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
               | 確認
     #deleteProductsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog(role='document')
@@ -126,163 +124,59 @@
           .modal-footer
             button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
             button.btn.btn-danger(type='button', @click='deleProducts')
-              font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
               | 確認刪除
+    ScrollTopComponent
 </template>
 
 <script>
 /* global $ */
-import PaginationComponents from './Pagination';
+import { mapGetters } from 'vuex';
+import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
+import PaginationComponents from './Pagination.vue';
 
 export default {
   data() {
     return {
-      products: [],
-      tempProducts: {},
-      pagination: {},
       openStatus: '',
-      isLoading: false,
       modelStatus: '',
       modelTitle: '',
-      status: {
-        fileUploading: false,
-        loadingItem: false,
-      },
+      tempProducts: {},
     };
   },
   methods: {
-    getProducts(page = 1) {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/products?page=${page}`;
-      vm.isLoading = true;
-      vm.$http.get(url).then((response) => {
-        if (response.data.success) {
-          vm.pagination = response.data.pagination;
-          vm.products = response.data.products;
-          vm.isLoading = false;
-        } else if (response.data.message === '驗證錯誤, 請重新登入') {
-          vm.$router.push('/login');
-          vm.isLoading = false;
-        } else {
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-          vm.isLoading = false;
-        }
-      });
+    getAdminProducts(page = 1) {
+      this.$store.dispatch('getAdminProducts', page);
     },
     updataProducts() {
-      const vm = this;
-      let httpMethods = 'post';
-      let url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/product/`;
-      if (vm.modelStatus === 'edit') {
-        httpMethods = 'put';
-        url = `${process.env.APIPATH}/api/${
-          process.env.COUSTOMPATH
-        }/admin/product/${
-          vm.tempProducts.id
-        }`;
+      const tempProducts = this.tempProducts;
+      const productsImageUrl = this.productsImageUrl;
+      const productsStatus = this.modelStatus;
+      this.$store.dispatch('updataCacheProducts', { tempProducts, productsImageUrl });
+      if (productsStatus === 'post') {
+        this.$store.dispatch('updataProducts', { productsStatus });
+      } else if (productsStatus === 'put') {
+        const productsID = this.tempProducts.id
+        this.$store.dispatch('updataProducts', { productsStatus, productsID });
       }
-      vm.status.loadingItem = true;
-      vm.$http[httpMethods](url, { data: vm.tempProducts }).then((response) => {
-        if (response.data.success) {
-          vm.status.loadingItem = false;
-          $('#productsModal').modal('hide');
-          switch (httpMethods) {
-            case 'post':
-              vm.$bus.$emit('message:push',
-                '資料新增成功(*ゝ∀･)v',
-                'success');
-              break;
-            case 'put':
-              vm.$bus.$emit('message:push',
-                '資料更新成功(*ゝ∀･)v',
-                'success');
-              break;
-            default:
-              vm.$bus.$emit('message:push',
-                '資料新增成功(*ゝ∀･)v',
-                'success');
-              break;
-          }
-          vm.getProducts();
-          vm.tempProducts = [];
-        } else {
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-        }
-      });
     },
     updataProductsImg() {
-      const vm = this;
-      const uploadefFile = vm.$refs.files.files[0];
-      const formData = new FormData();
-      formData.append('file-to-upload', uploadefFile);
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/upload`;
-      vm.status.fileUploading = true;
-      vm.$http.post(url, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((response) => {
-        if (response.data.success) {
-          vm.$set(vm.tempProducts, 'imageUrl', response.data.imageUrl);
-          vm.$bus.$emit('message:push',
-            '圖片上傳成功(*ゝ∀･)v',
-            'success');
-          vm.status.fileUploading = false;
-        } else {
-          vm.status.fileUploading = false;
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-        }
-      });
+      const uploadefFile = this.$refs.files.files[0];
+      this.$store.dispatch('updataProductsImg', uploadefFile);
     },
     deleProducts() {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/product/${vm.tempProducts.id}`;
-      vm.status.loadingItem = true;
-      vm.$http.delete(url).then((response) => {
-        if (response.data.success) {
-          vm.status.loadingItem = false;
-          $('#deleteProductsModal').modal('hide');
-          vm.$bus.$emit('message:push',
-            '資料刪除成功(*ゝ∀･)v',
-            'success');
-          vm.getProducts();
-        } else {
-          vm.status.loadingItem = false;
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-        }
-      });
+      this.$store.dispatch('deleProducts', this.tempProducts.id);
     },
     openModel(status, item) {
       const vm = this;
       switch (status) {
-        case 'new':
+        case 'post':
           vm.modelTitle = '新增產品';
-          vm.modelStatus = 'created';
+          vm.modelStatus = 'post';
           $('#productsModal').modal('show');
           break;
-        case 'edit':
+        case 'put':
           vm.modelTitle = '編輯產品';
-          vm.modelStatus = 'edit';
+          vm.modelStatus = 'put';
           $('#productsModal').modal('show');
           vm.tempProducts = Object.assign({}, item);
           break;
@@ -307,10 +201,14 @@ export default {
     },
   },
   components: {
+    ScrollTopComponent,
     PaginationComponents,
   },
+  computed: {
+    ...mapGetters(['isLoading', 'fileUploading', 'adminProducts', 'productsImageUrl', 'pagination']),
+  },
   created() {
-    this.getProducts();
+    this.getAdminProducts();
   },
   mounted() {
     this.tempRemove();

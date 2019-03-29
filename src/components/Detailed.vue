@@ -73,6 +73,7 @@
               div(v-else)
                 a.btn.btn-outline-danger.btn-block.disabled(href='#')
                   | 下次請早
+    ScrollTopComponent
 </template>
 <style lang="scss">
   .p-top{
@@ -99,6 +100,7 @@
 </style>
 
 <script>
+import ScrollTopComponent from './shared/ScrollTop.vue';
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import { mapGetters, mapActions } from 'vuex';
@@ -151,6 +153,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
+    ScrollTopComponent,
   },
   created() {
     const vm = this;

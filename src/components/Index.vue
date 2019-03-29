@@ -32,7 +32,7 @@ import Esay from '@/components/Esay.vue';
 import Other from '@/components/Other.vue';
 import Shop from '@/components/Shop.vue';
 import Partner from '@/components/Partner.vue';
-import CartMessage from '@/components/CartMessage.vue';
+import BgMusicComponent from './shared/BgMusic.vue';
 
 export default {
   name: 'Index',
@@ -73,7 +73,7 @@ export default {
     Other,
     Shop,
     Partner,
-    CartMessage,
+    BgMusicComponent,
   },
   mounted() {
     $(() => {

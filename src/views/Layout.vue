@@ -3,13 +3,13 @@
     AlertMessage
     CartMessage
     Navbar
-    router-view
+    router-view(:key="key")
     Footer
 </template>
 
 <script>
-import AlertMessage from '@/components/AlertMessage.vue';
-import CartMessage from '@/components/CartMessage.vue';
+import AlertMessage from '@/components/shared/AlertMessage.vue';
+import CartMessage from '@/components/shared/CartMessage.vue';
 import Navbar from '@/views/Navbar.vue';
 import Footer from '@/views/Footer.vue';
 
@@ -17,6 +17,11 @@ export default {
   data() {
     return {
     };
+  },
+  computed: {
+    key() {
+      return this.$route.path + Math.random();
+    }
   },
   components: {
     Navbar,

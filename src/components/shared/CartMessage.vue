@@ -2,7 +2,7 @@
   div
     .d-none.d-md-block.cart-pop
       a(href="#" data-toggle="modal" @click.prevent="openModel()" v-if="cart.carts")
-        img(src="../assets/img/cart.png" width="100px").cart-img
+        img(src="@/assets/img/cart.png" width="100px").cart-img
         p.cart-text.bg-danger(v-if='cart.carts.length !== 0' )
           | {{cart.carts.length}}
     #cartsModal.modal.fade(tabindex='-1', role='dialog')

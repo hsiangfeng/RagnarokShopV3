@@ -86,8 +86,8 @@
                     | 位於『普隆德拉』東南方的港灣，也是盧恩─米德加爾特王國的商業中心；但激變的天氣形成兇猛的暴風和海嘯，常使得船隻無法離港。
                   p
                     | 「斯楚瓦爾茲貝特」的寶藏沈船，使得寶物獵人和商人大量聚集於此。以商人為職業的玩家須在此地修練。
-    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/12.mp3', type='audio/mpeg')
+    ScrollTopComponent
+    BgMusicComponent(:nowIndex='"aboutRo"')
 </template>
 
 <style lang="scss" scoped>
@@ -143,24 +143,17 @@
 </style>
 
 <script>
+import ScrollTopComponent from './shared/ScrollTop.vue';
+import BgMusicComponent from './shared/BgMusic.vue';
+
 export default {
   data() {
     return {
     };
   },
-  methods: {
-    autoPlayMusic() {
-      const roBGM = document.getElementById('roBGM');
-      if (roBGM.paused) {
-        setTimeout(() => {
-          roBGM.play();
-          roBGM.volume = 0.2;
-        }, 2000);
-      }
-    },
-  },
-  mounted() {
-    this.autoPlayMusic();
+  components:{
+    ScrollTopComponent,
+    BgMusicComponent,
   },
 };
 </script>

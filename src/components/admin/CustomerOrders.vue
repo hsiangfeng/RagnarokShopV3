@@ -133,10 +133,12 @@
               strong {{ cacheProducth.num * cacheProducth.price }}
               |  元
             button.btn.btn-primary(type='button', @click='addtoCart(cacheProducth.id, cacheProducth.num)') 加到購物車
+    ScrollTopComponent
 </template>
 
 <script>
 /* global $ */
+import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
 import PaginationComponents from './Pagination';
 
 export default {
@@ -357,6 +359,7 @@ export default {
     },
   },
   components: {
+    ScrollTopComponent,
     PaginationComponents,
   },
   created() {

@@ -14,33 +14,33 @@
             br
             span.typing
         img(src="@/assets/img/AW2775921_04.gif").confound
-    .container
+    .container#products
       Breadcrumb(:breadcrumb='category')
       .content
         .category-list
           ul.list-items.sticky-list
             li
-              a.items(href='#', @click.prevent="category.title = '全部商品',getProducts()", :class="{'active': category.title == '全部商品' }")
+              a.items(href='#products', @click="category.title = '全部商品',getProducts()", :class="{'active': category.title == '全部商品' }")
                 img.items-img(src='@/assets/img/yJFR7SP.gif')
                 div 全部商品
             li
-              a.items(href='#', @click.prevent="category.title = '熱門商品', getProducts()", :class="{'active': category.title == '熱門商品' }")
+              a.items(href='#products', @click="category.title = '熱門商品', getProducts()", :class="{'active': category.title == '熱門商品' }")
                 img.items-img(src='@/assets/img/0d86f9da98cabdbbcf6040053a83aaf8.png')
                 div 熱門商品
             li
-              a.items(href='#', @click.prevent="category.title = '組合優惠', getProducts()", :class="{'active': category.title == '組合優惠' }")
+              a.items(href='#products', @click="category.title = '組合優惠', getProducts()", :class="{'active': category.title == '組合優惠' }")
                 img.items-img(src='@/assets/img/9d8265cf8508453204d3ec5184ab7b99.png')
                 div 組合優惠
             li
-              a.items(href='#', @click.prevent="category.title = 'MVP卡片', getProducts()", :class="{'active': category.title == 'MVP卡片' }")
+              a.items(href='#products', @click="category.title = 'MVP卡片', getProducts()", :class="{'active': category.title == 'MVP卡片' }")
                 img.items-img(src='@/assets/img/663ffbf1ed4fd82dc0f66202293c016d.png')
                 div MVP卡片
             li
-              a.items(href='#', @click.prevent="category.title = 'MVP武器', getProducts()", :class="{'active': category.title == 'MVP武器' }")
+              a.items(href='#products', @click="category.title = 'MVP武器', getProducts()", :class="{'active': category.title == 'MVP武器' }")
                 img.items-img(src='@/assets/img/5a293f45bbbe31fe5fe1de93a5615da8.png')
                 div MVP武器
             li
-              a.items(href='#', @click.prevent="category.title = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
+              a.items(href='#products', @click="category.title = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
                 img.items-img(src='@/assets/img/05249f42bb0c86e0a3f2c55b70e79b75.png')
                 div MVP防具
         .products
@@ -72,8 +72,8 @@
                 .products-btn-disabled(v-else)
                   a.btn.btn-outline-danger.btn-block.disabled(href='#')
                     | 下次請早
-    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/login%402.mp3', type='audio/mpeg')
+    ScrollTopComponent
+    BgMusicComponent(:nowIndex='"products"')
 </template>
 
 <style lang="scss" scoped>
@@ -242,6 +242,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Breadcrumb from './Breadcrumb.vue';
+import ScrollTopComponent from './shared/ScrollTop.vue';
+import BgMusicComponent from './shared/BgMusic.vue';
 
 export default {
   data() {
@@ -256,15 +258,7 @@ export default {
     addCart(id, qty = 1) {
       this.$store.dispatch('addCart', { id, qty });
     },
-    autoPlayMusic() {
-      const roBGM = document.getElementById('roBGM');
-      if (roBGM.paused) {
-        setTimeout(() => {
-          roBGM.play();
-          roBGM.volume = 0.2;
-        }, 1500);
-      }
-    },
+    
   },
   computed: {
     getCategory() {
@@ -280,16 +274,11 @@ export default {
   },
   components: {
     Breadcrumb,
+    ScrollTopComponent,
+    BgMusicComponent,
   },
   created() {
     this.getProducts();
-  },
-  mounted() {
-    this.autoPlayMusic();
-    setTimeout(() => {
-      const confound = document.querySelector('.confound');
-      confound.style.opacity = 1;
-    }, 2000);
   },
 };
 </script>

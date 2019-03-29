@@ -125,13 +125,13 @@ export default {
       };
       context.commit('CACHEPRODUCTS', item);
     },
-    updataProducts(context, postStatus) {
-      const url = context.state.url.productsCRUD(postStatus);
+    updataProducts(context, { productsStatus, productsID }) {
+      const url = context.state.url.productsCRUD(productsStatus, productsID);
       context.commit('LOADING', true);
-      Axios[postStatus](url, { data: context.state.cacheProducts }).then((response) => {
+      Axios[productsStatus](url, { data: context.state.cacheProducts }).then((response) => {
         if (response.data.success) {
           $('#productsModal').modal('hide');
-          switch (postStatus) {
+          switch (productsStatus) {
             case 'post':
               context.dispatch('updateMessage', {
                 message: '資料新增成功(*ゝ∀･)v',

@@ -7,7 +7,7 @@
 
 <script>
 import Navbar from '@/views/admin/Navbar.vue';
-import Alert from '@/components/AlertMessage.vue';
+import Alert from '@/components/shared/AlertMessage.vue';
 
 export default {
   components: {

@@ -44,9 +44,11 @@
                   span.text-success(v-else='') 付款完成
           .text-right(v-if='order.is_paid === false')
             button.btn.btn-danger 確認付款去
+    ScrollTopComponent
 </template>
 
 <script>
+import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
 export default {
   data() {
     return {
@@ -99,6 +101,9 @@ export default {
         }
       });
     },
+  },
+  components: {
+    ScrollTopComponent,
   },
   created() {
     this.orderId = this.$route.params.orderId;

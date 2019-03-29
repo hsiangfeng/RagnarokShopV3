@@ -63,11 +63,11 @@
                   input#image.form-control(type='text', placeholder='請上傳圖片', v-model='productsImageUrl' disabled)
                 .form-group
                   label(for='customFile')
-                    | 或 上傳圖片
+                    | 上傳圖片
                     font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='fileUploading')
                     img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='fileUploading', width='25px')
                   input#customFile.form-control(type='file', ref='files', @change='updataProductsImg()')
-                img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='tempProducts.imageUrl')
+                img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='productsImageUrl')
               .col-sm-8
                 .form-group
                   label(for='title') 標題
@@ -130,12 +130,14 @@
             button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
             button.btn.btn-danger(type='button', @click='deleProducts')
               | 確認刪除
+    ScrollTopComponent
 </template>
 
 <script>
 /* global $ */
 import { mapGetters } from 'vuex';
-import PaginationComponents from './Pagination';
+import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
+import PaginationComponents from './Pagination.vue';
 
 export default {
   data() {
@@ -153,8 +155,14 @@ export default {
     updataProducts() {
       const tempProducts = this.tempProducts;
       const productsImageUrl = this.productsImageUrl;
+      const productsStatus = this.modelStatus;
       this.$store.dispatch('updataCacheProducts', { tempProducts, productsImageUrl });
-      this.$store.dispatch('updataProducts', this.modelStatus);
+      if (productsStatus === 'post') {
+        this.$store.dispatch('updataProducts', { productsStatus });
+      } else if (productsStatus === 'put') {
+        const productsID = this.tempProducts.id
+        this.$store.dispatch('updataProducts', { productsStatus, productsID });
+      }
     },
     updataProductsImg() {
       const uploadefFile = this.$refs.files.files[0];
@@ -198,6 +206,7 @@ export default {
     },
   },
   components: {
+    ScrollTopComponent,
     PaginationComponents,
   },
   computed: {
