@@ -89,6 +89,7 @@
 <img src="https://i.imgur.com/nuXdSNM.gif" width="200">
 <img src="https://imgur.com/iZ4eu8S.gif" width="200">
 <img src="https://imgur.com/lIGtuvw.gif" width="200">
+<img src="https://i.imgur.com/8dfq3CF.gif" width="200">
 
 後臺登入游標  
 ![](https://i.imgur.com/yR7B028.png)  
