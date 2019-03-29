@@ -1,5 +1,5 @@
-# RagnarokShopV3 (仙境傳說RO電商)
-> 歡迎來到仙境傳說，這是一份Vuejs電商前端練習。
+# RagnarokShopV3 (仙境傳說RO電商V3)
+> 歡迎來到仙境傳說V3，這是一份Vuejs電商前端練習V3版(VueCli3+Vuex)。
 ## 新舊頁面差異
 舊版首頁(V2版)
 ![](https://i.imgur.com/oVJr0Vf.png)
@@ -8,7 +8,7 @@
 ## Demo
 RagnarokShop (舊版V2)
 [https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")
-RagnarokShopV3(新版V3)
+RagnarokShopV3 (新版V3)
 [https://hsiangfeng.github.io/RagnarokShopV3/](https://hsiangfeng.github.io/RagnarokShopV3/ "https://hsiangfeng.github.io/RagnarokShopV3/")
 ## 簡介
 此作品為Vuejs前端練習，其主要功能有以下:
