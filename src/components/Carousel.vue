@@ -1,6 +1,6 @@
 <template lang="pug">
-  section.text-center.d-md-block.d-none
-    h3.text-ro 各職業展示圖
+  section.text-center.pt-10
+    h3.text-ro 各職業展示
     swiper(:options='swiperOption')
       swiper-slide
         img.img-fluid(src='@/assets/img/silder/RuneKnight.jpg', width='350')
@@ -33,7 +33,6 @@
 
 <script>
 import 'swiper/dist/css/swiper.css';
-
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 export default {
@@ -56,6 +55,18 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        breakpoints:
+        {
+          992: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          576: {
+            slidesPerView: 1,
+          },
         },
       },
     };

@@ -97,9 +97,9 @@
 
 <script>
 /* global $ */
+import { mapActions, mapGetters } from 'vuex';
 import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
-import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -117,7 +117,19 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['getCarts','createOrder']),
+    ...mapActions(['getCarts']),
+    createOrder() {
+      this.$validator.validate().then((result) => {
+        if (result) {
+          this.$store.dispatch('createOrder', this.form);
+        } else {
+          this.$store.dispatch('updateMessage', {
+            message: '出現錯誤惹，一定是你欄位沒填寫完全，好糗Σ( ° △ °|||)︴',
+            status: 'danger',
+          });
+        }
+      });
+    },
     userCoupon() {
       this.$store.dispatch('userCoupon', this.coupon);
     },
@@ -151,7 +163,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['isLoading', 'loadingID', 'cart'])
+    ...mapGetters(['isLoading', 'loadingID', 'cart']),
   },
   components: {
     PageMap,

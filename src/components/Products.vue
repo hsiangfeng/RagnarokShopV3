@@ -260,7 +260,6 @@ export default {
     addCart(id, qty = 1) {
       this.$store.dispatch('addCart', { id, qty });
     },
-    
   },
   computed: {
     getCategory() {

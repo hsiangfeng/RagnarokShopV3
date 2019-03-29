@@ -10,6 +10,7 @@
     bottom: 5%;
     right: 2%;
     display: none;
+    z-index: 2;
   }
 </style>
 

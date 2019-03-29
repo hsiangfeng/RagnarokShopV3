@@ -227,71 +227,73 @@ export default {
   },
   methods: {
     switchWindow() {
-      const bgRoWindow = document.getElementById('bg-ro-window'); 
+      const bgRoWindow = document.getElementById('bg-ro-window');
       const btnSwitch = document.getElementById('btn-switch');
       const btnWindow = document.querySelectorAll('.btn-window');
-      btnSwitch.addEventListener('click',() => {
+      btnSwitch.addEventListener('click', () => {
         if (bgRoWindow.style.height === '20px') {
-          bgRoWindow.style.height= '140px';
-          btnWindow.forEach(item => {
+          bgRoWindow.style.height = '140px';
+          btnWindow.forEach((item) => {
             item.style.display = 'block';
           });
         } else {
-          bgRoWindow.style.height= '20px';
-          btnWindow.forEach(item => {
+          bgRoWindow.style.height = '20px';
+          btnWindow.forEach((item) => {
             item.style.display = 'none';
           });
         }
-      })
+      });
     },
-    keyComb(e){
+    keyComb(e) {
       // index ALT+Q
-      if(e.altKey && e.keyCode === 81){
+      if (e.altKey && e.keyCode === 81) {
         this.$router.push('/');
       // 鍵盤1
-      } else if(e.keyCode === 49) {
+      } else if (e.keyCode === 49) {
         this.$router.push('/');
       }
+
       // products ALT+W
-      if(e.altKey && e.keyCode === 87){
+      if (e.altKey && e.keyCode === 87) {
         this.$router.push('/products');
       // 鍵盤2
-      } else if(e.keyCode === 50) {
+      } else if (e.keyCode === 50) {
         this.$router.push('/products');
       }
+
       // aboutro ALT+S
-      if(e.altKey && e.keyCode === 83){
+      if (e.altKey && e.keyCode === 83) {
         this.$router.push('/aboutro');
       // 鍵盤3
-      } else if(e.keyCode === 51) {
+      } else if (e.keyCode === 51) {
         this.$router.push('/aboutro');
       }
 
       // cart ALT+A
-      if(e.altKey && e.keyCode === 65){
+      if (e.altKey && e.keyCode === 65){
         this.$router.push('/customer');
       // 鍵盤4
-      } else if(e.keyCode === 52) {
+      } else if (e.keyCode === 52) {
         this.$router.push('/customer');
       }
       
       // login ALT+Z
-      if(e.altKey && e.keyCode === 90){
+      if (e.altKey && e.keyCode === 90) {
         this.$router.push('/login');
       // 鍵盤5
-      } else if(e.keyCode === 53) {
+      } else if (e.keyCode === 53) {
         this.$router.push('/login');
       }
 
       // ALT+C 購物車
-      if(e.altKey && e.keyCode === 67){
+      if (e.altKey && e.keyCode === 67) {
         if ($('#cartsModal').modal('show')[0].hidden) {
           $('#cartsModal').modal('show');
         } else {
           $('#cartsModal').modal('hide');
         }
       // 鍵盤6
-      } else if(e.keyCode === 54) {
+      } else if (e.keyCode === 54) {
         if ($('#cartsModal').modal('show')[0].hidden) {
           $('#cartsModal').modal('show');
         } else {
@@ -300,50 +302,50 @@ export default {
       }
 
       // ALT+G
-      if(e.altKey && e.keyCode === 71){
+      if (e.altKey && e.keyCode === 71) {
         window.open('https://github.com/hsiangfeng/RagnarokShopV3');
       // 鍵盤7
-      } else if(e.keyCode === 55) {
+      } else if (e.keyCode === 55) {
         window.open('https://github.com/hsiangfeng/RagnarokShopV3');
       }
 
       // ALT+U Resume
-      if(e.altKey && e.keyCode === 85){
+      if (e.altKey && e.keyCode === 85) {
         window.open('https://hsiangfeng.github.io/SPA-Resume/');
       // 鍵盤8
-      } else if(e.keyCode === 56) {
+      } else if (e.keyCode === 56) {
         window.open('https://hsiangfeng.github.io/SPA-Resume/');
       }
 
       // ALT+V 介面視窗
-      if(e.altKey && e.keyCode === 86){
+      if (e.altKey && e.keyCode === 86) {
         const bgRoWindow = document.getElementById('bg-ro-window');
         const btnWindow = document.querySelectorAll('.btn-window');
         if (bgRoWindow.style.height === '20px') {
-          bgRoWindow.style.height= '140px';
-          btnWindow.forEach(item => {
+          bgRoWindow.style.height = '140px';
+          btnWindow.forEach((item) => {
             item.style.display = 'block';
           });
         } else {
-          bgRoWindow.style.height= '20px';
-          btnWindow.forEach(item => {
+          bgRoWindow.style.height = '20px';
+          btnWindow.forEach((item) => {
             item.style.display = 'none';
           });
         }
       }
 
       // 鍵盤0
-      if(e.keyCode === 48){
+      if (e.keyCode === 48) {
         const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
         const btnHotKey = document.querySelectorAll('.btn-hotkey');
         if (bgRoWindowHotKey.style.display === 'none') {
-            bgRoWindowHotKey.style.display = 'block';
-            btnHotKey.forEach(item => {
-              item.style.display = 'block';
-            });
+          bgRoWindowHotKey.style.display = 'block';
+          btnHotKey.forEach((item) => {
+            item.style.display = 'block';
+          });
         } else {
           bgRoWindowHotKey.style.display = 'none';
-          btnHotKey.forEach(item => {
+          btnHotKey.forEach((item) => {
             item.style.display = 'none';
           });
         }
@@ -353,18 +355,18 @@ export default {
       const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
       const btnHotKey = document.querySelectorAll('.btn-hotkey');
       if (bgRoWindowHotKey.style.display === 'none') {
-          bgRoWindowHotKey.style.display = 'block';
-          btnHotKey.forEach(item => {
-            item.style.display = 'block';
-          });
+        bgRoWindowHotKey.style.display = 'block';
+        btnHotKey.forEach((item) => {
+          item.style.display = 'block';
+        });
       } else {
         bgRoWindowHotKey.style.display = 'none';
-        btnHotKey.forEach(item => {
+        btnHotKey.forEach((item) => {
           item.style.display = 'none';
         });
       }
     },
-    openModelWindow(){
+    openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {
         $('#cartsModal').modal('show');
       } else {
@@ -380,7 +382,7 @@ export default {
   mounted() {
     this.navbarToggler();
     const el = document.body;
-    el.addEventListener('keydown', this.keyComb, false)
+    el.addEventListener('keydown', this.keyComb, false);
   },
 };
 </script>

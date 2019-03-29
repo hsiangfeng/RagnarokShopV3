@@ -153,7 +153,7 @@ export default {
     return {
     };
   },
-  components:{
+  components: {
     PageMap,
     ScrollTopComponent,
     BgMusicComponent,

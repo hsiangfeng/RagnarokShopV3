@@ -7,17 +7,19 @@
 <script>
 export default {
   props: {
-    nowIndex: '',
+    nowIndex: {
+      type: String,
+    },
   },
   data() {
     return {
       audioSrc: '',
-    }
+    };
   },
   methods: {
     autoPlayMusic() {
       const roBGM = document.getElementById('roBGM');
-      switch(this.nowIndex){
+      switch (this.nowIndex) {
         case 'index':
           this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3';
           break;
@@ -45,5 +47,5 @@ export default {
   mounted() {
     this.autoPlayMusic();
   },
-}
+};
 </script>

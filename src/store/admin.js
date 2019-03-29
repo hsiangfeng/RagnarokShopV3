@@ -16,40 +16,72 @@ export default {
             return `${process.env.VUE_APP_APIPATH}/admin/signin`;
         }
       },
-      products(name, page) {
-        switch (name) {
-          case 'all':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/products/all`;
-          case 'page':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/products?page=${page}`;
-          default:
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/products?page=${page}`;
-        }
-      },
-      productsCRUD(name, id) {
+      products(name, item) {
         switch (name) {
           case 'post':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/product/`;
           case 'put':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/product/${id}`;
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/product/${item}`;
           case 'delete':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/product/${id}`;
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/product/${item}`;
           case 'img':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/upload`;
+          case 'page':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/products?page=${item}`;
           default:
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/products/`;
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/products/all`;
+        }
+      },
+      coupons(name, item) {
+        switch (name) {
+          case 'post':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/coupon`;
+          case 'put':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/coupon/${item}`;
+          case 'delete':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/coupon/${item}`;
+          case 'page':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/coupons?page=${item}`;
+          default:
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/coupons`;
+        }
+      },
+      order(name, item) {
+        switch (name) {
+          case 'put':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/order/${item}`;
+          case 'page':
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/orders?page=${item}`;
+          default:
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/admin/orders`;
         }
       },
     },
     adminProducts: [],
+    adminCoupons: [],
+    adminOrders: [],
     pagination: {},
     fileUploading: false,
     cacheProducts: {},
+    cacheCoupons: {},
     productsImageUrl: '',
+    consoleProducts: [],
+    consoleCoupons: [],
+    consoleOrders: [],
+    chartData: {
+      columns: ['category', 'length'],
+      rows: [],
+    },
   },
   mutations: {
     GETADMINPRODUCTS(state, payload) {
       state.adminProducts = payload;
+    },
+    GETADMINCOUPONS(state, payload) {
+      state.adminCoupons = payload;
+    },
+    GETADMINORDER(state, payload) {
+      state.adminOrders = payload;
     },
     GETPAGE(state, payload) {
       state.pagination = payload;
@@ -62,6 +94,21 @@ export default {
     },
     CACHEPRODUCTS(state, payload) {
       state.cacheProducts = payload;
+    },
+    CACHECOUPONS(state, payload) {
+      state.cacheCoupons = payload;
+    },
+    GETCONSOLEPRODUCTS(state, payload) {
+      state.consoleProducts = payload;
+    },
+    GETCONSOLECOUPONS(state, payload) {
+      state.consoleCoupons = payload;
+    },
+    GETCONSOLEORDER(state, payload) {
+      state.consoleOrders = payload;
+    },
+    PUSHCHAR(state, payload) {
+      state.chartData.rows = payload;
     },
   },
   actions: {
@@ -126,7 +173,7 @@ export default {
       context.commit('CACHEPRODUCTS', item);
     },
     updataProducts(context, { productsStatus, productsID }) {
-      const url = context.state.url.productsCRUD(productsStatus, productsID);
+      const url = context.state.url.products(productsStatus, productsID);
       context.commit('LOADING', true);
       Axios[productsStatus](url, { data: context.state.cacheProducts }).then((response) => {
         if (response.data.success) {
@@ -165,7 +212,7 @@ export default {
     updataProductsImg(context, uploadefFile) {
       const formData = new FormData();
       formData.append('file-to-upload', uploadefFile);
-      const url = context.state.url.productsCRUD('img');
+      const url = context.state.url.products('img');
       context.commit('FILEUPLOADSTATE', true);
       Axios.post(url, formData, {
         headers: {
@@ -188,7 +235,7 @@ export default {
       });
     },
     deleProducts(context, id) {
-      const url = context.state.url.productsCRUD('delete', id);
+      const url = context.state.url.products('delete', id);
       context.commit('FILEUPLOADSTATE', true);
       Axios.delete(url).then((response) => {
         if (response.data.success) {
@@ -207,6 +254,238 @@ export default {
         context.commit('FILEUPLOADSTATE', false);
       });
     },
+    getAdminCoupons(context, page) {
+      const url = context.state.url.coupons('page', page);
+      context.commit('LOADING', true);
+      Axios.get(url).then((response) => {
+        if (response.data.success) {
+          context.commit('PRODUCTSIMGURL', response.data.pagination);
+          context.commit('GETADMINCOUPONS', response.data.coupons);
+        } else if (response.data.message === '驗證錯誤, 請重新登入') {
+          context.commit('LOADING', false);
+          router.push('/login');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'success',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    updataCacheCoupons(context, cacheCoupons) {
+      const item = {
+        title: cacheCoupons.title,
+        is_enabled: cacheCoupons.is_enabled,
+        percent: cacheCoupons.percent,
+        due_date: cacheCoupons.due_date,
+        code: cacheCoupons.code,
+      };
+      context.commit('CACHECOUPONS', item);
+    },
+    updataCoupons(context, { couponsStatus, cacheCouponsID }) {
+      const url = context.state.url.coupons(couponsStatus, cacheCouponsID);
+      context.commit('LOADING', true);
+      Axios[couponsStatus](url, { data: context.state.cacheCoupons }).then((response) => {
+        if (response.data.success) {
+          $('#couponsModal').modal('hide');
+          switch (couponsStatus) {
+            case 'post':
+              context.dispatch('updateMessage', {
+                message: '資料新增成功(*ゝ∀･)v',
+                status: 'success',
+              });
+              break;
+            case 'put':
+              context.dispatch('updateMessage', {
+                message: '資料更新成功(*ゝ∀･)v',
+                status: 'success',
+              });
+              break;
+            default:
+              context.dispatch('updateMessage', {
+                message: '資料新增成功(*ゝ∀･)v',
+                status: 'success',
+              });
+              break;
+          }
+          context.commit('LOADING', false);
+          context.dispatch('getAdminCoupons');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'success',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    deleteCoupons(context, id) {
+      const url = context.state.url.coupons('delete', id);
+      context.commit('LOADING', true);
+      Axios.delete(url).then((response) => {
+        if (response.data.success) {
+          $('#deleteCouponsModal').modal('hide');
+          context.dispatch('updateMessage', {
+            message: '資料刪除成功(*ゝ∀･)v',
+            status: 'success',
+          });
+          context.commit('LOADING', true);
+          context.dispatch('getAdminCoupons');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'success',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    getAdminOrders(context, page) {
+      const url = context.state.url.order('page', page);
+      context.commit('LOADING', true);
+      Axios.get(url).then((response) => {
+        if (response.data.success) {
+          context.commit('PRODUCTSIMGURL', response.data.pagination);
+          context.commit('GETADMINORDER', response.data.orders);
+        } else if (response.data.message === '驗證錯誤, 請重新登入') {
+          context.commit('LOADING', true);
+          context.dispatch('updateMessage', {
+            message: `請重新登入Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'danger',
+          });
+          router.push('/login');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'danger',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    updataOrders(context, { tempOrders, id }) {
+      const url = context.state.url.order('put', id);
+      context.commit('LOADING', true);
+      Axios.put(url, { data: tempOrders }).then((response) => {
+        if (response.data.success) {
+          $('#ordersModal').modal('hide');
+          context.dispatch('updateMessage', {
+            message: '資料更新成功(*ゝ∀･)v',
+            status: 'success',
+          });
+          context.commit('LOADING', false);
+          context.dispatch('getAdminOrders');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'success',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    consoleAdmin(context) {
+      const productsUrl = context.state.url.products();
+      const couponsUrl = context.state.url.coupons();
+      const orderUrl = context.state.url.order();
+      context.commit('LOADING', true);
+      Axios.get(productsUrl).then((responseProducts) => {
+        if (responseProducts.data.success) {
+          context.commit('GETCONSOLEPRODUCTS', responseProducts.data.products);
+          Axios.get(couponsUrl).then((responseCoupons) => {
+            if (responseCoupons.data.success) {
+              context.commit('GETCONSOLECOUPONS', responseCoupons.data.coupons);
+              Axios.get(orderUrl).then((responseOrders) => {
+                if (responseOrders.data.success) {
+                  context.commit('GETCONSOLEORDER', responseOrders.data.orders);
+                  context.dispatch('getChartProducts');
+                }
+              });
+            }
+          });
+        } else if (responseProducts.data.message === '驗證錯誤, 請重新登入') {
+          context.commit('LOADING', false);
+          router.push('/login');
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${responseProducts.data.message}`,
+            status: 'danger',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
+    getChartProducts(context) {
+      const consoleProducts = [...context.state.consoleProducts];
+      const mvpCard = [];
+      const mvpDef = [];
+      const mvpAtk = [];
+      const hotProducts = [];
+      const combProducts = [];
+      const otherProducts = [];
+      consoleProducts.forEach((item) => {
+        switch (item.category) {
+          case 'MVP卡片':
+            mvpCard.push(item);
+            break;
+          case 'MVP防具':
+            mvpDef.push(item);
+            break;
+          case 'MVP武器':
+            mvpAtk.push(item);
+            break;
+          case '熱門商品':
+            hotProducts.push(item);
+            break;
+          case '組合優惠':
+            combProducts.push(item);
+            break;
+          default:
+            otherProducts.push(item);
+            break;
+        }
+      });
+      const mvpCardLength = mvpCard.length;
+      const mvpDefLength = mvpDef.length;
+      const mvpAtkLength = mvpAtk.length;
+      const hotProductsLength = hotProducts.length;
+      const combProductsLength = combProducts.length;
+      const otherProductsLength = otherProducts.length;
+      const mvpCardObject = {
+        category: 'MVP卡片',
+        length: mvpCardLength,
+      };
+      const mvpDefObject = {
+        category: 'MVP防具',
+        length: mvpDefLength,
+      };
+      const mvpAtkObject = {
+        category: 'MVP武器',
+        length: mvpAtkLength,
+      };
+      const hotProductsObject = {
+        category: '熱門商品',
+        length: hotProductsLength,
+      };
+      const combProductsObject = {
+        category: '組合優惠',
+        length: combProductsLength,
+      };
+      const otherProductsObject = {
+        category: '組合優惠',
+        length: otherProductsLength,
+      };
+      const allObject = [
+        mvpCardObject,
+        mvpDefObject,
+        mvpAtkObject,
+        hotProductsObject,
+        combProductsObject,
+        otherProductsObject,
+      ];
+      context.commit('PUSHCHAR', allObject);
+    },
   },
   getters: {
     adminProducts(state) {
@@ -220,6 +499,24 @@ export default {
     },
     fileUploading(state) {
       return state.fileUploading;
-    }
+    },
+    adminCoupons(state) {
+      return state.adminCoupons;
+    },
+    adminOrders(state) {
+      return state.adminOrders;
+    },
+    consoleProducts(state) {
+      return state.consoleProducts;
+    },
+    consoleCoupons(state) {
+      return state.consoleCoupons;
+    },
+    consoleOrders(state) {
+      return state.consoleOrders;
+    },
+    chartData(state) {
+      return state.chartData;
+    },
   },
 };

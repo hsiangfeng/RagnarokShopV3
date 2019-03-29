@@ -89,53 +89,41 @@ export default {
         }
       });
     },
-    createOrder(context) {
+    createOrder(context, form) {
       const url = context.state.url.order('new');
-      console.log(VeeValidate);
-      console.log(`$validator:${this.VeeValidate}`);
-      router.push(`/check_order/-Lb1B7I9hDzyo5dPXhN4`);
-      // VeeValidate.$validator.then((result) => {
-      //   if (result) {
-      //     // Axios.post(url, { data: vm.form }).then((response) => {
-      //     //   if (response.data.message === '已建立訂單') {
-      //     //     context.dispatch('updateMessage', {
-      //     //       message: '產品已成功建立訂單啦(*ゝ∀･)v',
-      //     //       status: 'success',
-      //     //     });
-      //     //     vm.$router.push(`/check_order/${response.data.orderId}`);
-      //     //   } else if (response.data.message === '說明欄位為必填') {
-      //     //     context.dispatch('updateMessage', {
-      //     //       message: `說明欄位為必填，好糗Σ( ° △ °|||)︴
-      //     //       ${response.data.message}`,
-      //     //       status: 'danger',
-      //     //     });
-      //     //   } else if (response.data.message === '尚無用戶資料') {
-      //     //     context.dispatch('updateMessage', {
-      //     //       message: `尚無用戶資料，好糗Σ( ° △ °|||)︴
-      //     //       ${response.data.message}`,
-      //     //       status: 'danger',
-      //     //     });
-      //     //   } else if (response.data.message === '購物車內無資料') {
-      //     //     context.dispatch('updateMessage', {
-      //     //       message: `你購物車內沒東西要我怎麼送資料，好糗Σ( ° △ °|||)︴
-      //     //       ${response.data.message}`,
-      //     //       status: 'danger',
-      //     //     });
-      //     //   } else {
-      //     //     context.dispatch('updateMessage', {
-      //     //       message: `出現錯誤惹，好糗Σ( ° △ °|||)︴
-      //     //       ${response.data.message}`,
-      //     //       status: 'danger',
-      //     //     });
-      //     //   }
-      //     // });
-      //   } else {
-      //     context.dispatch('updateMessage', {
-      //       message: '出現錯誤惹，一定是你欄位沒填寫完全，好糗Σ( ° △ °|||)︴',
-      //       status: 'danger',
-      //     });
-      //   }
-      // });
+      Axios.post(url, { data: form }).then((response) => {
+        if (response.data.message === '已建立訂單') {
+          context.dispatch('updateMessage', {
+            message: '產品已成功建立訂單啦(*ゝ∀･)v',
+            status: 'success',
+          });
+          router.push(`/check_order/${response.data.orderId}`);
+        } else if (response.data.message === '說明欄位為必填') {
+          context.dispatch('updateMessage', {
+            message: `說明欄位為必填，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`,
+            status: 'danger',
+          });
+        } else if (response.data.message === '尚無用戶資料') {
+          context.dispatch('updateMessage', {
+            message: `尚無用戶資料，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`,
+            status: 'danger',
+          });
+        } else if (response.data.message === '購物車內無資料') {
+          context.dispatch('updateMessage', {
+            message: `你購物車內沒東西要我怎麼送資料，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`,
+            status: 'danger',
+          });
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`,
+            status: 'danger',
+          });
+        }
+      });
     },
     removeCart(context, id) {
       const url = context.state.url.cart('remove', id);

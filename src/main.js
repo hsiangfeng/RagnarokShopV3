@@ -20,6 +20,8 @@ import VueTypedJs from 'vue-typed-js';
 import VeeValidate, { Validator } from 'vee-validate';
 import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
 
+import VCharts from 'v-charts';
+
 // 自訂
 import App from './App.vue';
 import router from './router';
@@ -44,6 +46,8 @@ Vue.use(VeeValidate, {
 });
 
 Vue.component('Loading', Loading);
+
+Vue.use(VCharts);
 
 Vue.filter('currency', currencyFilter);
 Vue.filter('timestamp', timestampFilter);

@@ -14,14 +14,14 @@
           th(width='15%') 購買人
           th(width='25%') 操作
       tbody
-        tr(v-for='item in orders', :key='item.id')
+        tr(v-for='item in adminOrders', :key='item.id')
           td.align-middle {{item.create_at}}
           td.align-middle {{item.message}}
           td.align-middle {{item.payment_method}}
           td.align-middle(:class="{'bg-success':item.is_paid, 'bg-danger': !item.is_paid}")
             span.text-white(v-if='item.is_paid') 已付款
             span.text-white.font-weight-bold(v-else='') 未付款
-          td.align-middle {{item.user.name}}
+          td.align-middle(v-if="item.create_at") {{item.user.name}}
           td.align-middle
             button.btn.btn-outline-ro(@click="openModel('look', item)")
               font-awesome-icon(:icon="['fas', 'eye']")
@@ -128,7 +128,6 @@
           .modal-footer
             button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
             button.btn.btn-primary(type='button', @click='updataOrders()')
-              font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
               | 確認
     #ordersLookModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
         .modal-dialog.modal-lg(role='document')
@@ -145,8 +144,8 @@
                     label(for='title') 訂單編號
                     input#title.form-control-plaintext(type='text', placeholder='請輸入訂單編號', v-model='tempOrders.create_at', readonly='')
                   .form-group
-                    label(for='total') 購買總數
-                    input#total.form-control(type='number', placeholder='請輸入數量', v-model='tempOrders.total', readonly='')
+                    label(for='total') 購買金額
+                    input#total.form-control(type='number', placeholder='請輸入金額', v-model='tempOrders.total', readonly='')
                   hr
                   .form-group
                     h5 付款方式
@@ -170,12 +169,12 @@
 
 <script>
 /* global $ */
+import { mapGetters } from 'vuex';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
   data() {
     return {
-      orders: [],
       tempOrders: {
         user: {
           name: '',
@@ -183,61 +182,18 @@ export default {
           email: '',
         },
       },
-      pagination: {},
       modelTitle: '',
       modelStatus: '',
-      isLoading: false,
-      status: {
-        loadingItem: false,
-      },
     };
   },
   methods: {
-    getOrders(page) {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/orders?page=${page}`;
-      vm.isLoading = true;
-      vm.$http.get(url).then((response) => {
-        if (response.data.success) {
-          vm.pagination = response.data.pagination;
-          vm.orders = response.data.orders;
-          vm.isLoading = false;
-        } else if (response.data.message === '驗證錯誤, 請重新登入') {
-          vm.$router.push('/login');
-          vm.isLoading = false;
-        } else {
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-          vm.isLoading = false;
-        }
-      });
+    getOrders(page = 1) {
+      this.$store.dispatch('getAdminOrders', page);
     },
     updataOrders() {
-      const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/admin/order/${vm.tempOrders.id}`;
-      vm.status.loadingItem = true;
-      vm.$http.put(url, { data: vm.tempOrders }).then((response) => {
-        if (response.data.success) {
-          vm.status.loadingItem = false;
-          $('#ordersModal').modal('hide');
-          vm.$bus.$emit('message:push',
-            '資料更新成功(*ゝ∀･)v',
-            'success');
-          vm.getOrders();
-        } else {
-          vm.status.loadingItem = false;
-          vm.$bus.$emit('message:push',
-            `出現錯誤惹，好糗Σ( ° △ °|||)︴
-            ${response.data.message}`,
-            'danger');
-        }
-      });
+      const tempOrders = [...this.tempOrders];
+      const id = [...this.tempOrders.id];
+      this.$store.dispatch('updataOrders', { tempOrders, id });
     },
     openModel(status, item) {
       const vm = this;
@@ -259,6 +215,9 @@ export default {
           break;
       }
     },
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'adminOrders', 'pagination']),
   },
   components: {
     PaginationComponents,

@@ -153,14 +153,14 @@ export default {
       this.$store.dispatch('getAdminProducts', page);
     },
     updataProducts() {
-      const tempProducts = this.tempProducts;
-      const productsImageUrl = this.productsImageUrl;
+      const tempProducts = [...this.tempProducts];
+      const productsImageUrl = [...this.productsImageUrl];
       const productsStatus = this.modelStatus;
       this.$store.dispatch('updataCacheProducts', { tempProducts, productsImageUrl });
       if (productsStatus === 'post') {
         this.$store.dispatch('updataProducts', { productsStatus });
       } else if (productsStatus === 'put') {
-        const productsID = this.tempProducts.id
+        const productsID = this.tempProducts.id;
         this.$store.dispatch('updataProducts', { productsStatus, productsID });
       }
     },

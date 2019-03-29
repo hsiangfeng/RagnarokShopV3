@@ -60,6 +60,12 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'Console',
+          component: () => import('@/components/admin/Console.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: '/products_list',
           name: 'ProductsList',
           component: () => import('@/components/admin/ProductsList.vue'),
           meta: { requiresAuth: true },

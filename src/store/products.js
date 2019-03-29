@@ -7,9 +7,7 @@ export default {
     url: {
       products(name, id) {
         switch (name) {
-          case 'all':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/products/all`;
-          case 'pages':
+          case 'page':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${id}`;
           case 'one':
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${id}`;
@@ -48,7 +46,7 @@ export default {
   },
   actions: {
     getProducts(context, status) {
-      const url = context.state.url.products('all');
+      const url = context.state.url.products();
       context.commit('LOADING', true);
       Axios.get(url).then((response) => {
         if (response.data.success) {
