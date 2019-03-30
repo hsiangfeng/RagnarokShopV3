@@ -2,9 +2,9 @@
 > 歡迎來到仙境傳說V3，這是一份Vuejs電商前端練習V3版(VueCli3+Vuex)。
 ## 新舊頁面差異
 舊版首頁(V2版)
-![](https://i.imgur.com/oVJr0Vf.png)
+![](https://i.imgur.com/Y0g9oAD.png)
 新版首頁(V3版)
-![](https://i.imgur.com/NM43z24.png)
+![](https://i.imgur.com/qRjEA6F.png)
 ## Demo
 RagnarokShop (舊版V2)  
 [https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")  
@@ -54,22 +54,22 @@ RagnarokShopV3 (新版V3)
 # 前台介紹(簡易介紹，太多了)
 ## 過場動畫
 初心者坐騎  
-![](https://i.imgur.com/UlfR41I.gif)
+![](https://i.imgur.com/wuAlbMH.gif)
 ## 首頁畫面
-![](https://i.imgur.com/NM43z24.png)
+![](https://i.imgur.com/qRjEA6F.png)
 ## 商品列表
-![](https://i.imgur.com/ystwgUL.png)
+![](https://i.imgur.com/pjuRi2Y.png)
 ## 關於仙境
-![](https://i.imgur.com/w55k2AJ.png)
+![](https://i.imgur.com/uzyMKB8.png)
 ## 購物車
-![](https://i.imgur.com/4EKkpTF.png)
+![](https://i.imgur.com/KmmOJLb.png)
 ## 後台登入介面
-![](https://i.imgur.com/2F40njd.png)
+![](https://i.imgur.com/YizWZjI.png)
 ## 小商人購物車
-![](https://i.imgur.com/CBaLUK0.png)
-![](https://i.imgur.com/ysyLGuZ.png)
+![](https://i.imgur.com/F9lau9O.png)
+![](https://i.imgur.com/XIUruMX.png)
 ## 後臺控制台
-![](https://i.imgur.com/4WevhLT.png)
+![](https://i.imgur.com/nrEdAZk.png)
 ## 支援Keydow
 以下鍵盤按鍵非數字鍵。  
 - 前往首頁：組合鍵【ALT+Q】 or 鍵盤鍵【1】  
@@ -88,17 +88,17 @@ RagnarokShopV3 (新版V3)
 - RO登入音樂  
 - 其他RO音樂  
 - 登入視窗可拖曳  
-<img src="https://i.imgur.com/61vZI8U.gif" width="200">
+<img src="https://i.imgur.com/1Ie4oEL.gif" width="200">
 
 表情符號  
-<img src="https://i.imgur.com/nuXdSNM.gif" width="200">
-<img src="https://imgur.com/iZ4eu8S.gif" width="200">
-<img src="https://imgur.com/lIGtuvw.gif" width="200">
-<img src="https://i.imgur.com/8dfq3CF.gif" width="200">
+<img src="https://i.imgur.com/hx4QtQ3.gif" width="200">
+<img src="https://i.imgur.com/ZL0L2C6.gif" width="200">
+<img src="https://i.imgur.com/NoFEHC2.gif" width="200">
+<img src="https://i.imgur.com/42ANx3o.gif" width="200">
 
 後臺登入游標  
-![](https://i.imgur.com/yR7B028.png)  
-![](https://i.imgur.com/uDcnW22.png)
+![](https://i.imgur.com/2y0EItM.png)  
+![](https://i.imgur.com/sjoXUUe.png)
 
 其餘更多細節部分，歡迎至Demo網站觀看。  
 
