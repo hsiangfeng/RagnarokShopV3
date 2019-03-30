@@ -51,7 +51,7 @@ RagnarokShopV3 (新版V3)
 - [V-charts](https://v-charts.js.org/#/)
 - [Popper.js](https://popper.js.org/)
 - [Pagemap](https://larsjung.de/pagemap/)
-# 前台介紹(簡易介紹，太多了)
+# 前端介紹
 ## 過場動畫
 初心者坐騎  
 ![](https://i.imgur.com/wuAlbMH.gif)
