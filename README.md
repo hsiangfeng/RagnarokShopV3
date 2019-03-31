@@ -39,7 +39,7 @@ RagnarokShopV3 (新版V3)
 - SCSS
 - Webpack
 - ESlint(aribnb)
-## 使用Vue-plugin or orther-Plugin
+## 使用Vue-Plugin or Other-Plugin
 - [Vue-fontawesome](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs)
 - [Vue-axios](https://www.npmjs.com/package/vue-axios)
 - [Vue-typed-js](https://github.com/Orlandster/vue-typed-js)
