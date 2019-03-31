@@ -68,6 +68,8 @@ export default {
     consoleProducts: [],
     consoleCoupons: [],
     consoleOrders: [],
+    ordersAll: [],
+    ordersPage: '',
     chartData: {
       columns: ['category', 'length'],
       rows: [],
@@ -105,13 +107,16 @@ export default {
       state.consoleCoupons = payload;
     },
     GETCONSOLEORDER(state, payload) {
-      state.consoleOrders = payload;
+      state.consoleOrders.push(payload);
     },
     PUSHCHAR(state, payload) {
       state.chartData.rows = payload;
     },
     CLEARIMGURL(state) {
       state.productsImageUrl = '';
+    },
+    GETORDERSPAGES(state, payload) {
+      state.ordersPage = payload;
     },
   },
   actions: {
@@ -268,7 +273,7 @@ export default {
       context.commit('LOADING', true);
       Axios.get(url).then((response) => {
         if (response.data.success) {
-          context.commit('PRODUCTSIMGURL', response.data.pagination);
+          context.commit('GETPAGE', response.data.pagination);
           context.commit('GETADMINCOUPONS', response.data.coupons);
         } else if (response.data.message === '驗證錯誤, 請重新登入') {
           context.commit('LOADING', false);
@@ -355,7 +360,7 @@ export default {
       context.commit('LOADING', true);
       Axios.get(url).then((response) => {
         if (response.data.success) {
-          context.commit('PRODUCTSIMGURL', response.data.pagination);
+          context.commit('GETPAGE', response.data.pagination);
           context.commit('GETADMINORDER', response.data.orders);
         } else if (response.data.message === '驗證錯誤, 請重新登入') {
           context.commit('LOADING', true);
@@ -407,7 +412,19 @@ export default {
               context.commit('GETCONSOLECOUPONS', responseCoupons.data.coupons);
               Axios.get(orderUrl).then((responseOrders) => {
                 if (responseOrders.data.success) {
-                  context.commit('GETCONSOLEORDER', responseOrders.data.orders);
+                  context.commit('GETORDERSPAGES', responseOrders.data.pagination.total_pages);
+                  for (let i = 0; i < context.state.ordersPage; i += 1) {
+                    const orderAllUrl = context.state.url.order('page', i);
+                    Axios.get(orderAllUrl).then((responseOrdersAll) => {
+                      if (responseOrdersAll.data.success) {
+                        const ordersData = responseOrdersAll.data.orders;
+                        ordersData.forEach((item) => {
+                          context.commit('GETCONSOLEORDER', item);
+                        });
+                      }
+                    });
+                  }
+                  context.commit('LOADING', false);
                   context.dispatch('getChartProducts');
                 }
               });
@@ -422,7 +439,6 @@ export default {
             status: 'danger',
           });
         }
-        context.commit('LOADING', false);
       });
     },
     getChartProducts(context) {
