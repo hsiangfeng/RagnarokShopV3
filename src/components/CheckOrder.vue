@@ -50,7 +50,7 @@
 </style>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import LoadingPage from './shared/LoadingPage.vue';
 
 export default {
@@ -60,7 +60,7 @@ export default {
     };
   },
   methods: {
-    getOrder(){
+    getOrder() {
       this.$store.dispatch('getOrder', this.orderId);
     },
     payOrder() {

@@ -143,8 +143,7 @@
 </style>
 
 <script>
-/* global $ */
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 import AlertMessage from '@/components/shared/AlertMessage.vue';
 
@@ -161,7 +160,7 @@ export default {
   methods: {
     signin() {
       const vm = this;
-      if(vm.saved){
+      if (vm.saved) {
         localStorage.setItem('saveAccount', JSON.stringify(vm.user.username));
       }
       vm.$store.dispatch('signin', vm.user);
@@ -184,19 +183,24 @@ export default {
         musicPlay.textContent = 'play';
       }
     },
+    // eslint-disable-next-line
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
-        this.isDragging = true
-        return
+        this.isDragging = true;
+        return;
       }
       if (last) {
-        this.isDragging = false
-        return
+        this.isDragging = false;
+        return;
       }
-      var l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0
-      var t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0
-      el.style.left = l + deltaX + 'px'
-      el.style.top = t + deltaY + 'px'
+      // eslint-disable-next-line
+      const l = +window.getComputedStyle(el)["left"].slice(0, -2) || 0;
+      // eslint-disable-next-line
+      const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
+      // eslint-disable-next-line
+      el.style.left = `${l + deltaX} + px`;
+      // eslint-disable-next-line
+      el.style.top = `${t + deltaY} + px`;
     },
   },
   computed: {

@@ -290,11 +290,13 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -326,13 +328,13 @@ export default {
       }
 
       // cart ALT+A
-      if (e.altKey && e.keyCode === 65){
+      if (e.altKey && e.keyCode === 65) {
         this.$router.push('/customer');
       // 鍵盤4
       } else if (e.keyCode === 52) {
         this.$router.push('/customer');
       }
-      
+
       // login ALT+Z
       if (e.altKey && e.keyCode === 90) {
         this.$router.push('/login');
@@ -364,11 +366,13 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -381,11 +385,13 @@ export default {
         if (bgRoWindowHotKey.style.display === 'none') {
           bgRoWindowHotKey.style.display = 'block';
           btnHotKey.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindowHotKey.style.display = 'none';
           btnHotKey.forEach((item) => {
+            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -397,28 +403,35 @@ export default {
       if (bgRoWindowHotKey.style.display === 'none') {
         bgRoWindowHotKey.style.display = 'block';
         btnHotKey.forEach((item) => {
+          // eslint-disable-next-line
           item.style.display = 'block';
         });
       } else {
         bgRoWindowHotKey.style.display = 'none';
         btnHotKey.forEach((item) => {
+          // eslint-disable-next-line
           item.style.display = 'none';
         });
       }
     },
+    // eslint-disable-next-line
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
-        this.isDragging = true
-        return
+        this.isDragging = true;
+        return;
       }
       if (last) {
-        this.isDragging = false
-        return
+        this.isDragging = false;
+        return;
       }
-      var l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0
-      var t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0
-      el.style.left = l + deltaX + 'px'
-      el.style.top = t + deltaY + 'px'
+      // eslint-disable-next-line
+      const l = +window.getComputedStyle(el)["left"].slice(0, -2) || 0;
+      // eslint-disable-next-line
+      const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
+      // eslint-disable-next-line
+      el.style.left = `${l + deltaX} + px`;
+      // eslint-disable-next-line
+      el.style.top = `${t + deltaY} + px`;
     },
     openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {

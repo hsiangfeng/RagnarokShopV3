@@ -70,7 +70,7 @@ export default {
   mounted() {
     $(() => {
       $('[data-toggle="popover"]').popover();
-    })
+    });
     this.musicStatus();
   },
 };

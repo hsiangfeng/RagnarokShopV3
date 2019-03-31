@@ -102,9 +102,10 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+// eslint-disable-next-line
 import 'swiper/dist/css/swiper.min.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
-import { mapGetters } from 'vuex';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 
 export default {

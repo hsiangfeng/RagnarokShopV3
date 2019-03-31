@@ -97,10 +97,11 @@
 </style>
 
 <script>
-import ScrollTopComponent from './shared/ScrollTop.vue';
-import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+// eslint-disable-next-line
+import 'swiper/dist/css/swiper.css';
+import ScrollTopComponent from './shared/ScrollTop.vue';
 import LoadingPage from './shared/LoadingPage.vue';
 
 export default {
@@ -142,6 +143,7 @@ export default {
     ...mapGetters(['isLoading', 'loadingID', 'products', 'oneProducts', 'shopItem']),
   },
   watch: {
+    // eslint-disable-next-line
     $route(to, from) {
       const vm = this;
       vm.productID = to.params.productsId;
