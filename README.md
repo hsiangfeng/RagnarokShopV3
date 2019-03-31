@@ -73,7 +73,7 @@ RagnarokShopV3 (新版V3)
 ![](https://i.imgur.com/XIUruMX.png)
 ## 後臺控制台
 ![](https://i.imgur.com/nrEdAZk.png)
-## 支援Keydow
+## 支援Keydown
 以下鍵盤按鍵非數字鍵。  
 - 前往首頁：組合鍵【ALT+Q】 or 鍵盤鍵【1】  
 - 產品列表：組合鍵【ALT+W】 or 鍵盤【2】  
