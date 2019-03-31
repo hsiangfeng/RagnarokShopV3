@@ -4,7 +4,7 @@
 舊版首頁(V2版)
 ![](https://i.imgur.com/Y0g9oAD.png)
 新版首頁(V3版)
-![](https://i.imgur.com/qRjEA6F.png)
+![](https://i.imgur.com/m4Z6iDB.png)
 ## Demo
 RagnarokShop (舊版V2)  
 [https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")  
@@ -57,7 +57,7 @@ RagnarokShopV3 (新版V3)
 初心者坐騎  
 ![](https://i.imgur.com/wuAlbMH.gif)
 ## 首頁畫面
-![](https://i.imgur.com/qRjEA6F.png)
+![](https://i.imgur.com/m4Z6iDB.png)
 ## 商品列表
 ![](https://i.imgur.com/pjuRi2Y.png)
 ## 關於仙境
