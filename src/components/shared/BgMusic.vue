@@ -39,11 +39,19 @@ export default {
           this.audioSrc = '';
           break;
       }
-      if (roBGM.paused) {
-        setTimeout(() => {
+      const playPromise = roBGM.play();
+      if (playPromise !== undefined) {
+        // eslint-disable-next-line
+        playPromise.then(_ => {
+          roBGM.pause();
+        // eslint-disable-next-line
+        }).then(_ =>{
           roBGM.play();
           roBGM.volume = 0.2;
-        }, 2000);
+        })
+        // eslint-disable-next-line
+        .catch(error => {
+          });
       }
     },
   },

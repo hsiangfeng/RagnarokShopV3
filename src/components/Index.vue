@@ -9,10 +9,6 @@
     Carousel
     PageMap
     BgMusicComponent(:nowIndex='"index"')
-    .play-bgm
-      a(href='#')
-        font-awesome-icon#stopBGM.text-primary(:icon="['fas','sync']", spin='', size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='停止播放BGM', @click.prevent='musicStatus', v-if='bgmStatus')
-        font-awesome-icon#playBGM.text-primary(:icon="['fas','play-circle']", size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='播放BGM', @click.prevent='musicStatus', v-else='')
 </template>
 
 <style lang="scss">
@@ -40,19 +36,7 @@ export default {
   name: 'Index',
   data() {
     return {
-      bgmStatus: false,
     };
-  },
-  methods: {
-    musicStatus() {
-      const vm = this;
-      const roBGM = document.getElementById('roBGM');
-      if (roBGM.paused) {
-        vm.bgmStatus = true;
-      } else {
-        vm.bgmStatus = false;
-      }
-    },
   },
   components: {
     Jumbotron,
@@ -69,7 +53,6 @@ export default {
     $(() => {
       $('[data-toggle="popover"]').popover();
     });
-    this.musicStatus();
   },
 };
 </script>
