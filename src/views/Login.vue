@@ -26,6 +26,7 @@
 .login-section {
   height: 100vh;
   background-position: center top;
+  background-size: cover;
   position: relative;
   cursor: url(../assets/img/normal_select.png), auto;
 }
@@ -167,7 +168,7 @@ export default {
     },
     randomBGImg() {
       const vm = this;
-      const random = Math.floor(Math.random() * 5);
+      const random = Math.floor(Math.random() * 6);
       switch (random) {
         case 0:
           // eslint-disable-next-line
@@ -188,6 +189,10 @@ export default {
         case 4:
           // eslint-disable-next-line
           vm.bgimgUrl = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+          break;
+        case 5:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/53e069f6aa80d.jpg');
           break;
         default:
           // eslint-disable-next-line

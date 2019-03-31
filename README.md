@@ -86,6 +86,7 @@ RagnarokShopV3 (新版V3)
 
 ![](https://i.imgur.com/fFQM2JI.png)
 ## 更多內容
+每一次登入介面背景圖片將會不同(共有六種登入圖片)。  
 其中裡面還包含經典音樂，約五首左右  
 - 普隆德拉 - [首頁](https://hsiangfeng.github.io/RagnarokShopV3)  
 - 衛星島 - [關於仙境](https://hsiangfeng.github.io/RagnarokShopV3/#/aboutro)  
