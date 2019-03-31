@@ -20,6 +20,8 @@ import VueTypedJs from 'vue-typed-js';
 import VeeValidate, { Validator } from 'vee-validate';
 import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
 
+import VDragged from 'v-dragged';
+
 import VCharts from 'v-charts';
 
 // 自訂
@@ -47,6 +49,8 @@ Vue.use(VeeValidate, {
 
 Vue.component('Loading', Loading);
 
+Vue.use(VDragged);
+
 Vue.use(VCharts);
 
 Vue.filter('currency', currencyFilter);
@@ -59,3 +63,24 @@ new Vue({
   store,
   render: h => h(App),
 }).$mount('#app');
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const url = `${process.env.VUE_APP_APIPATH}/api/user/check`;
+    axios.post(url).then((response) => {
+      if (response.data.success) {
+        next();
+      } else {
+        store.dispatch('updateMessage', {
+          message: `登入失敗惹Σ( ° △ °|||)︴${response.data.message}`,
+          status: 'danger',
+        });
+        next({
+          path: '/login',
+        });
+      }
+    });
+  } else {
+    next();
+  }
+});

@@ -1,9 +1,6 @@
 <template lang="pug">
   .container.pt-10
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .d-sm-flex.align-items-center.justify-content-between.mb-4
         h1.h3.mb-0.text-gray-800 系統首頁
     .row
@@ -85,6 +82,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
 
 export default {
   data() {
@@ -118,6 +116,9 @@ export default {
       });
     },
     ...mapGetters(['isLoading', 'consoleProducts', 'consoleCoupons', 'consoleOrders', 'chartData']),
+  },
+  components: {
+    LoadingPage,
   },
   created() {
     this.getConsoleAdmin();

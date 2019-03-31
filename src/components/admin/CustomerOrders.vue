@@ -1,9 +1,6 @@
 <template lang="pug">
   .container
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .row.mt-4
       .col-md-4.mb-4(v-for='item in products', :key='item.id')
         .card.border-0.shadow-sm
@@ -139,6 +136,7 @@
 <script>
 /* global $ */
 import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
@@ -359,6 +357,7 @@ export default {
     },
   },
   components: {
+    LoadingPage,
     ScrollTopComponent,
     PaginationComponents,
   },

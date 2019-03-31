@@ -1,9 +1,6 @@
 <template lang="pug">
   section
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .container.my-10
       h2.text-ro(v-if="localFilter === '快搶購'") 不要浪費時間快搶購
       h2.text-ro(v-else) 我猜你喜歡
@@ -108,6 +105,7 @@
 import 'swiper/dist/css/swiper.min.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import { mapGetters } from 'vuex';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
 
 export default {
   data() {
@@ -149,6 +147,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
+    LoadingPage,
   },
   created() {
     this.getProducts();

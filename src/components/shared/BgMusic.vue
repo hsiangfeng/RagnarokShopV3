@@ -40,7 +40,7 @@ export default {
         setTimeout(() => {
           roBGM.play();
           roBGM.volume = 0.2;
-        }, 1000);
+        }, 500);
       }
     },
   },

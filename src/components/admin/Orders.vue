@@ -1,9 +1,6 @@
 <template lang="pug">
   .container
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     table.table.table-border.table-hover.text-center.my-2
       thead
         tr.text-center.bg-ro.text-white
@@ -170,6 +167,7 @@
 <script>
 /* global $ */
 import { mapGetters } from 'vuex';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
@@ -218,6 +216,7 @@ export default {
     ...mapGetters(['isLoading', 'adminOrders', 'pagination']),
   },
   components: {
+    LoadingPage,
     PaginationComponents,
   },
   created() {

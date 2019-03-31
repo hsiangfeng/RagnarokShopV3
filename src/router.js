@@ -12,6 +12,10 @@ export default new Router({
   },
   routes: [
     {
+      path: '*',
+      redirect: '/',
+    },
+    {
       path: '/',
       name: '',
       component: () => import('@/views/Layout.vue'),

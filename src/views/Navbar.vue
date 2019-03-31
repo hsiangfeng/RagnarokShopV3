@@ -39,7 +39,14 @@
                 router-link.nav-link.font-weight-bold.p-5(to='/login')
                   font-awesome-icon(:icon="['fas', 'sign-in-alt']")
                   | 登入
-    nav.bg-ro-window.d-lg-block.d-none.fixed-top.img-fluid#bg-ro-window
+    nav.bg-ro-window.d-lg-block.d-none.fixed-top.img-fluid#bg-ro-window(v-dragged="onDragged" title="視窗可以拖曳唷!")
+      .ro-name(title="打到骨折優待碼ragnarok")
+      .ro-hp(title="HP爆滿啦~")
+      .ro-sp(title="買東西一定跟SP一樣88!")
+      .ro-base(title="等級經驗:86.5%")
+      .ro-job(title="職業等級經驗:0.7%")
+      .ro-weight(title="負重:768/4020")
+      .ro-zeny(title="Zeny:3,860")
       router-link(:to="{name: 'Index'}" title="Alt+A，返回首頁").button-ro.button-index.btn-window
         | 首頁
       router-link(:to="{name: 'Products', params:{data: '全部商品'}}" title="Alt+W，商品列表").button-ro.button-products.btn-window
@@ -57,7 +64,7 @@
       a(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-window
         | 購物車
       a(href="#" @click.prevent='switchWindow()' title="Alt+V，縮小視窗").button-switch#btn-switch
-    .bg-ro-hotkey#bg-ro-window-hotkey
+    .bg-ro-hotkey#bg-ro-window-hotkey(v-dragged="onDragged" title="視窗可以拖曳唷!")
       router-link(:to="{name: 'Index'}" title="Alt+A，返回首頁").button-ro.button-index.btn-hotkey
         | 首頁
       router-link(:to="{name: 'Products', params:{data: '全部商品'}}" title="Alt+W，商品列表").button-ro.button-products.btn-hotkey
@@ -89,6 +96,55 @@
     height: 140px;
     top: 2%;
     left: 5%;
+    .ro-name{
+      position: absolute;
+      width: 55px;
+      height: 34px;
+      top: 18%;
+      left: 2%;
+    }
+    .ro-hp{
+      position: absolute;
+      width: 101px;
+      height: 12px;
+      top: 18%;
+      right: 30%;
+    }
+    .ro-sp{
+      position: absolute;
+      width: 101px;
+      height: 12px;
+      top: 36%;
+      right: 30%;
+    }
+    .ro-base{
+      position: absolute;
+      width: 121px;
+      height: 7px;
+      bottom: 30%;
+      right: 33%;
+    }
+    .ro-job{
+      position: absolute;
+      width: 121px;
+      height: 7px;
+      bottom: 22%;
+      right: 33%;
+    }
+    .ro-zeny{
+      position: absolute;
+      width: 72px;
+      height: 12px;
+      bottom: 4%;
+      right: 40%;
+    }
+    .ro-weight{
+      position: absolute;
+      width: 110px;
+      height: 12px;
+      bottom: 4%;
+      left: 1%;
+    }
   }
   .button-ro{
     position: absolute;
@@ -301,22 +357,6 @@ export default {
         }
       }
 
-      // ALT+G Github
-      if (e.altKey && e.keyCode === 71) {
-        window.open('https://github.com/hsiangfeng/RagnarokShopV3');
-      // 鍵盤7
-      } else if (e.keyCode === 55) {
-        window.open('https://github.com/hsiangfeng/RagnarokShopV3');
-      }
-
-      // ALT+U Resume
-      if (e.altKey && e.keyCode === 85) {
-        window.open('https://hsiangfeng.github.io/SPA-Resume/');
-      // 鍵盤8
-      } else if (e.keyCode === 56) {
-        window.open('https://hsiangfeng.github.io/SPA-Resume/');
-      }
-
       // ALT+V 介面視窗
       if (e.altKey && e.keyCode === 86) {
         const bgRoWindow = document.getElementById('bg-ro-window');
@@ -365,6 +405,20 @@ export default {
           item.style.display = 'none';
         });
       }
+    },
+    onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
+      if (first) {
+        this.isDragging = true
+        return
+      }
+      if (last) {
+        this.isDragging = false
+        return
+      }
+      var l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0
+      var t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0
+      el.style.left = l + deltaX + 'px'
+      el.style.top = t + deltaY + 'px'
     },
     openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {

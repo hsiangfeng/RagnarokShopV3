@@ -1,15 +1,14 @@
 <template lang="pug">
   .login-section.d-flex.justify-content-center.align-items-center.flex-column
-    loading(:active.sync='isLoading', :opacity='.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
-    #login-logo.login-logo
-    #login-bg.login-bg
-      #login-top.login-top
+    LoadingPage(:isLoading="isLoading")
+    #login-logo.login-logo(v-dragged="onDragged" title="可以拖曳唷!")
+    #login-bg.login-bg(v-dragged="onDragged" title="視窗可以拖曳唷!")
       form(@submit.prevent='signin')
+        label.lable-name(for='email')
         input#email(type='email', required='', autofocus='', v-model='user.username')
+        label.lable-password(for='password')
         input#password(type='password', required='', v-model='user.password')
+        label.lable-saved(for='saved')
         input#saved(type='checkbox' v-model="saved")
         button#musicPlay.btn-play(type='button', @click='musicStatus()')
           | stop
@@ -18,6 +17,7 @@
         router-link(:to="{name:'Index'}")
           button.btn-end
             | 結束
+    AlertMessage
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/01.mp3', type='audio/mpeg')
 </template>
@@ -49,12 +49,6 @@
   border-radius: 5px;
   position: absolute;
   bottom: 25%;
-  .login-top{
-    position: absolute;
-    width: 100%;
-    height: 17px;
-    z-index: 5;
-  }
   #email{
     position: absolute;
     width: 130.5px;
@@ -79,6 +73,30 @@
     position: absolute;
     right: 13%;
     top: 27%;
+  }
+  .lable-name{
+    position: absolute;
+    top: 23%;
+    left: 22.5%;
+    width: 20px;
+    height: 20px;
+    cursor: url(../assets/img/link_select.png), auto;
+  }
+  .lable-password{
+    position: absolute;
+    top: 49.5%;
+    left: 4.5%;
+    width: 74px;
+    height: 20px;
+    cursor: url(../assets/img/link_select.png), auto;
+  }
+  .lable-saved {
+    position: absolute;
+    top: 23%;
+    right: 4.5%;
+    width: 23px;
+    height: 20px;
+    cursor: url(../assets/img/link_select.png), auto;
   }
   .btn-login{
     position: absolute;
@@ -125,7 +143,10 @@
 </style>
 
 <script>
+/* global $ */
 import { mapActions, mapGetters } from 'vuex';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
+import AlertMessage from '@/components/shared/AlertMessage.vue';
 
 export default {
   data() {
@@ -145,31 +166,6 @@ export default {
       }
       vm.$store.dispatch('signin', vm.user);
     },
-    dragWindow() {
-      const loginLogoId = document.getElementById('login-logo');
-      const loginTop = document.getElementById('login-top');
-      const loginBg = document.getElementById('login-bg');
-      function getPosition(event) {
-        loginLogoId.style.left = `${event.clientX}px`;
-        loginLogoId.style.top = `${event.clientY}px`;
-      }
-      function positionOver(event) {
-        loginLogoId.style.left = `${event.clientX}px`;
-        loginLogoId.style.top = `${event.clientY}px`;
-      }
-      function getPosition2(event) {
-        loginBg.style.left = `${event.clientX}px`;
-        loginBg.style.top = `${event.clientY}px`;
-      }
-      function positionOver2(event) {
-        loginBg.style.left = `${event.clientX}px`;
-        loginBg.style.top = `${event.clientY}px`;
-      }
-      loginLogoId.addEventListener('drag', getPosition, false);
-      loginLogoId.addEventListener('dragend', positionOver, false);
-      loginTop.addEventListener('drag', getPosition2, false);
-      loginTop.addEventListener('dragend', positionOver2, false);
-    },
     autoPlayMusic() {
       const roBGM = document.getElementById('roBGM');
       if (roBGM.paused) {
@@ -188,13 +184,30 @@ export default {
         musicPlay.textContent = 'play';
       }
     },
+    onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
+      if (first) {
+        this.isDragging = true
+        return
+      }
+      if (last) {
+        this.isDragging = false
+        return
+      }
+      var l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0
+      var t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0
+      el.style.left = l + deltaX + 'px'
+      el.style.top = t + deltaY + 'px'
+    },
   },
   computed: {
     ...mapGetters(['isLoading']),
   },
+  components: {
+    LoadingPage,
+    AlertMessage,
+  },
   mounted() {
     const vm = this;
-    vm.dragWindow();
     vm.autoPlayMusic();
     vm.user.username = JSON.parse(localStorage.getItem('saveAccount')) || '';
   },

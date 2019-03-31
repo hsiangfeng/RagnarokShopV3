@@ -1,9 +1,6 @@
 <template lang="pug">
   section.container.p-top
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .row.pt-5
       .col-md-4.d-flex.justify-content-center.align-items-center
         .border.border-ro.w-100.h-100.d-flex.justify-content-center.align-items-center.p-2.rounded
@@ -104,6 +101,7 @@ import ScrollTopComponent from './shared/ScrollTop.vue';
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import { mapGetters, mapActions } from 'vuex';
+import LoadingPage from './shared/LoadingPage.vue';
 
 export default {
   data() {
@@ -153,6 +151,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
+    LoadingPage,
     ScrollTopComponent,
   },
   created() {

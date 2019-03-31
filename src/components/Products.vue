@@ -1,9 +1,6 @@
 <template lang="pug">
   section
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .banner.d-flex.justify-content-center.align-items-center
       .banner-text
         vue-typed-js(:strings="['那你還在等什麼?']",
@@ -244,6 +241,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import Breadcrumb from './Breadcrumb.vue';
 import PageMap from './shared/PageMap.vue';
+import LoadingPage from './shared/LoadingPage.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import BgMusicComponent from './shared/BgMusic.vue';
 
@@ -276,6 +274,7 @@ export default {
   components: {
     Breadcrumb,
     PageMap,
+    LoadingPage,
     ScrollTopComponent,
     BgMusicComponent,
   },

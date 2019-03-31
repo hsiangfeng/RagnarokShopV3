@@ -1,9 +1,6 @@
 <template lang="pug">
   .container
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .text-right.my-2
       button.btn.btn-ro.text-white(type='button', @click="openModel('new')")
         font-awesome-icon(:icon="['fas', 'plus']")
@@ -91,6 +88,7 @@
 <script>
 /* global $ */
 import { mapGetters } from 'vuex';
+import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
@@ -165,6 +163,7 @@ export default {
     ...mapGetters(['isLoading', 'adminCoupons']),
   },
   components: {
+    LoadingPage,
     PaginationComponents,
   },
   created() {

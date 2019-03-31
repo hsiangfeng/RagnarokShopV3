@@ -1,9 +1,6 @@
 <template lang="pug">
   section.p-top
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     section.container
       .text-center
         .d-flex.justify-content-center.align-items-center.cart-bg
@@ -98,6 +95,7 @@
 <script>
 /* global $ */
 import { mapActions, mapGetters } from 'vuex';
+import LoadingPage from './shared/LoadingPage.vue';
 import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 
@@ -167,6 +165,7 @@ export default {
   },
   components: {
     PageMap,
+    LoadingPage,
     ScrollTopComponent,
   },
   created() {

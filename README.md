@@ -49,6 +49,7 @@ RagnarokShopV3 (新版V3)
 - [Vue-router](https://router.vuejs.org/zh/)
 - [Vue-cli-plugin-pug](https://www.npmjs.com/package/vue-cli-plugin-pug)
 - [V-charts](https://v-charts.js.org/#/)
+- [V-dragged](https://www.npmjs.com/package/v-dragged)
 - [Popper.js](https://popper.js.org/)
 - [Pagemap](https://larsjung.de/pagemap/)
 # 前端介紹
@@ -78,16 +79,18 @@ RagnarokShopV3 (新版V3)
 - 購物車內容：組合鍵【ALT+A】 or 鍵盤【4】  
 - 登入畫面：組合鍵【ALT+Z】 or 鍵盤【5】  
 - 開啟購物車：組合鍵【ALT+C】 購物車 or 鍵盤【6】  
-- 前往GitHutRepo：組合鍵【ALT+G】 or 鍵盤【7】  
-- 作者履歷：組合鍵【ALT+U】 or 鍵盤【8】  
 - 開關介面視窗：組合鍵【ALT+V】    
 - 快捷鍵：鍵盤【0】  
+## 針對介面視窗增加提示訊息
+> HP、SP、Name、Exp、Job等皆有小驚喜。
+
+![](https://i.imgur.com/fFQM2JI.png)
 ## 更多內容
 其中裡面還包含經典音樂，約四首左右  
 - 普隆德拉-中央之城音樂  
 - RO登入音樂  
 - 其他RO音樂  
-- 登入視窗可拖曳  
+- 登入視窗、基本訊息、快捷鍵皆可拖曳  
 <img src="https://i.imgur.com/1Ie4oEL.gif" width="200">
 
 表情符號  

@@ -1,9 +1,6 @@
 <template lang="pug">
   div
-    loading(:active.sync='isLoading', :opacity='0.85')
-      img(src='@/assets/loading.gif', alt='', srcset='')
-      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
-        small.font-weight-normal.typing
+    LoadingPage(:isLoading="isLoading")
     .container.p-top
       h3.text-center.my-2 結帳確認
       .my-5.row.justify-content-center
@@ -54,6 +51,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import LoadingPage from './shared/LoadingPage.vue';
+
 export default {
   data() {
     return {
@@ -70,6 +69,9 @@ export default {
   },
   computed: {
     ...mapGetters(['isLoading', 'order']),
+  },
+  components: {
+    LoadingPage,
   },
   created() {
     this.orderId = this.$route.params.orderId;

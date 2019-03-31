@@ -8,8 +8,7 @@
     Partner
     Carousel
     PageMap
-    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3', type='audio/mpeg')
+    BgMusicComponent(:nowIndex='"index"')
     .play-bgm
       a(href='#')
         font-awesome-icon#stopBGM.text-primary(:icon="['fas','sync']", spin='', size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='停止播放BGM', @click.prevent='musicStatus', v-if='bgmStatus')
@@ -45,17 +44,6 @@ export default {
     };
   },
   methods: {
-    roBGM() {
-      const vm = this;
-      const BGM = document.getElementById('roBGM');
-      if (BGM.paused) {
-        setTimeout(() => {
-          vm.bgmStatus = true;
-          BGM.play();
-        }, 2000);
-      }
-      BGM.volume = 0.2;
-    },
     musicStatus() {
       const vm = this;
       const roBGM = document.getElementById('roBGM');
@@ -82,8 +70,8 @@ export default {
   mounted() {
     $(() => {
       $('[data-toggle="popover"]').popover();
-    });
-    this.roBGM();
+    })
+    this.musicStatus();
   },
 };
 </script>

@@ -137,6 +137,10 @@ export default {
       Axios.post(url).then((response) => {
         if (response.data.success) {
           context.commit('LOADING', false);
+          context.dispatch('updateMessage', {
+            message: '登出成功(*ゝ∀･)v',
+            status: 'success',
+          });
           router.push('/login');
         }
       });
