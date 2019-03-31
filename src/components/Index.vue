@@ -49,10 +49,8 @@ export default {
       const roBGM = document.getElementById('roBGM');
       if (roBGM.paused) {
         vm.bgmStatus = true;
-        roBGM.play();
       } else {
         vm.bgmStatus = false;
-        roBGM.pause();
       }
     },
   },
