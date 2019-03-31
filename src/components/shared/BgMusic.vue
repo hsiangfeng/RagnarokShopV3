@@ -24,13 +24,16 @@ export default {
           this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/08.mp3';
           break;
         case 'products':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/login%402.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/12.mp3';
           break;
         case 'aboutRo':
-          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/12.mp3';
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/26.mp3';
           break;
         case 'login':
           this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/01.mp3';
+          break;
+        case 'customer':
+          this.audioSrc = 'https://raw.githubusercontent.com/hsiangfeng/RagnarokShopV3/master/public/music/login%402.mp3';
           break;
         default:
           this.audioSrc = '';
@@ -40,7 +43,7 @@ export default {
         setTimeout(() => {
           roBGM.play();
           roBGM.volume = 0.2;
-        }, 500);
+        }, 800);
       }
     },
   },

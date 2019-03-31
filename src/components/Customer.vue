@@ -73,6 +73,7 @@
             button.btn.btn-danger 送出訂單
     PageMap
     ScrollTopComponent
+    BgMusicComponent(:nowIndex='"customer"')
 </template>
 
 <style lang="scss" scoped>
@@ -96,6 +97,7 @@
 /* global $ */
 import { mapActions, mapGetters } from 'vuex';
 import LoadingPage from './shared/LoadingPage.vue';
+import BgMusicComponent from './shared/BgMusic.vue';
 import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 
@@ -166,6 +168,7 @@ export default {
   components: {
     PageMap,
     LoadingPage,
+    BgMusicComponent,
     ScrollTopComponent,
   },
   created() {

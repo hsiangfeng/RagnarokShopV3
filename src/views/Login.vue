@@ -1,5 +1,5 @@
 <template lang="pug">
-  .login-section.d-flex.justify-content-center.align-items-center.flex-column
+  .login-section.d-flex.justify-content-center.align-items-center.flex-column(:style="{'backgroundImage':`url(${bgimgUrl})` }")
     LoadingPage(:isLoading="isLoading")
     #login-logo.login-logo(v-dragged="onDragged" title="可以拖曳唷!")
     #login-bg.login-bg(v-dragged="onDragged" title="視窗可以拖曳唷!")
@@ -25,7 +25,6 @@
 <style lang="scss" scoped>
 .login-section {
   height: 100vh;
-  background-image: url(../assets/img/RTC_1920_1080.jpg);
   background-position: center top;
   position: relative;
   cursor: url(../assets/img/normal_select.png), auto;
@@ -154,6 +153,7 @@ export default {
         username: '',
         password: '',
       },
+      bgimgUrl: '',
       saved: true,
     };
   },
@@ -164,6 +164,36 @@ export default {
         localStorage.setItem('saveAccount', JSON.stringify(vm.user.username));
       }
       vm.$store.dispatch('signin', vm.user);
+    },
+    randomBGImg() {
+      const vm = this;
+      const random = Math.floor(Math.random() * 5);
+      switch (random) {
+        case 0:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/169058.jpg');
+          break;
+        case 1:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/fbcover.png');
+          break;
+        case 2:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/ROS_1920x1080.jpg');
+          break;
+        case 3:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/RTC_1920_1080.jpg');
+          break;
+        case 4:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+          break;
+        default:
+          // eslint-disable-next-line
+          vm.bgimgUrl = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+          break;
+      }
     },
     autoPlayMusic() {
       const roBGM = document.getElementById('roBGM');
@@ -186,21 +216,21 @@ export default {
     // eslint-disable-next-line
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
-        this.isDragging = true;
+        this.dragged = true;
         return;
       }
       if (last) {
-        this.isDragging = false;
+        this.dragged = false;
         return;
       }
       // eslint-disable-next-line
-      const l = +window.getComputedStyle(el)["left"].slice(0, -2) || 0;
+      const l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
       // eslint-disable-next-line
       const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       // eslint-disable-next-line
-      el.style.left = `${l + deltaX} + px`;
+      el.style.left = l + deltaX + 'px';
       // eslint-disable-next-line
-      el.style.top = `${t + deltaY} + px`;
+      el.style.top = t + deltaY + 'px';
     },
   },
   computed: {
@@ -213,6 +243,7 @@ export default {
   mounted() {
     const vm = this;
     vm.autoPlayMusic();
+    vm.randomBGImg();
     vm.user.username = JSON.parse(localStorage.getItem('saveAccount')) || '';
   },
 };

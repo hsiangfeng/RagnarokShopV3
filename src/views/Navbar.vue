@@ -417,21 +417,21 @@ export default {
     // eslint-disable-next-line
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
-        this.isDragging = true;
+        this.dragged = true;
         return;
       }
       if (last) {
-        this.isDragging = false;
+        this.dragged = false;
         return;
       }
       // eslint-disable-next-line
-      const l = +window.getComputedStyle(el)["left"].slice(0, -2) || 0;
+      const l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
       // eslint-disable-next-line
       const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
       // eslint-disable-next-line
-      el.style.left = `${l + deltaX} + px`;
+      el.style.left = l + deltaX + 'px';
       // eslint-disable-next-line
-      el.style.top = `${t + deltaY} + px`;
+      el.style.top = t + deltaY + 'px';
     },
     openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {
