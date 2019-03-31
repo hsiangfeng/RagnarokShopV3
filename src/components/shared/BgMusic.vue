@@ -46,10 +46,8 @@ export default {
           roBGM.pause();
         // eslint-disable-next-line
         }).then(_ =>{
-          setTimeout(() => {
-            roBGM.play();
-            roBGM.volume = 0.2;
-          }, 1000);
+          roBGM.play();
+          roBGM.volume = 0.2;
         })
         // eslint-disable-next-line
         .catch(error => {
