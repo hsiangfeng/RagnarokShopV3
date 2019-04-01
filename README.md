@@ -71,6 +71,12 @@ RagnarokShopV3 (新版V3)
 ## 小商人購物車
 ![](https://i.imgur.com/F9lau9O.png)
 ![](https://i.imgur.com/XIUruMX.png)
+## 快速選購
+![](https://i.imgur.com/i4AQHaR.png)
+![](https://i.imgur.com/lC1hFDt.png)
+## 首頁(我猜你喜歡)
+觸發條件:首頁將會依照你上一次觀看過的產品詳細做類別推薦。
+![](https://i.imgur.com/18HZE4e.png)
 ## 後臺控制台
 ![](https://i.imgur.com/nrEdAZk.png)
 ## 支援Keydown
