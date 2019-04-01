@@ -70,6 +70,7 @@
               div(v-else)
                 a.btn.btn-outline-danger.btn-block.disabled(href='#')
                   | 下次請早
+    PageMap
     ScrollTopComponent
 </template>
 <style lang="scss">
@@ -101,6 +102,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import { mapGetters } from 'vuex';
 // eslint-disable-next-line
 import 'swiper/dist/css/swiper.css';
+import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import LoadingPage from './shared/LoadingPage.vue';
 
@@ -154,6 +156,7 @@ export default {
     swiper,
     swiperSlide,
     LoadingPage,
+    PageMap,
     ScrollTopComponent,
   },
   created() {

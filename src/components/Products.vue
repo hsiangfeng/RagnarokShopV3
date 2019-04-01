@@ -49,7 +49,7 @@
                 img.card-img(:src='item.imageUrl')
               .products-content.p-2
                 h6.font-weight-bold
-                  a.text-ro(href='http://') {{item.title}}
+                  router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
                 div
                   .description.text-truncate
                     | {{item.description}}

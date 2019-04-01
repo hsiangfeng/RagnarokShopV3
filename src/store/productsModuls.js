@@ -5,18 +5,19 @@ export default {
   namespace: true,
   state: {
     url: {
-      products(name, id) {
+      products(name, item) {
         switch (name) {
           case 'page':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${id}`;
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/products?page=${item}`;
           case 'one':
-            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${id}`;
+            return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${item}`;
           default:
             return `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/products/all`;
         }
       },
     },
     products: [],
+    productsPages: [],
     oneProducts: {},
     shopOff: [],
     shopItem: [],
@@ -25,6 +26,9 @@ export default {
   mutations: {
     GETPRODUCTS(state, payload) {
       state.products = payload;
+    },
+    GETPRODUCTSPAGES(state, payload){
+      state.productsPages = payload;
     },
     GETONEPRODUCTS(state, payload) {
       state.oneProducts = payload;
@@ -71,6 +75,22 @@ export default {
         context.commit('LOADING', false);
       });
     },
+    getProductsPages(context, page) {
+      const url = context.state.url.products('page', page);
+      console.log(url);
+      context.commit('LOADING', true);
+      Axios.get(url).then((response) => {
+        if (response.data.success) {
+          context.commit('GETPRODUCTSPAGES', response.data.products);
+        } else {
+          context.dispatch('updateMessage', {
+            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,
+            status: 'danger',
+          });
+        }
+        context.commit('LOADING', false);
+      });
+    },
     shopOff(context) {
       context.commit('SHOPOFF');
     },
@@ -98,6 +118,9 @@ export default {
   getters: {
     products(state) {
       return state.products;
+    },
+    productsPages(state) {
+      return state.productsPages;
     },
     oneProducts(state) {
       return state.oneProducts;
