@@ -187,6 +187,7 @@
 </style>
 
 <script>
+/* global $ */
 import { mapActions, mapGetters } from 'vuex';
 import pagemap from 'pagemap/dist/pagemap.min';
 
@@ -201,7 +202,7 @@ export default {
     };
   },
   methods: {
-    getProducts(page = 1){
+    getProducts(page = 1) {
       this.$store.dispatch('getProducts', page);
     },
     addCart(id, qty = 1) {

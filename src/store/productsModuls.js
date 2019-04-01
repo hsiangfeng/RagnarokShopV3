@@ -27,7 +27,7 @@ export default {
     GETPRODUCTS(state, payload) {
       state.products = payload;
     },
-    GETPRODUCTSPAGES(state, payload){
+    GETPRODUCTSPAGES(state, payload) {
       state.productsPages = payload;
     },
     GETONEPRODUCTS(state, payload) {
@@ -77,7 +77,6 @@ export default {
     },
     getProductsPages(context, page) {
       const url = context.state.url.products('page', page);
-      console.log(url);
       context.commit('LOADING', true);
       Axios.get(url).then((response) => {
         if (response.data.success) {
