@@ -74,6 +74,15 @@ RagnarokShopV3 (新版V3)
 ## 快速選購
 ![](https://i.imgur.com/i4AQHaR.png)
 ![](https://i.imgur.com/lC1hFDt.png)
+## 訂單
+訂單  
+![](https://i.imgur.com/YDARwZu.jpg)  
+準備付款  
+![](https://imgur.com/LVNY2fH.jpg)  
+付款成功  
+![](https://imgur.com/kHVjXcl.jpg)
+## 404
+![](https://imgur.com/tYhnz1U.jpg)
 ## 首頁(我猜你喜歡)
 觸發條件:首頁將會依照你上一次觀看過的產品詳細做類別推薦。
 ![](https://i.imgur.com/18HZE4e.png)
