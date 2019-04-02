@@ -13,7 +13,7 @@ export default new Router({
   routes: [
     {
       path: '*',
-      redirect: '/',
+      redirect: '/404',
     },
     {
       path: '/',
@@ -50,12 +50,22 @@ export default new Router({
           name: 'CheckOrder',
           component: () => import('@/components/CheckOrder.vue'),
         },
+        {
+          path: '/order_end',
+          name: 'OrderEnd',
+          component: () => import('@/components/OrderEnd.vue'),
+        },
       ],
     },
     {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/Login.vue'),
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('@/views/404.vue'),
     },
     {
       path: '/admin',

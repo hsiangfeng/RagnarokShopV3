@@ -197,6 +197,7 @@ export default {
             status: 'success',
           });
           context.dispatch('getOrder', id);
+          router.push('/order_end');
         } else {
           context.dispatch('updateMessage', {
             message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${response.data.message}`,

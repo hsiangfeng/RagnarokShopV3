@@ -2,9 +2,13 @@
   div
     LoadingPage(:isLoading="isLoading")
     .container.p-top
-      h3.text-center.my-2 結帳確認
+      .text-center
+        .d-flex.justify-content-center.align-items-center.order-bg
+          vue-typed-js(:strings="['你準備好付款了嗎?']", :fadeOut='true')
+            h3.text-white.typing.order-text
       .my-5.row.justify-content-center
-        form.col-md-6(@submit.prevent='payOrder()')
+        .col-md-6
+          h3.text-center 訂單資訊
           table.table
             thead
               tr
@@ -14,38 +18,61 @@
             tbody
               tr(v-for='item in order.products', :key='item.id')
                 td.align-middle {{ item.product.title }}
-                td.align-middle {{ item.qty }}/{{ item.product.unit }}
-                td.align-middle.text-right {{ item.final_total }}
+                td.align-middle {{ item.qty }} {{ item.product.unit }}
+                td.align-middle.text-right {{ item.final_total | currency}}
             tfoot
               tr
                 td.text-right(colspan='2') 總計
-                td.text-right {{ order.total }}
-          table.table
-            tbody
-              tr
-                th(width='100') Email
-                td {{ order.user.email }}
-              tr
-                th 姓名
-                td {{ order.user.name }}
-              tr
-                th 收件人電話
-                td {{ order.user.tel }}
-              tr
-                th 收件人地址
-                td {{ order.user.address }}
-              tr
-                th 付款狀態
-                td
-                  span(v-if='!order.is_paid') 尚未付款
-                  span.text-success(v-else='') 付款完成
-          .text-right(v-if='order.is_paid === false')
-            button.btn.btn-danger 確認付款去
+                td.text-right {{ order.total | currency}}
+        .col-md-6
+          h3.text-center 用戶資訊
+          form(@submit.prevent='payOrder()')
+            table.table
+              tbody
+                tr
+                  th(width='150')
+                    font-awesome-icon(:icon="['fas','envelope']")
+                    | Email
+                  td {{ order.user.email }}
+                tr
+                  th
+                    font-awesome-icon(:icon="['fas','user']")
+                    | 姓名
+                  td {{ order.user.name }}
+                tr
+                  th
+                    font-awesome-icon(:icon="['fas','phone']")
+                    | 收件人電話
+                  td {{ order.user.tel }}
+                tr
+                  th
+                    font-awesome-icon(:icon="['fas','map-marker-alt']")
+                    | 收件人地址
+                  td {{ order.user.address }}
+                tr
+                  th 付款狀態
+                  td
+                    span(v-if='!order.is_paid') 尚未付款
+                    span.text-success(v-else='') 付款完成
+            .text-right
+              router-link(:to="{name: 'Index'}").btn.btn-outline-danger 取消購買
+              button.btn.btn-danger.ml-1 確認付款
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .p-top {
     padding-top: 91px;
+  }
+  .order-bg {
+    background-image: url(../assets/img/1152183790.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 375px;
+  }
+  .order-text {
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px;
   }
 </style>
 
