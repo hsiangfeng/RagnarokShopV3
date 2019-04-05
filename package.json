@@ -68,7 +68,8 @@
             "request",
             "res",
             "response",
-            "$scope"
+            "$scope",
+            "item"
           ]
         }
       ]

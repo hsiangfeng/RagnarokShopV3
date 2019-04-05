@@ -2,8 +2,6 @@
   div.d-none.d-lg-block
     a(href="#" @click="openModel")
       img#cashShop(src='@/assets/img/cashShop.png' tag="商城" title="商城")
-    //- router-link(:to="{name: 'Products', params:{data: '全部商品'}}")
-    //-   img#cashShop(src='@/assets/img/cashShop.png' tag="商城" title="商城")
     canvas#map
     #mallModel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog.modal-xl(role='document')

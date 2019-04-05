@@ -290,13 +290,11 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -366,13 +364,11 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -385,13 +381,11 @@ export default {
         if (bgRoWindowHotKey.style.display === 'none') {
           bgRoWindowHotKey.style.display = 'block';
           btnHotKey.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'block';
           });
         } else {
           bgRoWindowHotKey.style.display = 'none';
           btnHotKey.forEach((item) => {
-            // eslint-disable-next-line
             item.style.display = 'none';
           });
         }
@@ -403,18 +397,16 @@ export default {
       if (bgRoWindowHotKey.style.display === 'none') {
         bgRoWindowHotKey.style.display = 'block';
         btnHotKey.forEach((item) => {
-          // eslint-disable-next-line
           item.style.display = 'block';
         });
       } else {
         bgRoWindowHotKey.style.display = 'none';
         btnHotKey.forEach((item) => {
-          // eslint-disable-next-line
           item.style.display = 'none';
         });
       }
     },
-    // eslint-disable-next-line
+    /* eslint-disable */
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
         this.dragged = true;
@@ -424,15 +416,12 @@ export default {
         this.dragged = false;
         return;
       }
-      // eslint-disable-next-line
       const l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
-      // eslint-disable-next-line
       const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
-      // eslint-disable-next-line
       el.style.left = l + deltaX + 'px';
-      // eslint-disable-next-line
       el.style.top = t + deltaY + 'px';
     },
+    /* eslint-disable */
     openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {
         $('#cartsModal').modal('show');

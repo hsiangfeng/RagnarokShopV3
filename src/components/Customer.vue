@@ -57,10 +57,10 @@
                 input#useraddress.form-control(type='address', name='address', :class="{'is-invalid': errors.has('address')}", v-model='form.user.address', v-validate="'required'", placeholder='請輸入地址')
                 span.text-danger(v-if="errors.has('address')") 地址欄位不得留空
               .form-group
-                label(for='useraddress')
+                label(for='usermessages')
                   font-awesome-icon(:icon="['fas','sms']")
                   | 留言
-                textarea.form-control(name='', id='', cols='30', rows='2', v-model='form.message')
+                textarea.form-control#usermessages(cols='30', rows='2', v-model='form.message')
               .input-group.mb-3.input-group-sm
                 input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
                 .input-group-append

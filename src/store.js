@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import productsModuls from './store/productsModuls'; // eslint-disable-next-line
-import orderModuls from './store/orderModuls'; // eslint-disable-next-line
-import adminModuls from './store/adminModuls'; // eslint-disable-next-line
-import alertModuls from './store/alertModuls'; // eslint-disable-next-line
+import productsModule from './store/productsModule';
+import orderModule from './store/orderModule';
+import alertModule from './store/alertModule';
+import adminModule from './store/adminModule';
 
 Vue.use(Vuex);
 
@@ -35,9 +35,9 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    productsModuls,
-    orderModuls,
-    adminModuls,
-    alertModuls,
+    productsModule,
+    orderModule,
+    adminModule,
+    alertModule,
   },
 });

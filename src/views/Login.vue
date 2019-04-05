@@ -147,6 +147,14 @@ import { mapGetters } from 'vuex';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 import AlertMessage from '@/components/shared/AlertMessage.vue';
 
+const randomImg1 = require('@/assets/img/Login/169058.jpg');
+const randomImg2 = require('@/assets/img/Login/fbcover.png');
+const randomImg3 = require('@/assets/img/Login/ROS_1920x1080.jpg');
+const randomImg4 = require('@/assets/img/Login/RTC_1920_1080.jpg');
+const randomImg5 = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+const randomImg6 = require('@/assets/img/Login/53e069f6aa80d.jpg');
+
+
 export default {
   data() {
     return {
@@ -171,32 +179,25 @@ export default {
       const random = Math.floor(Math.random() * 6);
       switch (random) {
         case 0:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/169058.jpg');
+          vm.bgimgUrl = randomImg1;
           break;
         case 1:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/fbcover.png');
+          vm.bgimgUrl = randomImg2;
           break;
         case 2:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/ROS_1920x1080.jpg');
+          vm.bgimgUrl = randomImg3;
           break;
         case 3:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/RTC_1920_1080.jpg');
+          vm.bgimgUrl = randomImg4;
           break;
         case 4:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+          vm.bgimgUrl = randomImg5;
           break;
         case 5:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/53e069f6aa80d.jpg');
+          vm.bgimgUrl = randomImg6;
           break;
         default:
-          // eslint-disable-next-line
-          vm.bgimgUrl = require('@/assets/img/Login/TeaTime_1920_1080.jpg');
+          vm.bgimgUrl = randomImg3;
           break;
       }
     },
@@ -218,7 +219,7 @@ export default {
         musicPlay.textContent = 'play';
       }
     },
-    // eslint-disable-next-line
+    /* eslint-disable */
     onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
       if (first) {
         this.dragged = true;
@@ -228,15 +229,12 @@ export default {
         this.dragged = false;
         return;
       }
-      // eslint-disable-next-line
       const l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
-      // eslint-disable-next-line
       const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
-      // eslint-disable-next-line
       el.style.left = l + deltaX + 'px';
-      // eslint-disable-next-line
       el.style.top = t + deltaY + 'px';
     },
+    /* eslint-disable */
   },
   computed: {
     ...mapGetters(['isLoading']),
