@@ -1,7 +1,7 @@
 <template lang="pug">
   div.d-none.d-lg-block
-    a(href="#" @click="openModel")
-      img#cashShop(src='@/assets/img/cashShop.png' tag="商城" title="商城")
+    button#cashShop(@click="openModel")
+      img(src='@/assets/img/cashShop.png' tag="商城" title="商城")
     canvas#map
     #mallModel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog.modal-xl(role='document')
@@ -43,7 +43,7 @@
                           img.card-img(:src='item.imageUrl')
                         .products-content.p-2
                           .mall-title.font-weight-bold
-                            .text-ro {{item.title}}
+                            .text-ro   {{item.title}}
                           .d-flex.justify-content-end.mall-zeny
                             | 售價 {{item.price}} P
                         .products-footer

@@ -11,7 +11,7 @@
             img.shop-img(:src='item.imageUrl')
           .shop-content
             h6
-              a.text-ro(href='http://') {{item.title}}
+              router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
             p.text-left.p-3.text-description
               | {{item.description}}
             .d-flex.justify-content-between
@@ -58,7 +58,7 @@
             img.shop-img(:src='item.imageUrl')
           .shop-content
             h6
-              a.text-ro(href='http://') {{item.title}}
+              router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
             p.text-left.p-3.text-description
               | {{item.description}}
             .d-flex.justify-content-between

@@ -15,21 +15,23 @@
 </style>
 
 <script>
+/* global $ */
+
 export default {
   mounted() {
-    $(function(){
-      $(window).scroll(function () { 
-        if($(window).scrollTop() >= 50){
+    $(() => {
+      $(window).scroll(() => {
+        if ($(window).scrollTop() >= 50) {
           $('#clickTop').fadeIn();
         } else {
           $('#clickTop').fadeOut();
-        };
+        }
       });
     });
-    $('#clickTop').click(function (e) {
+    $('#clickTop').click((event) => {
       event.preventDefault();
       $('html,body').animate({ scrollTop: 0 }, 500);
     });
   },
-}
+};
 </script>

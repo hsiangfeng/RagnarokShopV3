@@ -61,7 +61,7 @@
         | GitHub
       a(href='https://hsiangfeng.github.io/SPA-Resume/' title="Alt+U，作者資料").button-ro.button-author.btn-window
         | 作者
-      a(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-window
+      button(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-window
         | 購物車
       a(href="#" @click.prevent='switchWindow()' title="Alt+V，縮小視窗").button-switch#btn-switch
     .bg-ro-hotkey#bg-ro-window-hotkey(v-dragged="onDragged" title="視窗可以拖曳唷!")
@@ -79,7 +79,7 @@
         font-awesome-icon(:icon="['fab','github']" size="1x")
       a(href='https://hsiangfeng.github.io/SPA-Resume/' title="Alt+U，作者資料").button-ro.button-author.btn-hotkey
         | 作者
-      a(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-hotkey
+      button(@click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-hotkey
         | Cart
       a(href="#" @click.prevent='closeHotKey()' title="關閉視窗").btn-hot-key#btn-hot-key
 </template>
@@ -96,12 +96,14 @@
     height: 140px;
     top: 2%;
     left: 5%;
+    cursor: move;
     .ro-name{
       position: absolute;
       width: 55px;
       height: 34px;
       top: 18%;
       left: 2%;
+      cursor: auto;
     }
     .ro-hp{
       position: absolute;
@@ -109,6 +111,7 @@
       height: 12px;
       top: 18%;
       right: 30%;
+      cursor: auto;
     }
     .ro-sp{
       position: absolute;
@@ -116,6 +119,7 @@
       height: 12px;
       top: 36%;
       right: 30%;
+      cursor: auto;
     }
     .ro-base{
       position: absolute;
@@ -123,6 +127,7 @@
       height: 7px;
       bottom: 30%;
       right: 33%;
+      cursor: auto;
     }
     .ro-job{
       position: absolute;
@@ -130,6 +135,7 @@
       height: 7px;
       bottom: 22%;
       right: 33%;
+      cursor: auto;
     }
     .ro-zeny{
       position: absolute;
@@ -137,6 +143,7 @@
       height: 12px;
       bottom: 4%;
       right: 40%;
+      cursor: auto;
     }
     .ro-weight{
       position: absolute;
@@ -144,6 +151,7 @@
       height: 12px;
       bottom: 4%;
       left: 1%;
+      cursor: auto;
     }
   }
   .button-ro{
@@ -196,6 +204,8 @@
   .button-none{
     right: 7px;
     top: 109px;
+    border: 0px;
+    padding: 0px;
   }
   .button-switch{
     position: absolute;
@@ -214,6 +224,7 @@
     top: 2%;
     left: 39.5%;
     z-index: 2;
+    cursor: move;
     .button-ro{
       position: absolute;
       width: 26px;
@@ -304,40 +315,40 @@ export default {
       // index ALT+Q
       if (e.altKey && e.keyCode === 81) {
         this.$router.push('/');
-      // 鍵盤1
-      } else if (e.keyCode === 49) {
+      // ALT+鍵盤1
+      } else if (e.altKey && e.keyCode === 49) {
         this.$router.push('/');
       }
 
       // products ALT+W
       if (e.altKey && e.keyCode === 87) {
         this.$router.push('/products');
-      // 鍵盤2
-      } else if (e.keyCode === 50) {
+      // ALT+鍵盤2
+      } else if (e.altKey && e.keyCode === 50) {
         this.$router.push('/products');
       }
 
       // aboutro ALT+S
       if (e.altKey && e.keyCode === 83) {
         this.$router.push('/aboutro');
-      // 鍵盤3
-      } else if (e.keyCode === 51) {
+      // ALT+鍵盤3
+      } else if (e.altKey && e.keyCode === 51) {
         this.$router.push('/aboutro');
       }
 
       // cart ALT+A
       if (e.altKey && e.keyCode === 65) {
         this.$router.push('/customer');
-      // 鍵盤4
-      } else if (e.keyCode === 52) {
+      // ALT+鍵盤4
+      } else if (e.altKey && e.keyCode === 52) {
         this.$router.push('/customer');
       }
 
       // login ALT+Z
       if (e.altKey && e.keyCode === 90) {
         this.$router.push('/login');
-      // 鍵盤5
-      } else if (e.keyCode === 53) {
+      // ALT+鍵盤5
+      } else if (e.altKey && e.keyCode === 53) {
         this.$router.push('/login');
       }
 
@@ -348,8 +359,8 @@ export default {
         } else {
           $('#cartsModal').modal('hide');
         }
-      // 鍵盤6
-      } else if (e.keyCode === 54) {
+      // ALT+鍵盤6
+      } else if (e.altKey && e.keyCode === 54) {
         if ($('#cartsModal').modal('show')[0].hidden) {
           $('#cartsModal').modal('show');
         } else {
@@ -374,8 +385,8 @@ export default {
         }
       }
 
-      // 鍵盤0
-      if (e.keyCode === 48) {
+      // ALT+鍵盤0
+      if (e.altKey && e.keyCode === 48) {
         const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
         const btnHotKey = document.querySelectorAll('.btn-hotkey');
         if (bgRoWindowHotKey.style.display === 'none') {

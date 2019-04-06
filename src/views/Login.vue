@@ -39,6 +39,7 @@
   background-repeat: no-repeat;
   width: 202px;
   height: 130px;
+  cursor: move;
 }
 .login-bg{
   height: 120px;
@@ -49,6 +50,7 @@
   border-radius: 5px;
   position: absolute;
   bottom: 25%;
+  cursor: move;
   #email{
     position: absolute;
     width: 130.5px;
@@ -58,6 +60,7 @@
     border: 0px;
     border: 1px solid #b9b8b8;
     font-size: 12px;
+    cursor: auto;
   }
   #password{
     position: absolute;
@@ -68,11 +71,13 @@
     border: 0px;
     border: 1px solid #b9b8b8;
     font-size: 12px;
+    cursor: auto;
   }
   #saved{
     position: absolute;
     right: 13%;
     top: 27%;
+    cursor: auto;
   }
   .lable-name{
     position: absolute;

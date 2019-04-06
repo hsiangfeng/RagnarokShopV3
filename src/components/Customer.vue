@@ -118,13 +118,9 @@
     &:hover{
       box-shadow: 0 0 10px #bebebe;
     }
-    .order-top{
-    }
     .order-content{
       width: 100%;
       margin-left: 10px;
-    }
-    .order-fotter{
     }
   }
 </style>

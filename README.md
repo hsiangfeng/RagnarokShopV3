@@ -90,14 +90,14 @@ RagnarokShopV3 (新版V3)
 ![](https://i.imgur.com/nrEdAZk.png)
 ## 支援Keydown
 以下鍵盤按鍵非數字鍵。  
-- 前往首頁：組合鍵【ALT+Q】 or 鍵盤鍵【1】  
-- 產品列表：組合鍵【ALT+W】 or 鍵盤【2】  
-- 關於仙境：組合鍵【ALT+S】 or 鍵盤【3】  
-- 購物車內容：組合鍵【ALT+A】 or 鍵盤【4】  
-- 登入畫面：組合鍵【ALT+Z】 or 鍵盤【5】  
-- 開啟購物車：組合鍵【ALT+C】 購物車 or 鍵盤【6】  
+- 前往首頁：組合鍵【ALT+Q】 or 鍵盤鍵【ALT+1】  
+- 產品列表：組合鍵【ALT+W】 or 鍵盤【ALT+2】  
+- 關於仙境：組合鍵【ALT+S】 or 鍵盤【ALT+3】  
+- 購物車內容：組合鍵【ALT+A】 or 鍵盤【ALT+4】  
+- 登入畫面：組合鍵【ALT+Z】 or 鍵盤【ALT+5】  
+- 開啟購物車：組合鍵【ALT+C】 購物車 or 鍵盤【ALT+6】  
 - 開關介面視窗：組合鍵【ALT+V】    
-- 快捷鍵：鍵盤【0】  
+- 快捷鍵：鍵盤【ALT+0】  
 ## 針對介面視窗增加提示訊息
 > HP、SP、Name、Exp、Job等皆有小驚喜。
 
