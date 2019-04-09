@@ -99,21 +99,11 @@ export default {
   computed: {
     undoneOrder() {
       const consoleOrders = [...this.consoleOrders];
-      return consoleOrders.filter((item) => {
-        if (!item.is_paid) {
-          return item === !item.is_paid;
-        }
-        return item;
-      });
+      return consoleOrders.filter(item => !item.is_paid);
     },
     doneOrder() {
       const consoleOrders = [...this.consoleOrders];
-      return consoleOrders.filter((item) => {
-        if (item.is_paid) {
-          return item === item.is_paid;
-        }
-        return item;
-      });
+      return consoleOrders.filter(item => item.is_paid);
     },
     ...mapGetters(['isLoading', 'consoleProducts', 'consoleCoupons', 'consoleOrders', 'chartData']),
   },

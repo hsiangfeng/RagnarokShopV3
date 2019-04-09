@@ -105,6 +105,9 @@ export default {
     GETCONSOLEORDER(state, payload) {
       state.consoleOrders.push(payload);
     },
+    CLEARCONSOLEORDER(state) {
+      state.consoleOrders.length = 0;
+    },
     PUSHCHAR(state, payload) {
       state.chartData.rows = payload;
     },
@@ -206,7 +209,6 @@ export default {
               });
               break;
           }
-          // context.commit('LOADING', false);
           context.dispatch('getAdminProducts');
         } else {
           context.dispatch('updateMessage', {
@@ -214,7 +216,6 @@ export default {
             status: 'success',
           });
         }
-        // context.commit('LOADING', false);
       });
     },
     updataProductsImg(context, uploadefFile) {
@@ -400,6 +401,7 @@ export default {
         const productsUrl = context.state.url.products();
         const orderUrl = context.state.url.order();
         context.commit('LOADING', true);
+        context.commit('CLEARCONSOLEORDER');
         const products = await Axios.get(productsUrl);
         const order = await Axios.get(orderUrl);
         if (products.data.success) {
