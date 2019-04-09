@@ -66,7 +66,6 @@ export default {
     cacheCoupons: {},
     productsImageUrl: '',
     consoleProducts: [],
-    consoleCoupons: [],
     consoleOrders: [],
     ordersAll: [],
     ordersPage: '',
@@ -102,9 +101,6 @@ export default {
     },
     GETCONSOLEPRODUCTS(state, payload) {
       state.consoleProducts = payload;
-    },
-    GETCONSOLECOUPONS(state, payload) {
-      state.consoleCoupons = payload;
     },
     GETCONSOLEORDER(state, payload) {
       state.consoleOrders.push(payload);
@@ -399,47 +395,38 @@ export default {
         context.commit('LOADING', false);
       });
     },
-    consoleAdmin(context) {
-      const productsUrl = context.state.url.products();
-      const couponsUrl = context.state.url.coupons();
-      const orderUrl = context.state.url.order();
-      context.commit('LOADING', true);
-      Axios.get(productsUrl).then((responseProducts) => {
-        if (responseProducts.data.success) {
-          context.commit('GETCONSOLEPRODUCTS', responseProducts.data.products);
-          Axios.get(couponsUrl).then((responseCoupons) => {
-            if (responseCoupons.data.success) {
-              context.commit('GETCONSOLECOUPONS', responseCoupons.data.coupons);
-              Axios.get(orderUrl).then((responseOrders) => {
-                if (responseOrders.data.success) {
-                  context.commit('GETORDERSPAGES', responseOrders.data.pagination.total_pages);
-                  for (let i = 0; i < context.state.ordersPage; i += 1) {
-                    const orderAllUrl = context.state.url.order('page', i);
-                    Axios.get(orderAllUrl).then((responseOrdersAll) => {
-                      if (responseOrdersAll.data.success) {
-                        const ordersData = responseOrdersAll.data.orders;
-                        ordersData.forEach((item) => {
-                          context.commit('GETCONSOLEORDER', item);
-                        });
-                      }
-                    });
-                  }
-                  context.commit('LOADING', false);
-                  context.dispatch('getChartProducts');
-                }
-              });
-            }
-          });
-        } else if (responseProducts.data.message === '驗證錯誤, 請重新登入') {
-          context.commit('LOADING', false);
-          router.push('/login');
-        } else {
-          context.dispatch('updateMessage', {
-            message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${responseProducts.data.message}`,
-            status: 'danger',
-          });
+    async consoleAdmin(context) {
+      try {
+        const productsUrl = context.state.url.products();
+        const orderUrl = context.state.url.order();
+        context.commit('LOADING', true);
+        const products = await Axios.get(productsUrl);
+        const order = await Axios.get(orderUrl);
+        if (products.data.success) {
+          context.commit('GETCONSOLEPRODUCTS', products.data.products);
         }
-      });
+        if (order.data.success) {
+          context.commit('GETORDERSPAGES', order.data.pagination.total_pages);
+          for (let i = 0; i < context.state.ordersPage; i += 1) {
+            const orderAllUrl = context.state.url.order('page', i);
+            Axios.get(orderAllUrl).then((responseOrdersAll) => {
+              if (responseOrdersAll.data.success) {
+                const ordersData = responseOrdersAll.data.orders;
+                ordersData.forEach((item) => {
+                  context.commit('GETCONSOLEORDER', item);
+                });
+              }
+            });
+          }
+        }
+        context.commit('LOADING', false);
+        context.dispatch('getChartProducts');
+      } catch (error) {
+        context.dispatch('updateMessage', {
+          message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${error}`,
+          status: 'danger',
+        });
+      }
     },
     getChartProducts(context) {
       const consoleProducts = [...context.state.consoleProducts];
@@ -533,9 +520,6 @@ export default {
     },
     consoleProducts(state) {
       return state.consoleProducts;
-    },
-    consoleCoupons(state) {
-      return state.consoleCoupons;
     },
     consoleOrders(state) {
       return state.consoleOrders;
