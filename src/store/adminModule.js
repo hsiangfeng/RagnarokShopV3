@@ -396,7 +396,7 @@ export default {
         context.commit('LOADING', false);
       });
     },
-    async consoleAdmin(context) {
+    consoleAdmin(context) {
       const productsUrl = context.state.url.products();
       const orderUrl = context.state.url.order();
       context.commit('LOADING', true);
@@ -429,38 +429,6 @@ export default {
           status: 'danger',
         });
       });
-      // try {
-      //   const productsUrl = context.state.url.products();
-      //   const orderUrl = context.state.url.order();
-      //   context.commit('LOADING', true);
-      //   context.commit('CLEARCONSOLEORDER');
-      //   const products = await Axios.get(productsUrl);
-      //   const order = await Axios.get(orderUrl);
-      //   if (products.data.success) {
-      //     context.commit('GETCONSOLEPRODUCTS', products.data.products);
-      //   }
-      //   if (order.data.success) {
-      //     context.commit('GETORDERSPAGES', order.data.pagination.total_pages);
-      //     for (let i = 0; i < context.state.ordersPage; i += 1) {
-      //       const orderAllUrl = context.state.url.order('page', i);
-      //       Axios.get(orderAllUrl).then((responseOrdersAll) => {
-      //         if (responseOrdersAll.data.success) {
-      //           const ordersData = responseOrdersAll.data.orders;
-      //           ordersData.forEach((item) => {
-      //             context.commit('GETCONSOLEORDER', item);
-      //           });
-      //         }
-      //       });
-      //     }
-      //   }
-      //   context.commit('LOADING', false);
-      //   context.dispatch('getChartProducts');
-      // } catch (error) {
-      //   context.dispatch('updateMessage', {
-      //     message: `出現錯誤惹，好糗Σ( ° △ °|||)︴${error}`,
-      //     status: 'danger',
-      //   });
-      // }
     },
     getChartProducts(context) {
       const consoleProducts = [...context.state.consoleProducts];
