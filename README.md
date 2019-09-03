@@ -72,6 +72,7 @@ RagnarokShopV3 (新版V3)
 ## 購物車
 ![](https://i.imgur.com/KmmOJLb.png)
 ## 後台登入介面
+> 每次重新背景將會不同。
 ![](https://i.imgur.com/YizWZjI.png)
 ## 小商人購物車
 ![](https://i.imgur.com/F9lau9O.png)
