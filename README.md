@@ -2,9 +2,14 @@
 > 歡迎來到仙境傳說V3，這是一份Vuejs電商前端練習V3版(VueCli3+Vuex)。
 ## 新舊頁面差異
 舊版首頁(V2版)
-![](https://i.imgur.com/Y0g9oAD.png)
+![RagnarokShopV2](https://i.imgur.com/Y0g9oAD.png)
 新版首頁(V3版)
-![](https://i.imgur.com/oihRQUH.png)
+![RagnarokShopV3](https://i.imgur.com/oihRQUH.png)
+
+此作品主要是仿線上遊戲 **仙境傳說** 所製作，故畫面會雷同。
+
+![仙境傳說](https://i.imgur.com/5fPN2sf.png)
+
 ## Demo
 RagnarokShop (舊版V2)  
 [https://hsiangfeng.github.io/RagnarokShop/](https://hsiangfeng.github.io/RagnarokShop/ "https://hsiangfeng.github.io/RagnarokShop/")  
