@@ -106,13 +106,11 @@ export default new Router({
           path: '/customer_orders',
           name: 'CustomerOrders',
           component: () => import('@/components/admin/CustomerOrders.vue'),
-          meta: { requiresAuth: true },
         },
         {
           path: '/customer_crders/:orderId',
           name: 'CustomerCheck',
           component: () => import('@/components/admin/CustomerCheck.vue'),
-          meta: { requiresAuth: true },
         },
       ],
     },

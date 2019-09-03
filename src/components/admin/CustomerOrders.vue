@@ -166,7 +166,7 @@ export default {
     getProducts(page = 1) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${
         process.env.VUE_APP_COUSTOMPATH
-      }/admin/products?page=${page}`;
+      }/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
