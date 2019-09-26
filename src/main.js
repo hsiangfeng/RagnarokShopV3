@@ -29,7 +29,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import './sw';
+import './registerServiceWorker';
 
 import currencyFilter from './filter/currency';
 import timestampFilter from './filter/timestamp';

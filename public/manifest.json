@@ -1,20 +1,21 @@
 {
   "name": "RagnarokShop",
   "short_name": "RagnarokShop",
+  "description": "歡迎來到仙境傳說V3，這是一份VueCli3+Vuex電商前端練習V3版。",
   "icons": [
     {
-      "src": "./img/icons/192/ro-192x192.png",
+      "src": "./img/icons/192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./img/icons/512/ro-512x512.png",
+      "src": "./img/icons/512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#ffffff",
   "theme_color": "#769bd3"
 }
