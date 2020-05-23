@@ -55,13 +55,13 @@ export default {
     return {
     };
   },
+  computed: {
+    ...mapGetters(['isLoading']),
+  },
   methods: {
     signOut() {
       this.$store.dispatch('signOut');
     },
-  },
-  computed: {
-    ...mapGetters(['isLoading']),
   },
 };
 </script>

@@ -94,101 +94,10 @@
 
 </template>
 
-<style lang="scss" scoped>
-  .sticky-list{
-    background-color: #fff;
-    top: 1.88px;
-    position: sticky;
-  }
-  .list-items{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-      text-align: center;
-      margin-bottom: 5px;
-    }
-    .items {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      padding: 10px;
-      border: 1px solid #ced4da;
-      transition: all .5s;
-      color: #769bd3;
-      font-weight: 800;
-      text-decoration: none;
-      &:hover{
-        color: #044273;
-        border: 1px solid #769bd3;
-      }
-      &.active{
-        color: #044273;
-        border: 1px solid #769bd3;
-      }
-    }
-  }
-  .products{
-    .products-list{
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-  .products-item {
-    display: flex;
-    box-shadow: 0 1px 5px #000;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 15px;
-    width: 49%;
-    height: 150px;
-    margin-left: 1%;
-    flex-wrap: wrap;
-    &:hover{
-      box-shadow: 0 2px 10px #000;
-    }
-    .products-top{
-      width: 50%;
-    }
-    .products-content{
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .mall-zeny{
-      font-size: 12px;
-    }
-    .mall-title{
-      font-size: 14px;
-    }
-    .products-footer{
-      width: 100%;
-      display: flex;
-    }
-    .products-btn{
-      display: flex;
-    }
-    .products-btn-disabled{
-      width: 100%;
-    }
-  }
-  .card-img{
-    width: 60px;
-  }
-</style>
-
 <script>
 /* global $ */
 import { mapActions, mapGetters } from 'vuex';
 import pagemap from 'pagemap/dist/pagemap.min';
-
 
 export default {
   data() {
@@ -198,6 +107,24 @@ export default {
       },
       coupon: '',
     };
+  },
+  computed: {
+    getCategory() {
+      const vm = this;
+      return vm.products.filter((item) => {
+        if (vm.category.title === '全部商品') {
+          return item;
+        }
+        return item.category === vm.category.title;
+      });
+    },
+    ...mapGetters(['isLoading', 'loadingID', 'cart', 'products']),
+  },
+  created() {
+    this.getProducts();
+  },
+  mounted() {
+    pagemap(document.querySelector('#map'));
   },
   methods: {
     getProducts(page = 1) {
@@ -221,23 +148,95 @@ export default {
       this.$router.push('/customer');
     },
   },
-  computed: {
-    getCategory() {
-      const vm = this;
-      return vm.products.filter((item) => {
-        if (vm.category.title === '全部商品') {
-          return item;
-        }
-        return item.category === vm.category.title;
-      });
-    },
-    ...mapGetters(['isLoading', 'loadingID', 'cart', 'products']),
-  },
-  created() {
-    this.getProducts();
-  },
-  mounted() {
-    pagemap(document.querySelector('#map'));
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+.sticky-list {
+  background-color: #fff;
+  top: 1.88px;
+  position: sticky;
+}
+.list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .items {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    transition: all 0.5s;
+    color: #769bd3;
+    font-weight: 800;
+    text-decoration: none;
+    &:hover {
+      color: #044273;
+      border: 1px solid #769bd3;
+    }
+    &.active {
+      color: #044273;
+      border: 1px solid #769bd3;
+    }
+  }
+}
+.products {
+  .products-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.products-item {
+  display: flex;
+  box-shadow: 0 1px 5px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  width: 49%;
+  height: 150px;
+  margin-left: 1%;
+  flex-wrap: wrap;
+  &:hover {
+    box-shadow: 0 2px 10px #000;
+  }
+  .products-top {
+    width: 50%;
+  }
+  .products-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .mall-zeny {
+    font-size: 12px;
+  }
+  .mall-title {
+    font-size: 14px;
+  }
+  .products-footer {
+    width: 100%;
+    display: flex;
+  }
+  .products-btn {
+    display: flex;
+  }
+  .products-btn-disabled {
+    width: 100%;
+  }
+}
+.card-img {
+  width: 60px;
+}
+</style>

@@ -138,12 +138,26 @@ import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
+  components: {
+    LoadingPage,
+    ScrollTopComponent,
+    PaginationComponents,
+  },
   data() {
     return {
       modelStatus: '',
       modelTitle: '',
       tempProducts: {},
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'fileUploading', 'adminProducts', 'productsImageUrl', 'pagination']),
+  },
+  created() {
+    this.getAdminProducts();
+  },
+  mounted() {
+    this.tempRemove();
   },
   methods: {
     getAdminProducts(page = 1) {
@@ -176,13 +190,13 @@ export default {
           vm.modelTitle = '編輯產品';
           vm.modelStatus = 'put';
           $('#productsModal').modal('show');
-          vm.tempProducts = Object.assign({}, item);
+          vm.tempProducts = { ...item };
           break;
         case 'delete':
           vm.modelTitle = '刪除產品';
           vm.modelStatus = 'delete';
           $('#deleteProductsModal').modal('show');
-          vm.tempProducts = Object.assign({}, item);
+          vm.tempProducts = { ...item };
           break;
         default:
           $('#productsModal').modal('show');
@@ -198,20 +212,6 @@ export default {
         this.tempProducts = {};
       });
     },
-  },
-  components: {
-    LoadingPage,
-    ScrollTopComponent,
-    PaginationComponents,
-  },
-  computed: {
-    ...mapGetters(['isLoading', 'fileUploading', 'adminProducts', 'productsImageUrl', 'pagination']),
-  },
-  created() {
-    this.getAdminProducts();
-  },
-  mounted() {
-    this.tempRemove();
   },
 };
 </script>

@@ -35,7 +35,7 @@ export default {
     },
     SHOPOFF(state) {
       const data = state.products;
-      state.shopOff = data.filter(item => item.category === '組合優惠');
+      state.shopOff = data.filter((item) => item.category === '組合優惠');
     },
     SHOPITEM(state) {
       const data = state.products;

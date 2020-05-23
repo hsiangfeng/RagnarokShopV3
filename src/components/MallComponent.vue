@@ -13,3 +13,15 @@
             button.btn.btn-secondary(type='button', data-dismiss='modal') Close
             button.btn.btn-primary(type='button') Save changes
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+</style>

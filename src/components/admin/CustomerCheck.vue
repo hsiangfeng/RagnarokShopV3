@@ -49,6 +49,10 @@ import LoadingPage from '@/components/shared/LoadingPage.vue';
 import ScrollTopComponent from '@/components/shared/ScrollTop.vue';
 
 export default {
+  components: {
+    LoadingPage,
+    ScrollTopComponent,
+  },
   data() {
     return {
       orderId: '',
@@ -57,6 +61,10 @@ export default {
       },
       isLoading: false,
     };
+  },
+  created() {
+    this.orderId = this.$route.params.orderId;
+    this.getOrder();
   },
   methods: {
     getOrder() {
@@ -101,13 +109,8 @@ export default {
       });
     },
   },
-  components: {
-    LoadingPage,
-    ScrollTopComponent,
-  },
-  created() {
-    this.orderId = this.$route.params.orderId;
-    this.getOrder();
-  },
 };
 </script>
+
+<style lang="scss">
+</style>

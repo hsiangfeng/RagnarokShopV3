@@ -80,27 +80,6 @@
           | 看更多方案
 </template>
 
-<style lang="scss" scoped>
-.shop-top{
-  position: relative;
-  .category-top{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-}
-.shop-content{
-  height: 200px;
-  .text-description{
-    height: 120px;
-    overflow-y: auto;
-  }
-}
-.shop-img{
-  max-height: 250px;
-}
-</style>
-
 <script>
 import { mapGetters } from 'vuex';
 // eslint-disable-next-line
@@ -109,6 +88,11 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 
 export default {
+  components: {
+    swiper,
+    swiperSlide,
+    LoadingPage,
+  },
   data() {
     return {
       counts: 0,
@@ -134,6 +118,12 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(['isLoading', 'loadingID', 'products', 'shopOff', 'shopItem', 'localFilter']),
+  },
+  created() {
+    this.getProducts();
+  },
   methods: {
     getProducts() {
       this.$store.dispatch('getProducts', 'shop');
@@ -142,16 +132,26 @@ export default {
       this.$store.dispatch('addCart', { id, qty });
     },
   },
-  computed: {
-    ...mapGetters(['isLoading', 'loadingID', 'products', 'shopOff', 'shopItem', 'localFilter']),
-  },
-  components: {
-    swiper,
-    swiperSlide,
-    LoadingPage,
-  },
-  created() {
-    this.getProducts();
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+.shop-top {
+  position: relative;
+  .category-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+.shop-content {
+  height: 200px;
+  .text-description {
+    height: 120px;
+    overflow-y: auto;
+  }
+}
+.shop-img {
+  max-height: 250px;
+}
+</style>

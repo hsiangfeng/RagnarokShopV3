@@ -7,6 +7,15 @@
         router-link(:to="{name: 'Products'}").btn.btn-outline-ro 繼續購物去
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
   .p-top {
     padding-top: 91px;

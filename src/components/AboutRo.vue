@@ -91,72 +91,72 @@
     BgMusicComponent(:nowIndex='"aboutRo"')
 </template>
 
-<style lang="scss" scoped>
-  .p-top{
-    padding-top: 91px;
-  }
-  .margin-about-top{
-    margin-top: 150px
-  }
-  .about-bg-ro{
-    height: 300px;
-    @media (max-width:768px) {
-      height: 100%;
-    }
-  }
-  .about-img{
-    margin-top: -25px;
-    margin-bottom: -25px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 360px;
-    @media (max-width:768px) {
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-  }
-  .about-content{
-    writing-mode: vertical-rl;
-    max-height: 300px;
-    @media (max-width:768px) {
-      writing-mode: unset;
-    }
-  }
-  .title{
-    transform: translateY(-60px);
-    @media (max-width:768px) {
-      transform: translateY(0px);
-    }
-  }
-  .about-text{
-    writing-mode: vertical-rl;
-    letter-spacing: 5px;
-    line-height: 25px;
-    padding-top:15px;
-    padding-bottom: 15px;
-    @media (max-width:768px) {
-      writing-mode: unset;
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-  }
-</style>
-
 <script>
 import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import BgMusicComponent from './shared/BgMusic.vue';
 
 export default {
-  data() {
-    return {
-    };
-  },
   components: {
     PageMap,
     ScrollTopComponent,
     BgMusicComponent,
   },
+  data() {
+    return {
+    };
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.p-top {
+  padding-top: 91px;
+}
+.margin-about-top {
+  margin-top: 150px;
+}
+.about-bg-ro {
+  height: 300px;
+  @media (max-width: 768px) {
+    height: 100%;
+  }
+}
+.about-img {
+  margin-top: -25px;
+  margin-bottom: -25px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 360px;
+  @media (max-width: 768px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+.about-content {
+  writing-mode: vertical-rl;
+  max-height: 300px;
+  @media (max-width: 768px) {
+    writing-mode: unset;
+  }
+}
+.title {
+  transform: translateY(-60px);
+  @media (max-width: 768px) {
+    transform: translateY(0px);
+  }
+}
+.about-text {
+  writing-mode: vertical-rl;
+  letter-spacing: 5px;
+  line-height: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  @media (max-width: 768px) {
+    writing-mode: unset;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+</style>

@@ -14,6 +14,15 @@
           small 資料、圖片來源皆來自網路，僅用來做為學習用途。
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .author {
   border-right: 1px solid #fff;

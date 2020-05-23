@@ -140,6 +140,11 @@ import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
+  components: {
+    LoadingPage,
+    ScrollTopComponent,
+    PaginationComponents,
+  },
   data() {
     return {
       products: [],
@@ -162,11 +167,13 @@ export default {
       },
     };
   },
+  created() {
+    this.getProducts();
+    this.getCarts();
+  },
   methods: {
     getProducts(page = 1) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/products?page=${page}`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
@@ -184,9 +191,7 @@ export default {
       });
     },
     getOneProduct(id) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/product/${id}`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/product/${id}`;
       const vm = this;
       vm.status.loadingItem = id;
       this.$http.get(url).then((response) => {
@@ -205,9 +210,7 @@ export default {
     },
     addtoCart(id, qty = 1) {
       const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/cart`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart`;
       vm.status.loadingItem = id;
       const cartContent = {
         product_id: id,
@@ -237,9 +240,7 @@ export default {
       });
     },
     getCarts() {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/cart`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart`;
       const vm = this;
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
@@ -256,9 +257,7 @@ export default {
       });
     },
     userCoupon() {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/coupon`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/coupon`;
       const vm = this;
       vm.isLoading = true;
       const couponCode = {
@@ -285,9 +284,7 @@ export default {
     },
     removeCart(id) {
       const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/cart/${id}`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/cart/${id}`;
       vm.status.loadingItem = id;
       vm.$http.delete(url).then((response) => {
         if (response.data.success) {
@@ -307,9 +304,7 @@ export default {
     },
     createOrder() {
       const vm = this;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${
-        process.env.VUE_APP_COUSTOMPATH
-      }/order`;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_COUSTOMPATH}/order`;
       vm.$validator.validate().then((result) => {
         if (result) {
           vm.$http.post(url, { data: vm.form }).then((response) => {
@@ -356,14 +351,8 @@ export default {
       });
     },
   },
-  components: {
-    LoadingPage,
-    ScrollTopComponent,
-    PaginationComponents,
-  },
-  created() {
-    this.getProducts();
-    this.getCarts();
-  },
 };
 </script>
+
+<style lang="scss">
+</style>

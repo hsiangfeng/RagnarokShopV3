@@ -85,33 +85,33 @@ import { mapGetters } from 'vuex';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 
 export default {
+  components: {
+    LoadingPage,
+  },
   data() {
     return {
       undoneStateOrder: [],
       doneStateOrder: [],
     };
   },
+  computed: {
+    undoneOrder() {
+      const consoleOrders = [...this.consoleOrders];
+      return consoleOrders.filter((item) => !item.is_paid);
+    },
+    doneOrder() {
+      const consoleOrders = [...this.consoleOrders];
+      return consoleOrders.filter((item) => item.is_paid);
+    },
+    ...mapGetters(['isLoading', 'consoleProducts', 'consoleCoupons', 'consoleOrders', 'chartData']),
+  },
+  created() {
+    this.getConsoleAdmin();
+  },
   methods: {
     getConsoleAdmin() {
       this.$store.dispatch('consoleAdmin');
     },
-  },
-  computed: {
-    undoneOrder() {
-      const consoleOrders = [...this.consoleOrders];
-      return consoleOrders.filter(item => !item.is_paid);
-    },
-    doneOrder() {
-      const consoleOrders = [...this.consoleOrders];
-      return consoleOrders.filter(item => item.is_paid);
-    },
-    ...mapGetters(['isLoading', 'consoleProducts', 'consoleCoupons', 'consoleOrders', 'chartData']),
-  },
-  components: {
-    LoadingPage,
-  },
-  created() {
-    this.getConsoleAdmin();
   },
 };
 </script>

@@ -73,40 +73,23 @@
     PageMap
     ScrollTopComponent
 </template>
-<style lang="scss">
-  .p-top{
-    padding-top: 91px;
-  }
-  .shop-top{
-    position: relative;
-    .category-top{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-  }
-  .shop-content{
-    height: 200px;
-    .text-description{
-      height: 120px;
-      overflow-y: auto;
-    }
-  }
-  .shop-img{
-    max-height: 250px;
-  }
-</style>
 
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import { mapGetters } from 'vuex';
-// eslint-disable-next-line
-import 'swiper/dist/css/swiper.css';
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import '../../node_modules/swiper/dist/css/swiper.min.css';
 import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 import LoadingPage from './shared/LoadingPage.vue';
 
 export default {
+  components: {
+    swiper,
+    swiperSlide,
+    LoadingPage,
+    PageMap,
+    ScrollTopComponent,
+  },
   data() {
     return {
       counts: 1,
@@ -132,6 +115,21 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(['isLoading', 'loadingID', 'products', 'oneProducts', 'shopItem']),
+  },
+  watch: {
+    $route(to) {
+      const vm = this;
+      vm.productID = to.params.productsId;
+      vm.getOneProduct(vm.productID);
+    },
+  },
+  created() {
+    const vm = this;
+    vm.productID = vm.$route.params.productsId;
+    vm.getOneProduct(vm.productID);
+  },
   methods: {
     getOneProduct(id) {
       this.$store.dispatch('getOneProduct', id);
@@ -141,28 +139,29 @@ export default {
       this.$store.dispatch('addCart', { id, qty });
     },
   },
-  computed: {
-    ...mapGetters(['isLoading', 'loadingID', 'products', 'oneProducts', 'shopItem']),
-  },
-  watch: {
-    // eslint-disable-next-line
-    $route(to, from) {
-      const vm = this;
-      vm.productID = to.params.productsId;
-      vm.getOneProduct(vm.productID);
-    },
-  },
-  components: {
-    swiper,
-    swiperSlide,
-    LoadingPage,
-    PageMap,
-    ScrollTopComponent,
-  },
-  created() {
-    const vm = this;
-    vm.productID = vm.$route.params.productsId;
-    vm.getOneProduct(vm.productID);
-  },
 };
 </script>
+
+<style lang="scss">
+.p-top {
+  padding-top: 91px;
+}
+.shop-top {
+  position: relative;
+  .category-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+.shop-content {
+  height: 200px;
+  .text-description {
+    height: 120px;
+    overflow-y: auto;
+  }
+}
+.shop-img {
+  max-height: 250px;
+}
+</style>

@@ -9,12 +9,16 @@ export default {
   props: {
     nowIndex: {
       type: String,
+      default: '',
     },
   },
   data() {
     return {
       audioSrc: '',
     };
+  },
+  mounted() {
+    this.autoPlayMusic();
   },
   methods: {
     autoPlayMusic() {
@@ -41,22 +45,17 @@ export default {
       }
       const playPromise = roBGM.play();
       if (playPromise !== undefined) {
-        // eslint-disable-next-line
-        playPromise.then(_ => {
+        playPromise.then(() => {
           roBGM.pause();
-        // eslint-disable-next-line
-        }).then(_ =>{
+        }).then(() => {
           roBGM.play();
           roBGM.volume = 0.2;
-        })
-        // eslint-disable-next-line
-        .catch(error => {
-          });
+        });
       }
     },
   },
-  mounted() {
-    this.autoPlayMusic();
-  },
 };
 </script>
+
+<style lang="scss">
+</style>

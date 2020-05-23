@@ -57,31 +57,6 @@
             a(href='#' @click.prevent="nextCustomer()").btn.btn-outline-ro 結帳
 </template>
 
-<style lang="scss" scoped>
-  .cart-pop{
-    position: fixed;
-    bottom: 5%;
-    left: 5%;
-    z-index: 2;
-    .cart-img{
-      position: relative;
-    }
-    .cart-text{
-      position: absolute;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      text-align: center;
-      top: 20%;
-      left: 12%;
-      color:#fff;
-    }
-  }
-  .cart-null {
-    height: 150px;
-  }
-</style>
-
 <script>
 /* global $ */
 import { mapActions, mapGetters } from 'vuex';
@@ -92,6 +67,12 @@ export default {
     return {
       coupon: '',
     };
+  },
+  computed: {
+    ...mapGetters(['cart', 'loadingID']),
+  },
+  created() {
+    this.getCarts();
   },
   methods: {
     ...mapActions(['getCarts']),
@@ -109,11 +90,30 @@ export default {
       $('#cartsModal').modal('show');
     },
   },
-  computed: {
-    ...mapGetters(['cart', 'loadingID']),
-  },
-  created() {
-    this.getCarts();
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+.cart-pop {
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  z-index: 2;
+  .cart-img {
+    position: relative;
+  }
+  .cart-text {
+    position: absolute;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    top: 20%;
+    left: 12%;
+    color: #fff;
+  }
+}
+.cart-null {
+  height: 150px;
+}
+</style>

@@ -171,6 +171,10 @@ import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
+  components: {
+    LoadingPage,
+    PaginationComponents,
+  },
   data() {
     return {
       tempOrders: {
@@ -183,6 +187,12 @@ export default {
       modelTitle: '',
       modelStatus: '',
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'adminOrders', 'pagination']),
+  },
+  created() {
+    this.getOrders();
   },
   methods: {
     getOrders(page = 1) {
@@ -198,29 +208,19 @@ export default {
           vm.modelTitle = '修改訂單';
           vm.modelStatus = 'edit';
           $('#ordersModal').modal('show');
-          vm.tempOrders = Object.assign({}, item);
+          vm.tempOrders = { ...item };
           break;
         case 'look':
           vm.modelTitle = '查看訂單';
           vm.modelStatus = 'delete';
           $('#ordersLookModal').modal('show');
-          vm.tempOrders = Object.assign({}, item);
+          vm.tempOrders = { ...item };
           break;
         default:
           $('#ordersModal').modal('show');
           break;
       }
     },
-  },
-  computed: {
-    ...mapGetters(['isLoading', 'adminOrders', 'pagination']),
-  },
-  components: {
-    LoadingPage,
-    PaginationComponents,
-  },
-  created() {
-    this.getOrders();
   },
 };
 </script>

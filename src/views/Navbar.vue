@@ -85,204 +85,204 @@
 </template>
 
 <style lang="scss">
-  .fixed-top{
-    z-index: 998 !important;
-  }
-  .bg-ro-window{
-    background-image: url(../assets/img/guide_ui01.gif);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 327px;
-    height: 140px;
-    top: 2%;
-    left: 5%;
-    cursor: move;
-    .ro-name{
-      position: absolute;
-      width: 55px;
-      height: 34px;
-      top: 18%;
-      left: 2%;
-      cursor: auto;
-    }
-    .ro-hp{
-      position: absolute;
-      width: 101px;
-      height: 12px;
-      top: 18%;
-      right: 30%;
-      cursor: auto;
-    }
-    .ro-sp{
-      position: absolute;
-      width: 101px;
-      height: 12px;
-      top: 36%;
-      right: 30%;
-      cursor: auto;
-    }
-    .ro-base{
-      position: absolute;
-      width: 121px;
-      height: 7px;
-      bottom: 30%;
-      right: 33%;
-      cursor: auto;
-    }
-    .ro-job{
-      position: absolute;
-      width: 121px;
-      height: 7px;
-      bottom: 22%;
-      right: 33%;
-      cursor: auto;
-    }
-    .ro-zeny{
-      position: absolute;
-      width: 72px;
-      height: 12px;
-      bottom: 4%;
-      right: 40%;
-      cursor: auto;
-    }
-    .ro-weight{
-      position: absolute;
-      width: 110px;
-      height: 12px;
-      bottom: 4%;
-      left: 1%;
-      cursor: auto;
-    }
-  }
-  .button-ro{
+.fixed-top {
+  z-index: 998 !important;
+}
+.bg-ro-window {
+  background-image: url(../assets/img/guide_ui01.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 327px;
+  height: 140px;
+  top: 2%;
+  left: 5%;
+  cursor: move;
+  .ro-name {
     position: absolute;
-    width: 37px;
+    width: 55px;
+    height: 34px;
+    top: 18%;
+    left: 2%;
+    cursor: auto;
+  }
+  .ro-hp {
+    position: absolute;
+    width: 101px;
+    height: 12px;
+    top: 18%;
+    right: 30%;
+    cursor: auto;
+  }
+  .ro-sp {
+    position: absolute;
+    width: 101px;
+    height: 12px;
+    top: 36%;
+    right: 30%;
+    cursor: auto;
+  }
+  .ro-base {
+    position: absolute;
+    width: 121px;
+    height: 7px;
+    bottom: 30%;
+    right: 33%;
+    cursor: auto;
+  }
+  .ro-job {
+    position: absolute;
+    width: 121px;
+    height: 7px;
+    bottom: 22%;
+    right: 33%;
+    cursor: auto;
+  }
+  .ro-zeny {
+    position: absolute;
+    width: 72px;
+    height: 12px;
+    bottom: 4%;
+    right: 40%;
+    cursor: auto;
+  }
+  .ro-weight {
+    position: absolute;
+    width: 110px;
+    height: 12px;
+    bottom: 4%;
+    left: 1%;
+    cursor: auto;
+  }
+}
+.button-ro {
+  position: absolute;
+  width: 37px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 1px #000;
+  color: #000;
+  font-weight: 700;
+  background-color: #ffffff;
+  &:hover {
+    text-decoration: none;
+    background-color: #f0eeee;
+    color: #000;
+    box-shadow: 0 0 2px #000;
+  }
+}
+.button-index {
+  right: 49px;
+  top: 25px;
+}
+.button-cart {
+  right: 49px;
+  top: 53px;
+}
+.button-author {
+  right: 49px;
+  top: 109px;
+}
+.button-login {
+  right: 49px;
+  top: 81px;
+}
+.button-products {
+  right: 7px;
+  top: 25px;
+}
+.button-aboutro {
+  right: 7px;
+  top: 53px;
+}
+.button-github {
+  right: 7px;
+  top: 81px;
+}
+.button-none {
+  right: 7px;
+  top: 109px;
+  border: 0px;
+  padding: 0px;
+}
+.button-switch {
+  position: absolute;
+  width: 20px;
+  height: 19px;
+  top: 0px;
+  right: 0px;
+}
+.bg-ro-hotkey {
+  background-image: url(../assets/img/se.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 288px;
+  height: 32px;
+  position: fixed;
+  top: 2%;
+  left: 39.5%;
+  z-index: 2;
+  cursor: move;
+  .button-ro {
+    position: absolute;
+    width: 26px;
     height: 24px;
     line-height: 24px;
     text-align: center;
     font-size: 10px;
-    border-radius: 3px;
     box-shadow: 0 0 1px #000;
     color: #000;
     font-weight: 700;
     background-color: #ffffff;
-    &:hover{
+    &:hover {
       text-decoration: none;
       background-color: #f0eeee;
       color: #000;
       box-shadow: 0 0 2px #000;
     }
   }
-  .button-index{
-    right: 49px;
-    top: 25px;
+  .button-index {
+    left: 16px;
+    top: 4px;
   }
-  .button-cart{
-    right: 49px;
-    top: 53px;
+  .button-cart {
+    left: 103px;
+    top: 4px;
   }
-  .button-author{
-    right: 49px;
-    top: 109px;
+  .button-author {
+    left: 218px;
+    top: 4px;
   }
-  .button-login{
-    right: 49px;
-    top: 81px;
+  .button-login {
+    left: 132px;
+    top: 4px;
   }
-  .button-products{
-    right: 7px;
-    top: 25px;
+  .button-products {
+    left: 46px;
+    top: 4px;
   }
-  .button-aboutro{
-    right: 7px;
-    top: 53px;
+  .button-aboutro {
+    left: 74px;
+    top: 4px;
   }
-  .button-github{
-    right: 7px;
-    top: 81px;
+  .button-github {
+    left: 190px;
+    top: 4px;
   }
-  .button-none{
-    right: 7px;
-    top: 109px;
-    border: 0px;
-    padding: 0px;
+  .button-none {
+    left: 161px;
+    top: 4px;
   }
-  .button-switch{
+  .btn-hot-key {
     position: absolute;
-    width: 20px;
-    height: 19px;
-    top: 0px;
-    right: 0px;
+    width: 11px;
+    height: 10px;
+    right: 0;
+    top: 0;
   }
-  .bg-ro-hotkey{
-    background-image: url(../assets/img/se.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 288px;
-    height: 32px;
-    position: fixed;
-    top: 2%;
-    left: 39.5%;
-    z-index: 2;
-    cursor: move;
-    .button-ro{
-      position: absolute;
-      width: 26px;
-      height: 24px;
-      line-height: 24px;
-      text-align: center;
-      font-size: 10px;
-      box-shadow: 0 0 1px #000;
-      color: #000;
-      font-weight: 700;
-      background-color: #ffffff;
-      &:hover{
-        text-decoration: none;
-        background-color: #f0eeee;
-        color: #000;
-        box-shadow: 0 0 2px #000;
-      }
-    }
-    .button-index{
-      left: 16px;
-      top: 4px;
-    }
-    .button-cart{
-      left: 103px;
-      top: 4px;
-    }
-    .button-author{
-      left: 218px;
-      top: 4px;
-    }
-    .button-login{
-      left: 132px;
-      top: 4px;
-    }
-    .button-products{
-      left: 46px;
-      top: 4px;
-    }
-    .button-aboutro{
-      left: 74px;
-      top: 4px;
-    }
-    .button-github{
-      left: 190px;
-      top: 4px;
-    }
-    .button-none{
-      left: 161px;
-      top: 4px;
-    }
-    .btn-hot-key{
-      position: absolute;
-      width: 11px;
-      height: 10px;
-      right: 0;
-      top: 0;
-    }
-  }
+}
 </style>
 
 <script>
@@ -291,6 +291,11 @@ export default {
   data() {
     return {
     };
+  },
+  mounted() {
+    this.navbarToggler();
+    const el = document.body;
+    el.addEventListener('keydown', this.keyComb, false);
   },
   methods: {
     switchWindow() {
@@ -301,12 +306,14 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
-            item.style.display = 'block';
+            const cache = item;
+            cache.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
-            item.style.display = 'none';
+            const cache = item;
+            cache.style.display = 'none';
           });
         }
       });
@@ -315,7 +322,7 @@ export default {
       // index ALT+Q
       if (e.altKey && e.keyCode === 81) {
         this.$router.push('/');
-      // ALT+鍵盤1
+        // ALT+鍵盤1
       } else if (e.altKey && e.keyCode === 49) {
         this.$router.push('/');
       }
@@ -323,7 +330,7 @@ export default {
       // products ALT+W
       if (e.altKey && e.keyCode === 87) {
         this.$router.push('/products');
-      // ALT+鍵盤2
+        // ALT+鍵盤2
       } else if (e.altKey && e.keyCode === 50) {
         this.$router.push('/products');
       }
@@ -331,7 +338,7 @@ export default {
       // aboutro ALT+S
       if (e.altKey && e.keyCode === 83) {
         this.$router.push('/aboutro');
-      // ALT+鍵盤3
+        // ALT+鍵盤3
       } else if (e.altKey && e.keyCode === 51) {
         this.$router.push('/aboutro');
       }
@@ -339,7 +346,7 @@ export default {
       // cart ALT+A
       if (e.altKey && e.keyCode === 65) {
         this.$router.push('/customer');
-      // ALT+鍵盤4
+        // ALT+鍵盤4
       } else if (e.altKey && e.keyCode === 52) {
         this.$router.push('/customer');
       }
@@ -347,7 +354,7 @@ export default {
       // login ALT+Z
       if (e.altKey && e.keyCode === 90) {
         this.$router.push('/login');
-      // ALT+鍵盤5
+        // ALT+鍵盤5
       } else if (e.altKey && e.keyCode === 53) {
         this.$router.push('/login');
       }
@@ -359,7 +366,7 @@ export default {
         } else {
           $('#cartsModal').modal('hide');
         }
-      // ALT+鍵盤6
+        // ALT+鍵盤6
       } else if (e.altKey && e.keyCode === 54) {
         if ($('#cartsModal').modal('show')[0].hidden) {
           $('#cartsModal').modal('show');
@@ -375,12 +382,14 @@ export default {
         if (bgRoWindow.style.height === '20px') {
           bgRoWindow.style.height = '140px';
           btnWindow.forEach((item) => {
-            item.style.display = 'block';
+            const cache = item;
+            cache.style.display = 'block';
           });
         } else {
           bgRoWindow.style.height = '20px';
           btnWindow.forEach((item) => {
-            item.style.display = 'none';
+            const cache = item;
+            cache.style.display = 'none';
           });
         }
       }
@@ -392,12 +401,14 @@ export default {
         if (bgRoWindowHotKey.style.display === 'none') {
           bgRoWindowHotKey.style.display = 'block';
           btnHotKey.forEach((item) => {
-            item.style.display = 'block';
+            const cache = item;
+            cache.style.display = 'block';
           });
         } else {
           bgRoWindowHotKey.style.display = 'none';
           btnHotKey.forEach((item) => {
-            item.style.display = 'none';
+            const cache = item;
+            cache.style.display = 'none';
           });
         }
       }
@@ -408,17 +419,20 @@ export default {
       if (bgRoWindowHotKey.style.display === 'none') {
         bgRoWindowHotKey.style.display = 'block';
         btnHotKey.forEach((item) => {
-          item.style.display = 'block';
+          const cache = item;
+          cache.style.display = 'block';
         });
       } else {
         bgRoWindowHotKey.style.display = 'none';
         btnHotKey.forEach((item) => {
-          item.style.display = 'none';
+          const cache = item;
+          cache.style.display = 'none';
         });
       }
     },
-    /* eslint-disable */
-    onDragged({ el, deltaX, deltaY, offsetX, offsetY, clientX, clientY, first, last }) {
+    onDragged({
+      el, deltaX, deltaY, first, last,
+    }) {
       if (first) {
         this.dragged = true;
         return;
@@ -427,12 +441,12 @@ export default {
         this.dragged = false;
         return;
       }
-      const l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
-      const t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
-      el.style.left = l + deltaX + 'px';
-      el.style.top = t + deltaY + 'px';
+      const l = +window.getComputedStyle(el).left.slice(0, -2) || 0;
+      const t = +window.getComputedStyle(el).top.slice(0, -2) || 0;
+      const cacheEl = el;
+      cacheEl.style.left = `${l + deltaX}px`;
+      cacheEl.style.top = `${t + deltaY}px`;
     },
-    /* eslint-disable */
     openModelWindow() {
       if ($('#cartsModal').modal('show')[0].hidden) {
         $('#cartsModal').modal('show');
@@ -445,11 +459,6 @@ export default {
         $('.navbar-toggler').click();
       });
     },
-  },
-  mounted() {
-    this.navbarToggler();
-    const el = document.body;
-    el.addEventListener('keydown', this.keyComb, false);
   },
 };
 </script>

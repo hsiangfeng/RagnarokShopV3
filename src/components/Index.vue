@@ -16,15 +16,6 @@
         font-awesome-icon#playBGM.text-primary(:icon="['fas','play-circle']", size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='播放BGM', @click.prevent='musicStatus', v-else='')
 </template>
 
-<style lang="scss">
-.play-bgm {
-  position: fixed;
-  right: 50px;
-  bottom: 30px;
-  z-index: 10;
-}
-</style>
-
 <script>
 /* global $ */
 import Jumbotron from '@/components/Jumbotron.vue';
@@ -38,10 +29,26 @@ import PageMap from './shared/PageMap.vue';
 
 export default {
   name: 'Index',
+  components: {
+    Jumbotron,
+    Carousel,
+    Secret,
+    Esay,
+    Other,
+    Shop,
+    Partner,
+    PageMap,
+  },
   data() {
     return {
       bgmStatus: false,
     };
+  },
+  mounted() {
+    $(() => {
+      $('[data-toggle="popover"]').popover();
+    });
+    this.roBGM();
   },
   methods: {
     roBGM() {
@@ -49,18 +56,15 @@ export default {
       const BGM = document.getElementById('roBGM');
       const playPromise = BGM.play();
       if (playPromise !== undefined) {
-        // eslint-disable-next-line
-        playPromise.then(_ => {
+        playPromise.then(() => {
           BGM.pause();
           vm.bgmStatus = false;
-        // eslint-disable-next-line
-        }).then(_ =>{
+        }).then(() => {
           BGM.play();
           BGM.volume = 0.2;
           vm.bgmStatus = true;
         })
-        // eslint-disable-next-line
-        .catch(error => {vm.bgmStatus = false});
+          .catch(() => { vm.bgmStatus = false; });
       }
     },
     musicStatus() {
@@ -75,21 +79,14 @@ export default {
       }
     },
   },
-  components: {
-    Jumbotron,
-    Carousel,
-    Secret,
-    Esay,
-    Other,
-    Shop,
-    Partner,
-    PageMap,
-  },
-  mounted() {
-    $(() => {
-      $('[data-toggle="popover"]').popover();
-    });
-    this.roBGM();
-  },
 };
 </script>
+
+<style lang="scss">
+.play-bgm {
+  position: fixed;
+  right: 50px;
+  bottom: 30px;
+  z-index: 10;
+}
+</style>

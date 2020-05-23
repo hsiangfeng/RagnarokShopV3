@@ -9,6 +9,15 @@
     #cloud.png
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .bg-error {
     background: url("../assets/img/404/error_bg.jpg") repeat-x scroll 0 0 #67ACE4;

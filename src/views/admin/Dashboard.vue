@@ -17,5 +17,9 @@ export default {
     ScrollTop,
     Alert,
   },
+  data() {
+    return {
+    };
+  },
 };
 </script>

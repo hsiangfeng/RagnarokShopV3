@@ -4,20 +4,13 @@
       font-awesome-icon(:icon="['fas', 'arrow-circle-up']" size="3x")
 </template>
 
-<style lang="scss">
-  #clickTop {
-    position: fixed;
-    bottom: 5%;
-    right: 2%;
-    display: none;
-    z-index: 2;
-  }
-</style>
-
 <script>
 /* global $ */
-
 export default {
+  data() {
+    return {
+    };
+  },
   mounted() {
     $(() => {
       $(window).scroll(() => {
@@ -35,3 +28,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+#clickTop {
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+  display: none;
+  z-index: 2;
+}
+</style>

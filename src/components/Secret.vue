@@ -33,6 +33,15 @@
             | 不知道最佳配裝玩法
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .img {
   border-radius: 50%;

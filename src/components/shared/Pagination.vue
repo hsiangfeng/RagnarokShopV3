@@ -15,7 +15,15 @@ export default {
   props: {
     paginationService: {
       type: Object,
+      default() {
+        return {
+        };
+      },
     },
+  },
+  data() {
+    return {
+    };
   },
   methods: {
     getPagesService(item) {

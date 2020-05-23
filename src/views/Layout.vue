@@ -14,6 +14,12 @@ import Navbar from '@/views/Navbar.vue';
 import Footer from '@/views/Footer.vue';
 
 export default {
+  components: {
+    Navbar,
+    Footer,
+    AlertMessage,
+    CartMessage,
+  },
   data() {
     return {
     };
@@ -22,12 +28,6 @@ export default {
     key() {
       return this.$route.path + Math.random();
     },
-  },
-  components: {
-    Navbar,
-    Footer,
-    AlertMessage,
-    CartMessage,
   },
 };
 </script>

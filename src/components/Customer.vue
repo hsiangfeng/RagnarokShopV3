@@ -91,40 +91,6 @@
     BgMusicComponent(:nowIndex='"customer"')
 </template>
 
-<style lang="scss" scoped>
-  .p-top {
-    padding-top: 91px;
-  }
-  .cart-bg {
-    background-image: url(../assets/img/1378827490-3875360817.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 375px;
-  }
-  .cart-text {
-    background-color: rgba(0,0,0,0.6);
-    padding: 10px;
-  }
-  .order-ul{
-    margin: 0px;
-    padding: 0px;
-  }
-  .order-list{
-    width: 100%;
-    box-shadow: 0 0 5px #bebebe;
-    padding: 25px;
-    margin-bottom: 10px;
-    &:hover{
-      box-shadow: 0 0 10px #bebebe;
-    }
-    .order-content{
-      width: 100%;
-      margin-left: 10px;
-    }
-  }
-</style>
-
 <script>
 /* global $ */
 import { mapActions, mapGetters } from 'vuex';
@@ -134,6 +100,12 @@ import PageMap from './shared/PageMap.vue';
 import ScrollTopComponent from './shared/ScrollTop.vue';
 
 export default {
+  components: {
+    PageMap,
+    LoadingPage,
+    BgMusicComponent,
+    ScrollTopComponent,
+  },
   data() {
     return {
       coupon: '',
@@ -147,6 +119,15 @@ export default {
         message: '',
       },
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'loadingID', 'cart']),
+  },
+  created() {
+    this.getCarts();
+  },
+  mounted() {
+    this.popoverBtn();
   },
   methods: {
     ...mapActions(['getCarts']),
@@ -194,20 +175,39 @@ export default {
       });
     },
   },
-  computed: {
-    ...mapGetters(['isLoading', 'loadingID', 'cart']),
-  },
-  components: {
-    PageMap,
-    LoadingPage,
-    BgMusicComponent,
-    ScrollTopComponent,
-  },
-  created() {
-    this.getCarts();
-  },
-  mounted() {
-    this.popoverBtn();
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+.p-top {
+  padding-top: 91px;
+}
+.cart-bg {
+  background-image: url(../assets/img/1378827490-3875360817.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 375px;
+}
+.cart-text {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+.order-ul {
+  margin: 0px;
+  padding: 0px;
+}
+.order-list {
+  width: 100%;
+  box-shadow: 0 0 5px #bebebe;
+  padding: 25px;
+  margin-bottom: 10px;
+  &:hover {
+    box-shadow: 0 0 10px #bebebe;
+  }
+  .order-content {
+    width: 100%;
+    margin-left: 10px;
+  }
+}
+</style>

@@ -59,32 +59,25 @@
               button.btn.btn-danger.ml-1 確認付款
 </template>
 
-<style lang="scss" scoped>
-  .p-top {
-    padding-top: 91px;
-  }
-  .order-bg {
-    background-image: url(../assets/img/1152183790.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 375px;
-  }
-  .order-text {
-    background-color: rgba(0,0,0,0.6);
-    padding: 10px;
-  }
-</style>
-
 <script>
 import { mapGetters } from 'vuex';
 import LoadingPage from './shared/LoadingPage.vue';
 
 export default {
+  components: {
+    LoadingPage,
+  },
   data() {
     return {
       orderId: '',
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'order']),
+  },
+  created() {
+    this.orderId = this.$route.params.orderId;
+    this.getOrder();
   },
   methods: {
     getOrder() {
@@ -94,15 +87,22 @@ export default {
       this.$store.dispatch('payOrder', this.orderId);
     },
   },
-  computed: {
-    ...mapGetters(['isLoading', 'order']),
-  },
-  components: {
-    LoadingPage,
-  },
-  created() {
-    this.orderId = this.$route.params.orderId;
-    this.getOrder();
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+.p-top {
+  padding-top: 91px;
+}
+.order-bg {
+  background-image: url(../assets/img/1152183790.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 375px;
+}
+.order-text {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+</style>

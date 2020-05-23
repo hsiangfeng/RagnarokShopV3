@@ -32,11 +32,14 @@
 </template>
 
 <script>
-// eslint-disable-next-line
-import 'swiper/dist/css/swiper.min.css';
+import '../../node_modules/swiper/dist/css/swiper.min.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 export default {
+  components: {
+    swiper,
+    swiperSlide,
+  },
   data() {
     return {
       swiperOption: {
@@ -72,9 +75,8 @@ export default {
       },
     };
   },
-  components: {
-    swiper,
-    swiperSlide,
-  },
 };
 </script>
+
+<style lang="scss">
+</style>

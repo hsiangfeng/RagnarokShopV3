@@ -12,3 +12,15 @@
         img.img-fluid(src='@/assets/img/Partner/GRAVITY.gif', width='150px')
     .small.text-center.text-ro-dark 以上通通真的沒有合作
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+</style>

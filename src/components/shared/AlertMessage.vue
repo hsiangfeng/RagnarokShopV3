@@ -15,6 +15,9 @@ export default {
     return {
     };
   },
+  computed: {
+    ...mapGetters(['messages']),
+  },
   methods: {
     updateMessage(message, status) {
       this.$store.dispatch('updateMessage', { message, status });
@@ -22,9 +25,6 @@ export default {
     removeMessage(num) {
       this.$store.dispatch('removeMessages', num);
     },
-  },
-  computed: {
-    ...mapGetters(['messages']),
   },
 };
 </script>

@@ -92,6 +92,10 @@ import LoadingPage from '@/components/shared/LoadingPage.vue';
 import PaginationComponents from '@/components/shared/Pagination.vue';
 
 export default {
+  components: {
+    LoadingPage,
+    PaginationComponents,
+  },
   data() {
     return {
       cacheCoupons: {},
@@ -100,6 +104,15 @@ export default {
       modelTitle: '',
       modelStatus: '',
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading', 'adminCoupons']),
+  },
+  created() {
+    this.getCoupons();
+  },
+  mounted() {
+    this.removeCache();
   },
   methods: {
     getCoupons(page = 1) {
@@ -128,13 +141,13 @@ export default {
           vm.modelTitle = '編輯優惠卷';
           vm.modelStatus = 'put';
           $('#couponsModal').modal('show');
-          vm.cacheCoupons = Object.assign({}, item);
+          vm.cacheCoupons = { ...item };
           break;
         case 'delete':
           vm.modelTitle = '刪除優惠卷';
           vm.modelStatus = 'delete';
           $('#deleteCouponsModal').modal('show');
-          vm.cacheCoupons = Object.assign({}, item);
+          vm.cacheCoupons = { ...item };
           break;
         default:
           $('#couponsModal').modal('show');
@@ -159,18 +172,8 @@ export default {
       vm.cacheCoupons.due_date = date.getTime();
     },
   },
-  computed: {
-    ...mapGetters(['isLoading', 'adminCoupons']),
-  },
-  components: {
-    LoadingPage,
-    PaginationComponents,
-  },
-  created() {
-    this.getCoupons();
-  },
-  mounted() {
-    this.removeCache();
-  },
 };
 </script>
+
+<style lang="scss">
+</style>

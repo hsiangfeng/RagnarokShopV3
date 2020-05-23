@@ -17,6 +17,15 @@
         img.img-fluid.logo-poring-end.d-none.d-md-block(src='@/assets/img/UTMuP.gif', width='180px')
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
   .banner {
     position: relative;

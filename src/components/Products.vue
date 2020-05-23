@@ -74,169 +74,6 @@
     BgMusicComponent(:nowIndex='"products"')
 </template>
 
-<style lang="scss" scoped>
-  .banner{
-    background-image: url(../assets/img/Product/banner.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-top: 60px;
-    height: 500px;
-  }
-  .banner-text {
-    background-color: rgba(0, 0, 0, 0.45);
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    position: relative;
-  }
-  .confound{
-    position: absolute;
-    width: 100px;
-    top: -40%;
-    left: -24%;
-    opacity: 0;
-    transition: all 0.5s;
-  }
-  .sticky-list{
-    background-color: #fff;
-    top: 99.88px;
-    position: sticky;
-  }
-  .content{
-    display: flex;
-    .category-list{
-      width: 20%;
-      @media (max-width: 992px) {
-        width: 100%;
-      }
-    }
-    .products{
-      width: 80%;
-      @media (max-width: 992px) {
-        width: 100%;
-      }
-    }
-    @media (max-width: 992px) {
-      display: block;
-    }
-  }
-  .list-items{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    @media (max-width: 992px) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    li {
-      text-align: center;
-      margin-bottom: 5px;
-      @media (max-width: 992px) {
-        width: 33.33333333%;
-      }
-    }
-    .items {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      padding: 10px;
-      border: 1px solid #ced4da;
-      transition: all .5s;
-      color: #769bd3;
-      font-weight: 800;
-      text-decoration: none;
-      &:hover{
-        color: #044273;
-        border: 1px solid #769bd3;
-      }
-      &.active{
-        color: #044273;
-        border: 1px solid #769bd3;
-      }
-      @media (max-width: 992px) {
-        flex-direction: column;
-      }
-    }
-  }
-  .products{
-    margin-left: 40px;
-    @media (max-width: 992px) {
-      margin-left: 0px;
-    }
-    .products-list{
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-  }
-  .products-item {
-    display: flex;
-    box-shadow: 0 1px 5px #000;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 15px;
-    transition: all .5s;
-    &:hover{
-      box-shadow: 0 2px 10px #000;
-    }
-    .products-top{
-      width: 20%;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-    .products-content{
-      width: 60%;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-    .products-footer{
-      width: 20%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-    .products-btn{
-      width: 100%;
-    }
-    .products-btn-disabled{
-      width: 100%;
-    }
-    .description{
-      height: 103px;
-    }
-    @media (max-width: 768px) {
-      display: block;
-    }
-  }
-  .items-img{
-    max-width: 50px;
-    margin-right: 10px;
-  }
-  .products-top {
-    position: relative;
-    .category-top{
-      position: absolute;
-      top: 0px;
-      right: 0px;
-    }
-  }
-  .card-img{
-    width: 150px;
-    @media (max-width: 992px) {
-        width: 100px;
-      }
-  }
-</style>
-
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Breadcrumb from './Breadcrumb.vue';
@@ -246,18 +83,19 @@ import ScrollTopComponent from './shared/ScrollTop.vue';
 import BgMusicComponent from './shared/BgMusic.vue';
 
 export default {
+  components: {
+    Breadcrumb,
+    PageMap,
+    LoadingPage,
+    ScrollTopComponent,
+    BgMusicComponent,
+  },
   data() {
     return {
       category: {
         title: '全部商品',
       },
     };
-  },
-  methods: {
-    ...mapActions(['getProducts']),
-    addCart(id, qty = 1) {
-      this.$store.dispatch('addCart', { id, qty });
-    },
   },
   computed: {
     getCategory() {
@@ -271,13 +109,6 @@ export default {
     },
     ...mapGetters(['isLoading', 'loadingID', 'products']),
   },
-  components: {
-    Breadcrumb,
-    PageMap,
-    LoadingPage,
-    ScrollTopComponent,
-    BgMusicComponent,
-  },
   created() {
     this.getProducts();
   },
@@ -287,5 +118,174 @@ export default {
       confound.style.opacity = 1;
     }, 2000);
   },
+  methods: {
+    ...mapActions(['getProducts']),
+    addCart(id, qty = 1) {
+      this.$store.dispatch('addCart', { id, qty });
+    },
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.banner {
+  background-image: url(../assets/img/Product/banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 60px;
+  height: 500px;
+}
+.banner-text {
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+}
+.confound {
+  position: absolute;
+  width: 100px;
+  top: -40%;
+  left: -24%;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.sticky-list {
+  background-color: #fff;
+  top: 99.88px;
+  position: sticky;
+}
+.content {
+  display: flex;
+  .category-list {
+    width: 20%;
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+  }
+  .products {
+    width: 80%;
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+  }
+  @media (max-width: 992px) {
+    display: block;
+  }
+}
+.list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @media (max-width: 992px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    text-align: center;
+    margin-bottom: 5px;
+    @media (max-width: 992px) {
+      width: 33.33333333%;
+    }
+  }
+  .items {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    transition: all 0.5s;
+    color: #769bd3;
+    font-weight: 800;
+    text-decoration: none;
+    &:hover {
+      color: #044273;
+      border: 1px solid #769bd3;
+    }
+    &.active {
+      color: #044273;
+      border: 1px solid #769bd3;
+    }
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+  }
+}
+.products {
+  margin-left: 40px;
+  @media (max-width: 992px) {
+    margin-left: 0px;
+  }
+  .products-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+.products-item {
+  display: flex;
+  box-shadow: 0 1px 5px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: 0 2px 10px #000;
+  }
+  .products-top {
+    width: 20%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  .products-content {
+    width: 60%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  .products-footer {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  .products-btn {
+    width: 100%;
+  }
+  .products-btn-disabled {
+    width: 100%;
+  }
+  .description {
+    height: 103px;
+  }
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+.items-img {
+  max-width: 50px;
+  margin-right: 10px;
+}
+.products-top {
+  position: relative;
+  .category-top {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+}
+.card-img {
+  width: 150px;
+  @media (max-width: 992px) {
+    width: 100px;
+  }
+}
+</style>

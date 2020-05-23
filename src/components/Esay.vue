@@ -56,6 +56,15 @@
             img.img-fluid(src='@/assets/img/Esay/youtube.png', width='450px')
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 $easy-color: #769bd3;
 
@@ -91,12 +100,3 @@ $easy-color: #769bd3;
   }
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-    };
-  },
-};
-</script>

@@ -22,6 +22,16 @@ section.bg-ro-light
         p
           | 我上班超過八小時，每天回到家玩遊戲就是想放鬆，可是每次任務都至少4小時起跳，第一次買了RagnarokShop，任務的怪物打起來都像在切豆腐一樣輕鬆。
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
   .other-ul {
     padding:0;

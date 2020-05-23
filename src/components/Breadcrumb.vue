@@ -5,13 +5,19 @@
         router-link(:to="{name: 'Index'}")
           | 首頁
       li.breadcrumb-item(aria-current='page' v-if='breadcrumb.title')
-          | {{breadcrumb.title}}
+          | {{ breadcrumb.title }}
 </template>
 
 <script>
 export default {
   props: {
     breadcrumb: {
+      type: Object,
+      default() {
+        return {
+          title: '全部商品',
+        };
+      },
     },
   },
   data() {
@@ -20,3 +26,6 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+</style>
