@@ -59,7 +59,7 @@
         | 登入
       a(href='https://github.com/hsiangfeng/RagnarokShopV3' target='_blank' title="Alt+G，GitHub Repo").button-ro.button-github.btn-window
         | GitHub
-      a(href='https://hsiangfeng.github.io/SPA-Resume/' title="Alt+U，作者資料").button-ro.button-author.btn-window
+      a(href='https://hsiangfeng.github.io/' title="Alt+U，作者資料").button-ro.button-author.btn-window
         | 作者
       button(href="#" @click="openModelWindow()" title="Alt+C，購物車").button-ro.button-none.btn-window
         | 購物車
