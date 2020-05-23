@@ -32,7 +32,7 @@
                   | 購物車
                   span.sr-only (current)
               li.nav-item
-                a.nav-link.font-weight-bold.p-5(href='https://hsiangfeng.github.io/SPA-Resume/')
+                a.nav-link.font-weight-bold.p-5(href='https://hsiangfeng.github.io/')
                   font-awesome-icon(:icon="['fas', 'user-tie']")
                   | 關於作者
               li.nav-item
