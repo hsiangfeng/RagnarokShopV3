@@ -10,34 +10,34 @@
           .h5.text-ro.border-bottom.border-ro
             | 商品介紹
           p
-            | {{oneProducts.description}}
+            | {{ oneProducts.description }}
           .h5.text-ro.border-bottom.border-ro
             | 其他說明
           p
-            | {{oneProducts.content}}
+            | {{ oneProducts.content }}
       .col-md-4
         .border.border-ro.p-2.rounded
-          span.badge.badge-danger.float-right {{oneProducts.category}}
+          span.badge.badge-danger.float-right {{ oneProducts.category }}
           h1.h5.text-ro-dark
-            | {{oneProducts.title}}
+            | {{ oneProducts.title }}
           .d-flex.justify-content-between.my-2.text-ro-dark
             span 單位
-            span 1/{{oneProducts.unit}}
+            span 1/{{ oneProducts.unit }}
           .d-flex.justify-content-between.font-weight-bold.my-2.text-ro-dark
             | 原價
             span
-              del {{oneProducts.origin_price | currency}}
+              del {{ oneProducts.origin_price | currency }}
           .d-flex.justify-content-between.font-weight-bold.my-2.text-ro-dark.h5
             | 現購特價!
             span
-              | {{oneProducts.price | currency}}
+              | {{ oneProducts.price | currency }}
           select.form-control(name='count', v-model='counts')
                 option(:value='num', v-for='num in 10', :key='num')
-                  | 購買 {{num}} {{oneProducts.unit}}
+                  | 購買 {{ num }} {{ oneProducts.unit }}
           .d-flex.justify-content-between.font-weight-bold.my-2.h4
             | 小計
             span.text-ro-dark
-              | {{counts * oneProducts.price | currency}}
+              | {{ counts * oneProducts.price | currency }}
           .text-right
             router-link.btn.btn-secondary(:to="{name: 'Products'}") 返回
             button.btn.btn-outline-ro.ml-1(type='button' @click.prevent="addCart(oneProducts.id, counts)")
@@ -48,17 +48,17 @@
         swiper.py-5(:options='swiperOption')
           swiper-slide.border.p-2(v-for='item in shopItem', :key='item.id' v-show="item.id !== productID")
             .shop-top.text-center
-              .badge.badge-danger.category-top {{item.category}}
+              .badge.badge-danger.category-top {{ item.category }}
               img.shop-img(:src='item.imageUrl')
             .shop-content
               h6
-                router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
+                router-link.text-ro(:to="'/detailed/' + item.id") {{ item.title }}
               p.text-left.p-3.text-description
-                | {{item.description}}
+                | {{ item.description }}
               .d-flex.justify-content-between
-                span.text-ro-dark NT$ {{item.price}}
+                span.text-ro-dark NT$ {{ item.price }}
                 del
-                  small 原價 NT$ {{item.origin_price}}
+                  small 原價 NT$ {{ item.origin_price }}
             .shop-footer
               .d-flex.justify-content-center.align-items-center(v-if='item.is_enabled')
                 router-link.btn.btn-outline-ro.w-50(:to="'/detailed/' + item.id")

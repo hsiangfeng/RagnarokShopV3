@@ -13,7 +13,7 @@
                             router-link(:to="{name: 'ProductsList'}").text-primary
                               | 產品數量
                           .h5.mb-0.font-weight-bold.text-gray-800
-                              | {{consoleProducts.length}}
+                              | {{ consoleProducts.length }}
                         .col-auto
                             font-awesome-icon(:icon="['fab','product-hunt']" size='2x').text-secondary
         .col-xl-3.col-md-6.mb-4
@@ -24,7 +24,7 @@
                             .text-xs.font-weight-bold.text-uppercase.mb-1
                               router-link(:to="{name: 'Orders'}").text-success
                                 | 近期訂單數量
-                            .h5.mb-0.font-weight-bold.text-gray-800 {{consoleOrders.length}}
+                            .h5.mb-0.font-weight-bold.text-gray-800 {{ consoleOrders.length }}
                         .col-auto
                             font-awesome-icon(:icon="['fas','shopping-cart']" size='2x').text-secondary
         .col-xl-3.col-md-6.mb-4
@@ -35,7 +35,7 @@
                             .text-xs.font-weight-bold.text-uppercase.mb-1
                               router-link(:to="{name: 'Orders'}").text-warning
                                 | 近期未完成付款訂單
-                            .h5.mb-0.font-weight-bold.text-gray-800 {{undoneOrder.length}}
+                            .h5.mb-0.font-weight-bold.text-gray-800 {{ undoneOrder.length }}
                         .col-auto
                             font-awesome-icon(:icon="['far','angry']" size='2x').text-secondary
         .col-xl-3.col-md-6.mb-4
@@ -46,7 +46,7 @@
                             .text-xs.font-weight-bold.text-uppercase.mb-1
                               router-link(:to="{name: 'Orders'}").text-info
                                 | 近期已完成付款訂單
-                            .h5.mb-0.font-weight-bold.text-gray-800 {{doneOrder.length}}
+                            .h5.mb-0.font-weight-bold.text-gray-800 {{ doneOrder.length }}
                         .col-auto
                             font-awesome-icon(:icon="['far','smile']" size='2x').text-secondary
     .row

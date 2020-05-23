@@ -19,20 +19,20 @@
           th(width='20%') 功能操作
       tbody
         tr.text-center(v-for='item in adminProducts', :key='item.id')
-          td.align-middle {{item.num}}
+          td.align-middle {{ item.num }}
           td
             a(:href='item.imageUrl', target='_black', v-if='item.imageUrl')
               img(:src='item.imageUrl', width='100px')
             a(:href='item.image', target='_black', v-if='item.image')
               img(:src='item.image', width='100px')
           td.align-middle
-            span.badge.badge-secondary {{item.category}}
-          td.align-middle {{item.title}}
+            span.badge.badge-secondary {{ item.category }}
+          td.align-middle {{ item.title }}
           td.align-middle.text-right
-            del {{item.origin_price | currency}}
+            del {{ item.origin_price | currency }}
           td.align-middle.text-right
-            span.text-danger {{item.price | currency}}
-          td.align-middle {{item.unit}}
+            span.text-danger {{ item.price | currency }}
+          td.align-middle {{ item.unit }}
           td.align-middle
             span.text-success(v-if='item.is_enabled') 已開啟
             span.text-danger(v-else='') 未啟用
@@ -49,7 +49,7 @@
         .modal-content.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
@@ -121,7 +121,7 @@
         .modal-content.border-0
           .modal-header.bg-danger.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body

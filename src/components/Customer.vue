@@ -16,11 +16,11 @@
               .order-content
                 router-link.text-ro(:to="'/detailed/' + item.product.id") {{ item.product.title }}
                 .text-secondary
-                  | 類別：{{item.product.category}}
+                  | 類別：{{ item.product.category }}
                 .text-secondary
                   | 單價：
-                  span.text-danger {{ item.final_total | currency}}
-                .text-secondary 數量： {{ item.qty }} {{item.product.unit}}
+                  span.text-danger {{ item.final_total | currency }}
+                .text-secondary 數量： {{ item.qty }} {{ item.product.unit }}
                 .text-success(v-if='item.coupon')
                   font-awesome-icon(:icon="['fas', 'comment-dollar']")
                   | 已套用優惠券
@@ -79,11 +79,11 @@
               .form-group
                 .d-flex.justify-content-between.border.p-2
                   div 小計
-                  div {{ cart.total | currency}}
+                  div {{ cart.total | currency }}
               .form-group(v-if='cart.final_total !== cart.total')
                 .d-flex.justify-content-between.border.border-success.p-2
                   div.text-success 折扣價
-                  div.text-success {{ cart.final_total | currency}}
+                  div.text-success {{ cart.final_total | currency }}
               button.btn.btn-danger.btn-block 繼續結帳
               button.btn.btn-outline-danger.btn-block 繼續購物
     PageMap

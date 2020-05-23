@@ -36,16 +36,16 @@
                           | 防具
                 .col-xl-7.col-md-9
                   .products
-                    h3 {{category.title}}
+                    h3 {{ category.title }}
                     ul.products-list
                       li.products-item(v-for='item in getCategory', :key='item.id')
                         .products-top.text-center
                           img.card-img(:src='item.imageUrl')
                         .products-content.p-2
                           .mall-title.font-weight-bold
-                            .text-ro   {{item.title}}
+                            .text-ro   {{ item.title }}
                           .d-flex.justify-content-end.mall-zeny
-                            | 售價 {{item.price}} P
+                            | 售價 {{ item.price }} P
                         .products-footer
                           a.btn.btn-outline-danger.btn-sm.btn-block(href='#' @click.prevent="addCart(item.id)" v-if="item.is_enabled")
                             font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='loadingID === item.id')
@@ -71,14 +71,14 @@
                             | {{ item.product.title }}
                             .text-success(v-if='item.coupon') 已套用優惠券
                           td.align-middle {{ item.qty }}
-                          td.align-middle.text-right {{ item.final_total | currency}}
+                          td.align-middle.text-right {{ item.final_total | currency }}
                       tfoot
                         tr
                           td.text-right(colspan='3') 總計
-                          td.text-right {{ cart.total | currency}}
+                          td.text-right {{ cart.total | currency }}
                         tr(v-if='cart.final_total !== cart.total')
                           td.text-right.text-success(colspan='3') 折扣價
-                          td.text-right.text-success {{ cart.final_total | currency}}
+                          td.text-right.text-success {{ cart.final_total | currency }}
                     .input-group.mb-3.input-group-sm
                       input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
                       .input-group-append

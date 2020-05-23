@@ -38,7 +38,7 @@
                 th 付款狀態
                 td
                   span(v-if='!order.is_paid') 尚未付款
-                  span.text-success(v-else='') 付款完成
+                  span.text-success(v-else) 付款完成
           .text-right(v-if='order.is_paid === false')
             button.btn.btn-danger 確認付款去
     ScrollTopComponent

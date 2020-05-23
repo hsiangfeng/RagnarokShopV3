@@ -16,10 +16,10 @@
           th(width='20%') 功能
       tbody
         tr.text-center(v-for='item in adminCoupons', :key='item.id')
-          td {{item.title}}
-          td {{item.percent}}
-          td {{item.code}}
-          td {{item.due_date | timestamp}}
+          td {{ item.title }}
+          td {{ item.percent }}
+          td {{ item.code }}
+          td {{ item.due_date | timestamp }}
           td
             span.text-success(v-if='item.is_enabled') 已啟用
             span.text-danger(v-else='') 未啟用
@@ -36,7 +36,7 @@
         .modal-content
           .modal-header
             h5#exampleModalLabel.modal-title
-              | {{modelTitle}}
+              | {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
@@ -53,7 +53,7 @@
                   | %
             .form-group
               label(for='due-date') 過期日期
-              p(v-if='cacheCoupons.due_date') {{cacheCoupons.due_date | timestamp}}
+              p(v-if='cacheCoupons.due_date') {{ cacheCoupons.due_date | timestamp }}
               input#due-date.form-control(type='date', v-model='cacheDatetime', @input='getDatetime()')
             .form-group
               label(for='code') 折扣碼
@@ -72,7 +72,7 @@
         .modal-content.border-0
           .modal-header.bg-danger.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body

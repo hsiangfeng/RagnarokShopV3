@@ -4,7 +4,7 @@
       a(href="#" data-toggle="modal" @click.prevent="openModel()" v-if="cart.carts")
         img(src="@/assets/img/cart.png" width="100px").cart-img
         p.cart-text.bg-danger(v-if='cart.carts.length !== 0' )
-          | {{cart.carts.length}}
+          | {{ cart.carts.length }}
     #cartsModal.modal.fade(tabindex='-1', role='dialog')
       .modal-dialog(role='document')
         .modal-content
@@ -31,14 +31,14 @@
                       | {{ item.product.title }}
                       .text-success(v-if='item.coupon') 已套用優惠券
                     td.align-middle {{ item.qty }}
-                    td.align-middle.text-right {{ item.final_total | currency}}
+                    td.align-middle.text-right {{ item.final_total | currency }}
                 tfoot
                   tr
                     td.text-right(colspan='3') 總計
-                    td.text-right {{ cart.total | currency}}
+                    td.text-right {{ cart.total | currency }}
                   tr(v-if='cart.final_total !== cart.total')
                     td.text-right.text-success(colspan='3') 折扣價
-                    td.text-right.text-success {{ cart.final_total | currency}}
+                    td.text-right.text-success {{ cart.final_total | currency }}
               .input-group.mb-3.input-group-sm
                 input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
                 .input-group-append

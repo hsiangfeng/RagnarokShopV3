@@ -12,13 +12,13 @@
           th(width='25%') 操作
       tbody
         tr(v-for='item in adminOrders', :key='item.id')
-          td.align-middle {{item.create_at}}
-          td.align-middle {{item.message}}
-          td.align-middle {{item.payment_method}}
+          td.align-middle {{ item.create_at }}
+          td.align-middle {{ item.message }}
+          td.align-middle {{ item.payment_method }}
           td.align-middle(:class="{'bg-success':item.is_paid, 'bg-danger': !item.is_paid}")
             span.text-white(v-if='item.is_paid') 已付款
             span.text-white.font-weight-bold(v-else='') 未付款
-          td.align-middle(v-if="item.create_at") {{item.user.name}}
+          td.align-middle(v-if="item.create_at") {{ item.user.name }}
           td.align-middle
             button.btn.btn-outline-ro(@click="openModel('look', item)")
               font-awesome-icon(:icon="['fas', 'eye']")
@@ -32,7 +32,7 @@
         .modal-content.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
@@ -131,7 +131,7 @@
           .modal-content.border-0
             .modal-header.bg-dark.text-white
               h5#exampleModalLabel.modal-title
-                span {{modelTitle}}
+                span {{ modelTitle }}
               button.close(type='button', data-dismiss='modal', aria-label='Close')
                 span(aria-hidden='true') ×
             .modal-body

@@ -11,22 +11,22 @@
           a(:href='item.imageUrl', target='_black')
             img(:src='item.imageUrl', v-if='item.imageUrl')
         .card-body
-          span.badge.badge-secondary.float-right {{item.category}}
+          span.badge.badge-secondary.float-right {{ item.category }}
           h5.card-title
-            | {{item.title}}
+            | {{ item.title }}
           p.card-text
-            | {{item.content}}
+            | {{ item.content }}
           ul.list-group.list-group-flush
             li.list-group-item.card-text
-              span.text-secondary {{item.description}}
+              span.text-secondary {{ item.description }}
             li.list-group-item
               .text-danger.text-right
                 | 原價：
-                del {{item.origin_price | currency}}
+                del {{ item.origin_price | currency }}
               .text-success.text-right
-                | 特價：{{item.price | currency}}
+                | 特價：{{ item.price | currency }}
             li.list-group-item.text-right
-              | 單位：{{item.unit}}
+              | 單位：{{ item.unit}}
               span.text-secondary.small (1組/個)
             li.list-group-item.text-center.text-white(:class="{'bg-success': item.is_enabled,'bg-danger': !item.is_enabled }")
               | 產品狀態：
@@ -45,7 +45,7 @@
         .modal-content.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
@@ -116,7 +116,7 @@
         .modal-content.border-0
           .modal-header.bg-danger.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelTitle}}
+              span {{ modelTitle }}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body

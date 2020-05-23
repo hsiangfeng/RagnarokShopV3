@@ -7,9 +7,9 @@
           .text-center
             img(:src='item.imageUrl', v-if='item.imageUrl')
           .card-body
-            span.badge.badge-secondary.float-right.ml-2 {{item.category}}
+            span.badge.badge-secondary.float-right.ml-2 {{ item.category }}
             h5.card-title
-              a.text-dark(href='#') {{item.title}}
+              a.text-dark(href='#') {{ item.title }}
             p.card-text {{ item.content }}
             .d-flex.justify-content-between.align-items-baseline
               del.h6 原價 {{ item.origin_price }} 元
@@ -40,14 +40,14 @@
                 | {{ item.product.title }}
                 .text-success(v-if='item.coupon') 已套用優惠券
               td.align-middle {{ item.qty }}
-              td.align-middle.text-right {{ item.final_total | currency}}
+              td.align-middle.text-right {{ item.final_total | currency }}
           tfoot
             tr
               td.text-right(colspan='3') 總計
-              td.text-right {{ carts.total | currency}}
+              td.text-right {{ carts.total | currency }}
             tr(v-if='carts.final_total !== carts.total')
               td.text-right.text-success(colspan='3') 折扣價
-              td.text-right.text-success {{ carts.final_total | currency}}
+              td.text-right.text-success {{ carts.final_total | currency }}
         .input-group.mb-3.input-group-sm
           input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
           .input-group-append
@@ -94,7 +94,7 @@
               .h4(v-if='cacheProducth.price') 現在只要 {{ cacheProducth.price }} 元
             select.form-control.mt-3(name='', v-model='cacheProducth.num')
               option(:value='num', v-for='num in 10', :key='num')
-                | 選購 {{num}} {{cacheProducth.unit}}
+                | 選購 {{ num }} {{ cacheProducth.unit }}
           .modal-footer
             .text-muted.text-nowrap.mr-3
               | 小計

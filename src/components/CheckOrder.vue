@@ -19,11 +19,11 @@
               tr(v-for='item in order.products', :key='item.id')
                 td.align-middle {{ item.product.title }}
                 td.align-middle {{ item.qty }} {{ item.product.unit }}
-                td.align-middle.text-right {{ item.final_total | currency}}
+                td.align-middle.text-right {{ item.final_total | currency }}
             tfoot
               tr
                 td.text-right(colspan='2') 總計
-                td.text-right {{ order.total | currency}}
+                td.text-right {{ order.total | currency }}
         .col-md-6
           h3.text-center 用戶資訊
           form(@submit.prevent='payOrder()')
@@ -53,7 +53,7 @@
                   th 付款狀態
                   td
                     span(v-if='!order.is_paid') 尚未付款
-                    span.text-success(v-else='') 付款完成
+                    span.text-success(v-else) 付款完成
             .text-right
               router-link(:to="{name: 'Index'}").btn.btn-outline-danger 取消購買
               button.btn.btn-danger.ml-1 確認付款

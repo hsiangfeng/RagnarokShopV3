@@ -41,23 +41,23 @@
                 img.items-img(src='@/assets/img/05249f42bb0c86e0a3f2c55b70e79b75.png')
                 div MVP防具
         .products
-          h3 {{category.title}}
+          h3 {{ category.title }}
           ul.products-list
             li.products-item(v-for='item in getCategory', :key='item.id')
               .products-top.text-center
-                .badge.badge-danger.category-top {{item.category}}
+                .badge.badge-danger.category-top {{ item.category }}
                 img.card-img(:src='item.imageUrl')
               .products-content.p-2
                 h6.font-weight-bold
-                  router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
+                  router-link.text-ro(:to="'/detailed/' + item.id") {{ item.title }}
                 div
                   .description.text-truncate
-                    | {{item.description}}
-                    | {{item.content}}
+                    | {{ item.description }}
+                    | {{ item.content }}
                 .d-flex.justify-content-between
-                  | 特價 NT$ {{item.price}}
+                  | 特價 NT$ {{ item.price }}
                   del
-                    small 原價 NT$ {{item.origin_price}}
+                    small 原價 NT$ {{ item.origin_price }}
               .products-footer
                 .products-btn(v-if="item.is_enabled")
                   router-link.btn.btn-outline-ro.btn-block(:to="'/detailed/' + item.id")

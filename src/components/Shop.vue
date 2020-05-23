@@ -7,17 +7,17 @@
       swiper.py-5(:options='swiperOption')
         swiper-slide.border.p-2(v-for='item in shopItem', :key='item.id')
           .shop-top.text-center
-            .badge.badge-danger.category-top {{item.category}}
+            .badge.badge-danger.category-top {{ item.category }}
             img.shop-img(:src='item.imageUrl')
           .shop-content
-            h6
-              router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
+            h6.my-2
+              router-link.text-ro(:to="'/detailed/' + item.id") {{ item.title }}
             p.text-left.p-3.text-description
-              | {{item.description}}
+              | {{ item.description }}
             .d-flex.justify-content-between
-              span.text-ro-dark NT$ {{item.price}}
+              span.text-ro-dark NT$ {{ item.price }}
               del
-                small 原價 NT$ {{item.origin_price}}
+                small 原價 NT$ {{ item.origin_price }}
           .shop-footer
             .d-flex.justify-content-center.align-items-center(v-if='item.is_enabled')
               router-link.btn.btn-outline-ro.w-50(:to="'/detailed/' + item.id")
@@ -54,17 +54,17 @@
       swiper.py-5(:options='swiperOption')
         swiper-slide.border.p-2(v-for='item in shopOff', :key='item.id')
           .shop-top.text-center
-            .badge.badge-danger.category-top {{item.category}}
+            .badge.badge-danger.category-top {{ item.category }}
             img.shop-img(:src='item.imageUrl')
           .shop-content
-            h6
-              router-link.text-ro(:to="'/detailed/' + item.id") {{item.title}}
+            h6.my-2
+              router-link.text-ro(:to="'/detailed/' + item.id") {{ item.title }}
             p.text-left.p-3.text-description
-              | {{item.description}}
+              | {{ item.description }}
             .d-flex.justify-content-between
-              span.text-ro-dark NT$ {{item.price}}
+              span.text-ro-dark NT$ {{ item.price }}
               del
-                small 原價 NT$ {{item.origin_price}}
+                small 原價 NT$ {{ item.origin_price }}
           .shop-footer
             .d-flex.justify-content-center.align-items-center(v-if='item.is_enabled')
               router-link.btn.btn-outline-ro.w-50(:to="'/detailed/' + item.id")
@@ -148,6 +148,7 @@ export default {
   .text-description {
     height: 120px;
     overflow-y: auto;
+    overflow-wrap: break-word;
   }
 }
 .shop-img {
