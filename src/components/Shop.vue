@@ -82,8 +82,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-// eslint-disable-next-line
-import 'swiper/dist/css/swiper.min.css';
+import '../../node_modules/swiper/dist/css/swiper.min.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import LoadingPage from '@/components/shared/LoadingPage.vue';
 

@@ -27,38 +27,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .banner {
-    position: relative;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  .logo-poring {
-    position: absolute;
-    bottom: 0;
-  }
-  .logo-poring-end{
-    position: absolute;
-    bottom: 0;
-    right: 0%;
-  }
-  .logo-sweat{
-    position: absolute;
-    bottom: 6%;
-    left: -4%;
-  }
-  .logo-evil{
-    position: absolute;
-    bottom: 30%;
-    right: 16%;
-    z-index: 1;
-  }
-  .logo-smile{
-    position: absolute;
-    top: 10%;
-    left: 0%;
-    z-index: 1;
-  }
-  .header{
-    padding-top: 91px;
-  }
+.banner {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.logo-poring {
+  position: absolute;
+  bottom: 0;
+}
+.logo-poring-end {
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+}
+.logo-sweat {
+  position: absolute;
+  bottom: 6%;
+  left: -4%;
+}
+.logo-evil {
+  position: absolute;
+  bottom: 30%;
+  right: 16%;
+  z-index: 1;
+}
+.logo-smile {
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  z-index: 1;
+}
+.header {
+  padding-top: 91px;
+}
 </style>

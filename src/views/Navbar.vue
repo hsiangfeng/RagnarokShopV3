@@ -84,6 +84,184 @@
       a(href="#" @click.prevent='closeHotKey()' title="關閉視窗").btn-hot-key#btn-hot-key
 </template>
 
+<script>
+/* global $ */
+export default {
+  data() {
+    return {
+    };
+  },
+  mounted() {
+    this.navbarToggler();
+    const el = document.body;
+    el.addEventListener('keydown', this.keyComb, false);
+  },
+  methods: {
+    switchWindow() {
+      const bgRoWindow = document.getElementById('bg-ro-window');
+      const btnSwitch = document.getElementById('btn-switch');
+      const btnWindow = document.querySelectorAll('.btn-window');
+      btnSwitch.addEventListener('click', () => {
+        if (bgRoWindow.style.height === '20px') {
+          bgRoWindow.style.height = '140px';
+          btnWindow.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'block';
+          });
+        } else {
+          bgRoWindow.style.height = '20px';
+          btnWindow.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'none';
+          });
+        }
+      });
+    },
+    keyComb(e) {
+      // index ALT+Q
+      if (e.altKey && e.keyCode === 81) {
+        this.$router.push('/');
+        // ALT+鍵盤1
+      } else if (e.altKey && e.keyCode === 49) {
+        this.$router.push('/');
+      }
+
+      // products ALT+W
+      if (e.altKey && e.keyCode === 87) {
+        this.$router.push('/products');
+        // ALT+鍵盤2
+      } else if (e.altKey && e.keyCode === 50) {
+        this.$router.push('/products');
+      }
+
+      // aboutro ALT+S
+      if (e.altKey && e.keyCode === 83) {
+        this.$router.push('/aboutro');
+        // ALT+鍵盤3
+      } else if (e.altKey && e.keyCode === 51) {
+        this.$router.push('/aboutro');
+      }
+
+      // cart ALT+A
+      if (e.altKey && e.keyCode === 65) {
+        this.$router.push('/customer');
+        // ALT+鍵盤4
+      } else if (e.altKey && e.keyCode === 52) {
+        this.$router.push('/customer');
+      }
+
+      // login ALT+Z
+      if (e.altKey && e.keyCode === 90) {
+        this.$router.push('/login');
+        // ALT+鍵盤5
+      } else if (e.altKey && e.keyCode === 53) {
+        this.$router.push('/login');
+      }
+
+      // ALT+C 購物車
+      if (e.altKey && e.keyCode === 67) {
+        if ($('#cartsModal').modal('show')[0].hidden) {
+          $('#cartsModal').modal('show');
+        } else {
+          $('#cartsModal').modal('hide');
+        }
+        // ALT+鍵盤6
+      } else if (e.altKey && e.keyCode === 54) {
+        if ($('#cartsModal').modal('show')[0].hidden) {
+          $('#cartsModal').modal('show');
+        } else {
+          $('#cartsModal').modal('hide');
+        }
+      }
+
+      // ALT+V 介面視窗
+      if (e.altKey && e.keyCode === 86) {
+        const bgRoWindow = document.getElementById('bg-ro-window');
+        const btnWindow = document.querySelectorAll('.btn-window');
+        if (bgRoWindow.style.height === '20px') {
+          bgRoWindow.style.height = '140px';
+          btnWindow.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'block';
+          });
+        } else {
+          bgRoWindow.style.height = '20px';
+          btnWindow.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'none';
+          });
+        }
+      }
+
+      // ALT+鍵盤0
+      if (e.altKey && e.keyCode === 48) {
+        const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
+        const btnHotKey = document.querySelectorAll('.btn-hotkey');
+        if (bgRoWindowHotKey.style.display === 'none') {
+          bgRoWindowHotKey.style.display = 'block';
+          btnHotKey.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'block';
+          });
+        } else {
+          bgRoWindowHotKey.style.display = 'none';
+          btnHotKey.forEach((item) => {
+            const cache = item;
+            cache.style.display = 'none';
+          });
+        }
+      }
+    },
+    closeHotKey() {
+      const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
+      const btnHotKey = document.querySelectorAll('.btn-hotkey');
+      if (bgRoWindowHotKey.style.display === 'none') {
+        bgRoWindowHotKey.style.display = 'block';
+        btnHotKey.forEach((item) => {
+          const cache = item;
+          cache.style.display = 'block';
+        });
+      } else {
+        bgRoWindowHotKey.style.display = 'none';
+        btnHotKey.forEach((item) => {
+          const cache = item;
+          cache.style.display = 'none';
+        });
+      }
+    },
+    onDragged({
+      el, deltaX, deltaY, first, last,
+    }) {
+      if (first) {
+        this.dragged = true;
+        return;
+      }
+      if (last) {
+        this.dragged = false;
+        return;
+      }
+      const l = +window.getComputedStyle(el).left.slice(0, -2) || 0;
+      const t = +window.getComputedStyle(el).top.slice(0, -2) || 0;
+      const cacheEl = el;
+      cacheEl.style.left = `${l + deltaX}px`;
+      cacheEl.style.top = `${t + deltaY}px`;
+    },
+    openModelWindow() {
+      if ($('#cartsModal').modal('show')[0].hidden) {
+        $('#cartsModal').modal('show');
+      } else {
+        $('#cartsModal').modal('hide');
+      }
+    },
+    navbarToggler() {
+      $('.navbar a').on('click', () => {
+        $('.navbar-toggler').click();
+      });
+    },
+  },
+};
+</script>
+
 <style lang="scss">
 .fixed-top {
   z-index: 998 !important;
@@ -284,181 +462,3 @@
   }
 }
 </style>
-
-<script>
-/* global $ */
-export default {
-  data() {
-    return {
-    };
-  },
-  mounted() {
-    this.navbarToggler();
-    const el = document.body;
-    el.addEventListener('keydown', this.keyComb, false);
-  },
-  methods: {
-    switchWindow() {
-      const bgRoWindow = document.getElementById('bg-ro-window');
-      const btnSwitch = document.getElementById('btn-switch');
-      const btnWindow = document.querySelectorAll('.btn-window');
-      btnSwitch.addEventListener('click', () => {
-        if (bgRoWindow.style.height === '20px') {
-          bgRoWindow.style.height = '140px';
-          btnWindow.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'block';
-          });
-        } else {
-          bgRoWindow.style.height = '20px';
-          btnWindow.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'none';
-          });
-        }
-      });
-    },
-    keyComb(e) {
-      // index ALT+Q
-      if (e.altKey && e.keyCode === 81) {
-        this.$router.push('/');
-        // ALT+鍵盤1
-      } else if (e.altKey && e.keyCode === 49) {
-        this.$router.push('/');
-      }
-
-      // products ALT+W
-      if (e.altKey && e.keyCode === 87) {
-        this.$router.push('/products');
-        // ALT+鍵盤2
-      } else if (e.altKey && e.keyCode === 50) {
-        this.$router.push('/products');
-      }
-
-      // aboutro ALT+S
-      if (e.altKey && e.keyCode === 83) {
-        this.$router.push('/aboutro');
-        // ALT+鍵盤3
-      } else if (e.altKey && e.keyCode === 51) {
-        this.$router.push('/aboutro');
-      }
-
-      // cart ALT+A
-      if (e.altKey && e.keyCode === 65) {
-        this.$router.push('/customer');
-        // ALT+鍵盤4
-      } else if (e.altKey && e.keyCode === 52) {
-        this.$router.push('/customer');
-      }
-
-      // login ALT+Z
-      if (e.altKey && e.keyCode === 90) {
-        this.$router.push('/login');
-        // ALT+鍵盤5
-      } else if (e.altKey && e.keyCode === 53) {
-        this.$router.push('/login');
-      }
-
-      // ALT+C 購物車
-      if (e.altKey && e.keyCode === 67) {
-        if ($('#cartsModal').modal('show')[0].hidden) {
-          $('#cartsModal').modal('show');
-        } else {
-          $('#cartsModal').modal('hide');
-        }
-        // ALT+鍵盤6
-      } else if (e.altKey && e.keyCode === 54) {
-        if ($('#cartsModal').modal('show')[0].hidden) {
-          $('#cartsModal').modal('show');
-        } else {
-          $('#cartsModal').modal('hide');
-        }
-      }
-
-      // ALT+V 介面視窗
-      if (e.altKey && e.keyCode === 86) {
-        const bgRoWindow = document.getElementById('bg-ro-window');
-        const btnWindow = document.querySelectorAll('.btn-window');
-        if (bgRoWindow.style.height === '20px') {
-          bgRoWindow.style.height = '140px';
-          btnWindow.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'block';
-          });
-        } else {
-          bgRoWindow.style.height = '20px';
-          btnWindow.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'none';
-          });
-        }
-      }
-
-      // ALT+鍵盤0
-      if (e.altKey && e.keyCode === 48) {
-        const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
-        const btnHotKey = document.querySelectorAll('.btn-hotkey');
-        if (bgRoWindowHotKey.style.display === 'none') {
-          bgRoWindowHotKey.style.display = 'block';
-          btnHotKey.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'block';
-          });
-        } else {
-          bgRoWindowHotKey.style.display = 'none';
-          btnHotKey.forEach((item) => {
-            const cache = item;
-            cache.style.display = 'none';
-          });
-        }
-      }
-    },
-    closeHotKey() {
-      const bgRoWindowHotKey = document.getElementById('bg-ro-window-hotkey');
-      const btnHotKey = document.querySelectorAll('.btn-hotkey');
-      if (bgRoWindowHotKey.style.display === 'none') {
-        bgRoWindowHotKey.style.display = 'block';
-        btnHotKey.forEach((item) => {
-          const cache = item;
-          cache.style.display = 'block';
-        });
-      } else {
-        bgRoWindowHotKey.style.display = 'none';
-        btnHotKey.forEach((item) => {
-          const cache = item;
-          cache.style.display = 'none';
-        });
-      }
-    },
-    onDragged({
-      el, deltaX, deltaY, first, last,
-    }) {
-      if (first) {
-        this.dragged = true;
-        return;
-      }
-      if (last) {
-        this.dragged = false;
-        return;
-      }
-      const l = +window.getComputedStyle(el).left.slice(0, -2) || 0;
-      const t = +window.getComputedStyle(el).top.slice(0, -2) || 0;
-      const cacheEl = el;
-      cacheEl.style.left = `${l + deltaX}px`;
-      cacheEl.style.top = `${t + deltaY}px`;
-    },
-    openModelWindow() {
-      if ($('#cartsModal').modal('show')[0].hidden) {
-        $('#cartsModal').modal('show');
-      } else {
-        $('#cartsModal').modal('hide');
-      }
-    },
-    navbarToggler() {
-      $('.navbar a').on('click', () => {
-        $('.navbar-toggler').click();
-      });
-    },
-  },
-};
-</script>

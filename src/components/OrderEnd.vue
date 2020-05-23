@@ -17,13 +17,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .p-top {
-    padding-top: 91px;
-  }
-  .order-end{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+.p-top {
+  padding-top: 91px;
+}
+.order-end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>

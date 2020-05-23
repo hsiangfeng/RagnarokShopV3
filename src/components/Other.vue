@@ -33,14 +33,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .other-ul {
-    padding:0;
-    list-style: none;
-    li {
-      width: 33.33333%;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
+.other-ul {
+  padding: 0;
+  list-style: none;
+  li {
+    width: 33.33333%;
+    @media (max-width: 768px) {
+      width: 100%;
     }
   }
+}
 </style>
