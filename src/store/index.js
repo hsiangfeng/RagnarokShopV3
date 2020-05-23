@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import productsModule from './store/productsModule';
-import orderModule from './store/orderModule';
-import alertModule from './store/alertModule';
-import adminModule from './store/adminModule';
+import productsModule from './productsModule';
+import orderModule from './orderModule';
+import alertModule from './alertModule';
+import adminModule from './adminModule';
 
 Vue.use(Vuex);
 
