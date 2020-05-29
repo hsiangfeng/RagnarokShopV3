@@ -14,6 +14,9 @@ export default new Router({
     {
       path: '*',
       redirect: '/404',
+      meta: {
+        title: 'RagnarokShopV3 - 404',
+      },
     },
     {
       path: '/',
@@ -29,31 +32,49 @@ export default new Router({
           path: '/aboutro',
           name: 'AboutRo',
           component: () => import('@/components/AboutRo.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 關於仙境',
+          },
         },
         {
           path: '/products',
           name: 'Products',
           component: () => import('@/components/Products.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 商品列表',
+          },
         },
         {
           path: '/detailed/:productsId',
           name: 'Detailed',
           component: () => import('@/components/Detailed.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 商品詳細',
+          },
         },
         {
           path: '/customer',
           name: 'Customer',
           component: () => import('@/components/Customer.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 購物車列表',
+          },
         },
         {
           path: '/check_order/:orderId',
           name: 'CheckOrder',
           component: () => import('@/components/CheckOrder.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 確認付款頁',
+          },
         },
         {
           path: '/order_end',
           name: 'OrderEnd',
           component: () => import('@/components/OrderEnd.vue'),
+          meta: {
+            title: 'RagnarokShopV3 - 購買成功',
+          },
         },
       ],
     },
