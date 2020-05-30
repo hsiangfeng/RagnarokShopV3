@@ -63,12 +63,19 @@ window.$ = $;
 new Vue({
   router,
   store,
+  created() {
+    const title = localStorage.getItem('title') || '';
+    if (title) {
+      document.title = title;
+    }
+  },
   render: (h) => h(App),
 }).$mount('#app');
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
+    localStorage.setItem('title', to.meta.title);
   }
 
   if (to.meta.requiresAuth) {
